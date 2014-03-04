@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'backbone-on-rails'
 gem 'devise'
 gem 'thin'
+gem 'handlebars'
 
 group :doc do
   gem 'sdoc', require: false
