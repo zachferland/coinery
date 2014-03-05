@@ -12,6 +12,8 @@ gem 'backbone-on-rails'
 gem 'devise'
 gem 'thin'
 gem 'handlebars'
+gem 'coinbase'
+gem 'figaro'
 
 group :doc do
   gem 'sdoc', require: false
