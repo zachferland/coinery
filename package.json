@@ -16,6 +16,9 @@
   ],
   "homepage": "http://coinery.io",
   "devDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "browserify": "~3.31.2",
+    "grunt-browserify": "~1.3.1",
+    "coffeeify": "~0.6.0"
   }
 }
