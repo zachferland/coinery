@@ -8,7 +8,7 @@ Please chime in with any improvements...
 The Backbone app root is located in /app/assets/javascripts
 Compass files will be located in /app/assets/stylesheets (?)
 
-Sample backbone structure
+Sample backbone app structure
 
 ```
 |-- libs
@@ -28,7 +28,7 @@ Sample backbone structure
 |-- main.coffee
 ```
 
-In CommonJS, every file has dependencies (require statements) and exports.
+When using CommonJS modules, every file has dependencies (require statements) and exports.j
 
 Example:
 
@@ -71,8 +71,6 @@ grunt watch
 this will watch the files in /app/assets/ and automatically run the build process on a change
 
 Grab the LiveReload chrome extension for live, automagic browser refreshes: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
-
-
 
 
 
