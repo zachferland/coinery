@@ -10,6 +10,7 @@ Compass files will be located in /app/assets/stylesheets (?)
 
 Sample backbone structure
 
+```
 |-- libs
 |   |-- jquery.min.js
 |   |-- backbone.min.js
@@ -25,13 +26,13 @@ Sample backbone structure
 |-- router.coffee
 |-- app.coffee
 |-- main.coffee
-
+```
 
 In CommonJS, every file has dependencies (require statements) and exports.
 
 Example:
 
-``` coffeescript
+```coffeescript
 # in house.coffee
 
 Lamp = require('lamp')
@@ -45,7 +46,6 @@ leave = () ->
 module.exports =
   'enter': enter
   'leave': leave
-
 ```
 
 The build process looks like this:
@@ -63,6 +63,7 @@ $ npm install
 ```
 
 once, then
+
 ```
 grunt watch
 ```
