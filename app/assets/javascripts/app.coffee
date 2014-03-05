@@ -1,4 +1,4 @@
-module.exports =
-  start = ->
-    console.log 'hi'
+module.exports = (->
+  console.log 'hi'
+)()
 
