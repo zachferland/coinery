@@ -1,7 +1,7 @@
-== Coinery
+## Coinery ##
 A BTC-denominated storefront for buying & selling your digital goods. Created as part of the 2014 BitHack
 
-### Compiling front-end assets ###
+#### Compiling front-end assets ####
 
 Please chime in with any improvements...
 
