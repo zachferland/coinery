@@ -8,7 +8,7 @@
     "@arjunblj",
     "@zachferland"
   ],
-  "repositories": [
+  "repository": [
     {
       "type": "git",
       "url": "https://github.com/jcap49/coinery.git"
