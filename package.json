@@ -1,0 +1,14 @@
+{
+  "name": "Coinery",
+  "description": "A BTC-denominated storefront for buying & selling your digital goods",
+  "version": "0.0.1",
+  "authors": ['@deoates', '@jcap49', '@arjunblj', '@zachferland'],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/jcap49/coinery.git"
+    }
+  ],
+  "homepage": "http://coinery.io"
+}
+
