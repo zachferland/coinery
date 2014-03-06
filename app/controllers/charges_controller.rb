@@ -1,4 +1,4 @@
-class ChargesController < ActionController::Base
+class ChargesController < ApplicationController
 
   def index
   end
