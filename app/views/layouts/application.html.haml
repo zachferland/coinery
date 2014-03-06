@@ -1,21 +1,22 @@
-/[if lt IE 7 ] <html class=\"ie6\" lang=\"en\">
-/[if IE 7 ]    <html class=\"ie7\" lang=\"en\">
-/[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
-/[if IE 9 ]    <html class=\"ie9\" lang=\"en\">
-/[if (gt IE 9)|!(IE)] <!--> <html lang=\"en\">
+!!! 5
 
 %head
   %meta{ :charset => "utf-8" }
   %title= content_for?(:title) ? yield(:title) : "Coinery"
-  
+
   = stylesheet_link_tag "application"
-  = javascript_include_tag "vendor/custom.modernizr"
+
+  %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" }
+  %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" }
+  %script{ :src => "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" }
+
+  = javascript_include_tag "application"
   = csrf_meta_tag
+
 
 %body
 
   = yield
 
-  = javascript_include_tag "application"
   = yield :javascript
- 
+
