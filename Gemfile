@@ -12,7 +12,8 @@ gem 'backbone-on-rails'
 gem 'devise'
 gem 'thin'
 gem 'handlebars'
-gem 'coinbase'
+gem 'omniauth-coinbase'
+gem 'oauth2'
 gem 'figaro'
 
 group :doc do

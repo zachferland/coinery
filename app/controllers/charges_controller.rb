@@ -9,6 +9,5 @@ class ChargesController < ActionController::Base
   protected
 
   def set_coinbase_client
-    @client = Coinbase::Client.new(ENV['COINBASE_API_KEY'], ENV['COINBASE_API_SECRET'])
   end
 end
