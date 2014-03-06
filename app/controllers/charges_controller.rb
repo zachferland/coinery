@@ -6,6 +6,9 @@ class ChargesController < ActionController::Base
   def create
   end
 
+  def index
+  end
+
   protected
 
   def set_coinbase_client
