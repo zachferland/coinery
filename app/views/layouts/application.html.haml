@@ -13,11 +13,8 @@
   = csrf_meta_tag
 
 %body
-  = display_flash_messages
-  
-  = yield
 
-  = render 'layouts/footer'
+  = yield
 
   = javascript_include_tag "application"
   = yield :javascript
