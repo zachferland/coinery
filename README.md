@@ -5,11 +5,8 @@ A BTC-denominated storefront for buying & selling your digital goods. Created as
 
 **Rails + Backbone living together in relative harmony.**
 
-The Backbone app is completely separate from the rails app and can be found in the `backbone/` dir
-
+The Backbone app is completely separate from the rails app and can be found in the `backbone/` dir.
 The Rails app is configured to serve public assets from `backbone/public/`
-
-Backbone app structure
 
 ```
 backbone/
@@ -40,8 +37,8 @@ backbone/
 ```
 
 We compile coffeescript and sass and build the webapp with a handy tool called Brunch (http://brunch.io/)
-
 Brunch uses Bower for js dependency management.
+
 
 __Running the app locally__
 
@@ -75,7 +72,7 @@ $ brunch watch
 The webapp should now be running at localhost:3000
 
 
-** Using Node/CommonJS modules in Backbone **
+__Using Node/CommonJS modules in Backbone__
 
 A module is a discrete unit of code with a well defined interface.
 
