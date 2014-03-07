@@ -3,17 +3,8 @@
   "version": "0.1.0",
   "main": "public/javascripts/app.js",
   "dependencies": {
-    "jquery": "~2.0.2",
-    "normalize-css": "~2.1.2",
-    "h5bp-helpers": "~0.1.0"
-  },
-  "overrides": {
-    "backbone": {
-      "dependencies": {
-        "lodash": "*",
-        "jquery": "*"
-      },
-      "main": "backbone.js"
-    }
+    "jquery": "latest",
+    "underscore": "latest",
+    "backbone": "latest"
   }
 }
