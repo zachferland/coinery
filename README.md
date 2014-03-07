@@ -1,34 +1,83 @@
 ## Coinery ##
 A BTC-denominated storefront for buying & selling your digital goods. Created as part of the 2014 BitHack
 
-#### Compiling front-end assets ####
+#### App structure ####
 
-Please chime in with any improvements...
+**Rails + Backbone living together in relative harmony.**
 
-The Backbone app root is located in /app/assets/javascripts
-Compass files will be located in /app/assets/stylesheets (?)
+The Backbone app is completely separate from the rails app and can be found in the `backbone/` dir
+The Rails app is configured to serve public assets from `backbone/public/`
 
-Sample backbone app structure
+Backbone app structure
 
 ```
-|-- libs
-|   |-- jquery.min.js
-|   |-- backbone.min.js
-|   |-- underscore.min.js
-|-- models
-|   |-- user.coffee
-|   |-- product.coffee
-|-- collections
-|   |-- products.coffee
-|-- templates
-|   |-- header.hbs
-|   |-- footer.hbs
-|-- router.coffee
-|-- app.coffee
-|-- main.coffee
+backbone/
+|-- app/
+|   |-- router.coffee
+|   |-- app.coffee
+|   |-- init.coffee
+|   |-- models/
+|   |   |-- user.coffee
+|   |   |-- product.coffee
+|   |-- collections/
+|   |   |-- products.coffee
+|   |-- templates/
+|   |   |-- nav.hbs
+|   |   |-- footer.hbs
+|   |-- assets/
+|   |   |-- index.html
+|   |   |-- img/
+|   |   |-- css/
+|   |-- sass/
+|   |   |-- app.sass
+|   |   |-- _partial.sass
+|-- public/
+|   |-- index.html
+|   |-- img/
+|   |-- css/
+|   |-- js/
 ```
 
-When using CommonJS modules, every file has dependencies (require statements) and exports.j
+We compile coffeescript and sass and build the webapp with a handy tool called Brunch (http://brunch.io/)
+Brunch uses Bower for js dependency management.
+
+**Running the app locally**
+
+1. Install necessary gems
+```
+$ bundle install
+```
+
+2. Start the rails server
+```
+$ rails s
+```
+
+3. Install Brunch and Bower (specified in `package.json`)
+```
+$ cd backbone
+$ npm install
+```
+
+4. Fetch JS dependencies with Bower (one time only)
+```
+$ bower install
+```
+
+5. Build the webapp with Brunch and monitor for changes
+```
+$ brunch build
+$ brunch watch
+```
+
+The webapp should now be running at localhost:3000
+
+
+** Using Node/CommonJS modules in Backbone **
+
+A module is a discrete unit of code with a well defined interface.
+
+When using CommonJS modules, every file has dependencies (require statements) and exports:
 
 Example:
 
@@ -48,42 +97,37 @@ module.exports =
   'leave': leave
 ```
 
-The build process looks like this:
-- Browserify generates main.js file using CommonJS modules
-- Grunt precompiles handlebars (*.hbs) templates
-- Grunt concats libs, main.js and precompiled handlebars templates into one application.js file
-- Grunt uses compass to compile sass files into one app.css file
+Here's an example of a few discrete Backbone modules
 
-^^ this logic will be in Gruntfile.coffee
+```coffeescript
+# in models/user.coffee
 
-to start the build process, simply run
+Product = require 'models/product'
+
+module.exports = Class User extends Backbone.Model
+
+  url: ''
+
+  initialize: ->
+    sample = new Product
+      price: '12'
+      name: 'Ebook'
+
+    @set 'products', [sample,]
+
+# in views/login.coffee
+
+User = require 'models/user'
+
+module.exports = Class LoginView extends Backbone.View
+
+  events:
+    'submit form': 'loginHandler'
+
+  loginHandler: (e) ->
+    @user = new User()
+    @user.fetch
 
 ```
-$ npm install
-```
 
-once, then
-
-```
-grunt watch
-```
-
-this will watch the files in /app/assets/ and automatically run the build process on a change
-
-Grab the LiveReload chrome extension for live, automagic browser refreshes: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+http://nodejs.org/docs/latest/api/modules.html#modules_modules
