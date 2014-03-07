@@ -6,6 +6,7 @@ A BTC-denominated storefront for buying & selling your digital goods. Created as
 **Rails + Backbone living together in relative harmony.**
 
 The Backbone app is completely separate from the rails app and can be found in the `backbone/` dir
+
 The Rails app is configured to serve public assets from `backbone/public/`
 
 Backbone app structure
@@ -39,32 +40,33 @@ backbone/
 ```
 
 We compile coffeescript and sass and build the webapp with a handy tool called Brunch (http://brunch.io/)
+
 Brunch uses Bower for js dependency management.
 
-**Running the app locally**
+__Running the app locally__
 
-1. Install necessary gems
+Install necessary gems
 ```
 $ bundle install
 ```
 
-2. Start the rails server
+Start the rails server
 ```
 $ rails s
 ```
 
-3. Install Brunch and Bower (specified in `package.json`)
+Install Brunch and Bower (specified in `package.json`)
 ```
 $ cd backbone
 $ npm install
 ```
 
-4. Fetch JS dependencies with Bower (one time only)
+Fetch JS dependencies with Bower (one time only)
 ```
 $ bower install
 ```
 
-5. Build the webapp with Brunch and monitor for changes
+Build the webapp with Brunch and monitor for changes
 ```
 $ brunch build
 $ brunch watch
