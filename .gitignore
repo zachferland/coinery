@@ -19,4 +19,33 @@ database.yml
 /config/application.yml
 
 
+
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+
 node_modules/
+
+# Brunch folder for temporary files.
+tmp/
+
+# Brunch public folder.
+public/
+
+# Bower stuff.
+bower_components/
