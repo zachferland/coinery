@@ -20,5 +20,7 @@
     "clean-css-brunch": ">= 1.0 < 1.8",
     "auto-reload-brunch": ">= 1.0 < 1.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "sass-brunch": "~1.8.0"
+  }
 }
