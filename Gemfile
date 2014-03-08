@@ -6,8 +6,9 @@ gem 'pg'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 
-gem 'omniauth-coinbase'
-gem 'oauth2'
+# Auth
+gem "omniauth-coinbase"
+gem 'omniauth-twitter'
 
 gem 'figaro'
 
