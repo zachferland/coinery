@@ -1,2 +1,48 @@
-form
-  background: red
+*
+  &::-webkit-input-placeholder
+    color: lighten($dark, 55%)
+    font-weight: 300
+  &:-moz-placeholder
+    color: lighten($dark, 55%)
+    font-weight: 300
+  &::-moz-placeholder
+    color: lighten($dark, 55%)
+    font-weight: 300
+  &:-ms-input-placeholder
+    color: lighten($dark, 55%)
+    font-weight: 300
+
+input[type="text"]
+  @include transition(all .2s)
+  background: #fff
+  border: 0px
+  border-left: 2px solid lighten($dark, 55%)
+  padding: 14px 15px 13px
+  margin-top: 3px
+  font-weight: 500
+  color: $dark
+
+  &:hover
+    border-left: 2px solid lighten($dark, 35%)
+
+  &:focus
+    border-left: 4px solid $green
+    outline: 0px
+
+  &.wide
+    width: 400px
+
+.fieldset a.button
+  @include border-radius(0px 3px 3px 0px)
+  margin-left: -5px
+
+
+span.hint
+  font-style: italic
+  font-weight: 400
+  font-size: .85rem
+  color: lighten($dark, 30%)
+  display: block
+  margin:
+    top: 20px
+    left: 16px
