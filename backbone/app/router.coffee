@@ -57,17 +57,16 @@ module.exports = class Router extends Backbone.Router
   # safely replace view in .main-container
   loadView: (view) ->
 
-    replace = ->
+    replace = =>
       @view = view
       @view.render()
 
-    unless @view?
+    unless @view
       replace()
       return
 
     # need to clean up exisiting view
     @view.undelegateEvents()
-    @view.remove()
+    @view.$el.html ''
     replace()
-
 
