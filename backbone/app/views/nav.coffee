@@ -16,5 +16,9 @@ module.exports = class Header extends Backbone.View
 
   navHandler: (e) ->
     do e.preventDefault
-    alert "going to #{$(e.target).text()}"
+    dest = $(e.target).attr 'data-href'
+    Backbone.history.navigate dest, {trigger: true}
+
+    @$('li').removeClass 'current'
+    $(e.target).parent().addClass 'current'
 
