@@ -5,6 +5,7 @@
   "dependencies": {
     "jquery": "latest",
     "underscore": "latest",
-    "backbone": "latest"
+    "backbone": "latest",
+    "normalize-css": "~3.0.0"
   }
 }
