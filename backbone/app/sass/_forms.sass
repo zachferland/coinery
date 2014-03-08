@@ -21,6 +21,7 @@ input[type="text"]
   margin-top: 3px
   font-weight: 500
   color: $dark
+  position: relative
 
   &:hover
     border-left: 2px solid lighten($dark, 35%)
@@ -32,7 +33,36 @@ input[type="text"]
   &.wide
     width: 400px
 
-.fieldset a.button
+  &.currency
+    width: 160px
+
+.field-wrapper
+  margin-right: 10px
+  display: inline-block
+  position: relative
+
+  &.usd:after
+    content: 'USD'
+  &.btc:after
+    content: 'BTC'
+
+  &:after
+    content: ''
+    background: #eee
+    position: absolute
+    padding: 9px 15px
+    text-align: center
+    text-transform: uppercase
+    letter-spacing: 1px
+    color: lighten($dark, 15%)
+    font-size: .75rem
+    font-weight: 700
+    right: 7px
+    top: 10px
+
+
+
+.field a.button.attached
   @include border-radius(0px 3px 3px 0px)
   margin-left: -5px
 
@@ -46,3 +76,7 @@ span.hint
   margin:
     top: 20px
     left: 16px
+
+.fieldset
+  @include pie-clearfix
+  margin-bottom: 50px
