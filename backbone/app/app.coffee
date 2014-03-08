@@ -9,5 +9,4 @@ module.exports =
 
     router = new Router { user }
 
-    Backbone.history.start
-      pushState: true
+    do Backbone.history.start
