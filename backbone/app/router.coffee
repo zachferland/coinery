@@ -18,9 +18,12 @@ module.exports = class Router extends Backbone.Router
       model: @user
     nav.render()
 
-    # current view in .main-container
-    @view = null
+    # go to bed David jesus christ
+    @on 'route', (router, route) =>
+      nav.setActive router.replace('Handler', '')
 
+    # current view in .main-containerk
+    @view = null
 
 
   productsHandler: ->

@@ -19,6 +19,6 @@ module.exports = class Header extends Backbone.View
     dest = $(e.target).attr 'data-href'
     Backbone.history.navigate dest, {trigger: true}
 
+  setActive: (route) ->
     @$('li').removeClass 'current'
-    $(e.target).parent().addClass 'current'
-
+    $("a[data-href=#{route}]").parent().addClass 'current'
