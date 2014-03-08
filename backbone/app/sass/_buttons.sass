@@ -1,0 +1,16 @@
+a.button
+  @include border-radius(2px)
+  @include transition(all .1s)
+  @include disable-select
+  display: inline-block
+  padding: 13px 20px
+  color: #fff
+  background: $green
+  font-weight: 700
+  font-size: .95rem
+
+  &:hover
+    background: darken($green, 3%)
+
+  &:active
+    background: darken($green, 5%)

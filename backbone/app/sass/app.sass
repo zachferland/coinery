@@ -22,12 +22,32 @@ body
 
 h1, h2, h3, h4, h5, h6, p, a, li
   @include sans-serif
+  font-weight: 400
   color: $dark
+
+p
+  line-height: 1.5
+
+strong
+  font-weight: 600
 
 a, a:hover
   cursor: pointer
 
+// tempfix
+.main-container
+  overflow: hidden
+
+.content
+  padding: 30px
+  width: 600px
+
 
 // PARTIALS
+@import mixins
 @import nav
+@import buttons
+@import forms
+@import products
+@import create
 

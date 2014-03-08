@@ -1,11 +1,14 @@
 SidebarView = require 'views/nav'
 ProductsView = require 'views/products'
 CustomersView = require 'views/customers'
+NewProductView = require 'views/new'
 AccountView = require 'views/account'
+Product = require 'models/product'
 
 module.exports = class Router extends Backbone.Router
   routes: ->
     'products': 'productsHandler'
+    'products/new': 'newProductHandler'
     'customers': 'customersHandler'
     'account': 'accountHandler'
 
@@ -27,9 +30,11 @@ module.exports = class Router extends Backbone.Router
 
 
   productsHandler: ->
-    products = new ProductsView
+
+    view = new ProductsView
       model: @user
-    @loadView(products)
+
+    @loadView(view)
 
   customersHandler: ->
     customers = new CustomersView
@@ -40,6 +45,13 @@ module.exports = class Router extends Backbone.Router
     account = new AccountView
       model: @user
     @loadView(account)
+
+  newProductHandler: ->
+    product = new Product
+    view = new NewProductView
+      user: @user
+      model: product
+    @loadView(view)
 
 
   # safely replace view in .main-container

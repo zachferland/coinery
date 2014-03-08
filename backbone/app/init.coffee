@@ -19,20 +19,6 @@ window.sexyHash()
 
 $ ->
 
-  # http://elving.me/post/44859632208/rethinking-backbone-js-view-rendering
-
-  Handlebars.registerHelper 'get', (attr) ->
-    this.get(attr)
-
-  Handlebars.registerHelper 'do', (method) ->
-    this[method]
-
-  Handlebars.registerHelper 'using', (attr, options) ->
-    data = {}
-    data[attr] = this.get(attr)
-    options.fn(data)
-
-
   # lol
   Backbone.$ = jQuery
 

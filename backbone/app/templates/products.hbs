@@ -1,1 +1,29 @@
-Products yey
+{{#if products}}
+  <ul class="products-list">
+    {{#each products}}
+      <li>{{ name }}, {{ price }}</li>
+    {{/each}}
+</ul>
+{{else}}
+  <a data-href="products/new" class="button create-button">Create a Product<span class="plus">+</span></a>
+  <h2>
+    <strong>
+      Hey {{#if first_name}}{{first_name}}{{/if}}!
+    </strong>
+    Welcome to Coinery
+  </h2>
+  <p>
+    Thanks for trying out Coinery.
+    With Coinery, you can <strong>effortlessly sell products with Bitcoin
+    as the payment method.</strong> Get started by creating your first
+    product! We are here to help if you need us.
+  </p>
+  <p>
+    - The Coinery Team
+  </p>
+
+{{/if}}
+
+
+
+
