@@ -47,7 +47,7 @@ Install necessary gems
 $ bundle install
 ```
 
-Start the rails server
+Start the thin server
 ```
 $ thin start
 ```

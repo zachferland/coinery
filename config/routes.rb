@@ -1,4 +1,9 @@
 Coinery::Application.routes.draw do
+  resources :users, except: [:new, :edit]
+  resources :transactions, except: [:new, :edit]
+  resources :products, except: [:new, :edit]
+  resources :assets, except: [:new, :edit]
+  resources :customers, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

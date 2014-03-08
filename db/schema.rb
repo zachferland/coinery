@@ -11,9 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140308192653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assets", force: true do |t|
+    t.integer  "product_id"
+    t.string   "type"
+    t.float    "size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customers", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.integer  "customer_id"
+    t.float    "usd"
+    t.float    "btc"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "username"
+    t.string   "full_name"
+    t.text     "bio"
+    t.string   "twitter_handle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
