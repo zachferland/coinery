@@ -49,7 +49,7 @@ $ bundle install
 
 Start the rails server
 ```
-$ rails s
+$ thin start
 ```
 
 Install Brunch and Bower (specified in `package.json`)

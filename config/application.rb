@@ -1,11 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,6 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module Coinery
   class Application < Rails::Application
+
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -23,9 +19,7 @@ module Coinery
     # config.i18n.default_locale = :de
 
     # turn off rails asset pipeline, override public dir
-    config.assets.enabled = false
-    config.paths['public'] = ['backbone/public']
-
-
+     config.assets.enabled = false
+     config.paths['public'] = ['backbone/public']
   end
 end
