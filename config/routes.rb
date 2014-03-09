@@ -3,11 +3,38 @@ Coinery::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
 
-  resources :users, except: [:new, :edit]
-  resources :transactions, except: [:new, :edit]
-  resources :products, except: [:new, :edit]
-  resources :assets, except: [:new, :edit]
-  resources :customers, except: [:new, :edit]
+
+  # user endpoints
+  get "user" => 'users#show'
+  # match "user", to: 'user#update', via: [:put, :patch]
+  # user/products -> products of current user
+  # user/products/:id -> single product of current user
+  # may not user customers
+  # user/customer -> all customers of current users products
+  # user/customer/:id -> particular customer of user
+
+
+  # product endpoints
+  # products -> all products
+  # products/:id -> a particular product
+
+
+
+
+
+
+  # resources :users, except: [:new, :edit]
+  # resources :transactions, except: [:new, :edit]
+  # resources :products, except: [:new, :edit]
+  # resources :assets, except: [:new, :edit]
+  # resources :customers, except: [:new, :edit]
+
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

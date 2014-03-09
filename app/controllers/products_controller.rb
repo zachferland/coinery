@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :permission
+  before_filter :permission, only: [:create, :destroy]
 
 
   # GET /products

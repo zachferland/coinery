@@ -30,6 +30,11 @@ class SessionsController < ApplicationController
 	      # redirect_to root_url, notice: "Signed in!"
 	    else
 	      # No user associated with the identity so we need to create a new one
+	      # create new user and create associated identity with user
+	     	@identity.user = User.create_with_omniauth(auth['info'])
+	      	@identity.save()
+	      	self.current_user = @identity.user
+
 	      # redirect_to new_user_url, notice: "Please finish registering"
 	    end
 	  end

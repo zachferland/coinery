@@ -1,15 +1,22 @@
 class TransactionsController < ApplicationController
+  before_filter :permission, only: [:index, :show]
   # GET /transactions
   # GET /transactions.json
+
+  # Return all transactions of a user
   def index
-    @transactions = Transaction.all
+    @user = current_user
+    @transaction = Transaction.all
 
     render json: @transactions
   end
 
   # GET /transactions/1
   # GET /transactions/1.json
+
+  # Return specified transaction of a user
   def show
+    @user = current_user
     @transaction = Transaction.find(params[:id])
 
     render json: @transaction
@@ -17,6 +24,9 @@ class TransactionsController < ApplicationController
 
   # POST /transactions
   # POST /transactions.json
+
+  # create transaction from callback from coinbase
+  # will have to format return from coinbase properly 
   def create
     @transaction = Transaction.new(params[:transaction])
 
@@ -29,24 +39,24 @@ class TransactionsController < ApplicationController
 
   # PATCH/PUT /transactions/1
   # PATCH/PUT /transactions/1.json
-  def update
-    @transaction = Transaction.find(params[:id])
+  # def update
+  #   @transaction = Transaction.find(params[:id])
 
-    if @transaction.update(params[:transaction])
-      head :no_content
-    else
-      render json: @transaction.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @transaction.update(params[:transaction])
+  #     head :no_content
+  #   else
+  #     render json: @transaction.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /transactions/1
   # DELETE /transactions/1.json
-  def destroy
-    @transaction = Transaction.find(params[:id])
-    @transaction.destroy
+  # def destroy
+  #   @transaction = Transaction.find(params[:id])
+  #   @transaction.destroy
 
-    head :no_content
-  end
+  #   head :no_content
+  # end
 
   def transaction_params
     params.require(:transaction).permit(:product_id, :customer_id, :usd, :btc, :status)

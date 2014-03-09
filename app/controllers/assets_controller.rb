@@ -1,4 +1,5 @@
 class AssetsController < ApplicationController
+  # before_filter :permission, only: []
 
   has_attached_file :asset
   # asset type validation

@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+   # before_filter :permission, only: []
+
   # GET /customers
   # GET /customers.json
   def index
@@ -41,14 +43,14 @@ class CustomersController < ApplicationController
 
   # DELETE /customers/1
   # DELETE /customers/1.json
-  def destroy
-    @customer = Customer.find(params[:id])
-    @customer.destroy
+  # def destroy
+  #   @customer = Customer.find(params[:id])
+  #   @customer.destroy
 
-    head :no_content
-  end
+  #   head :no_content
+  # end
 
-    def customer_params
+  def customer_params
     params.require(:customer).permit(:email)
   end
 end
