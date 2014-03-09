@@ -47,4 +47,8 @@ class CustomersController < ApplicationController
 
     head :no_content
   end
+
+    def customer_params
+    params.require(:customer).permit(:email)
+  end
 end

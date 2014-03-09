@@ -10,6 +10,10 @@ gem 'thin'
 gem "omniauth-coinbase"
 gem 'omniauth-twitter'
 
+# File Handling
+gem 'paperclip'
+gem 'aws-sdk'
+
 gem 'figaro'
 
 

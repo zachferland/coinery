@@ -47,4 +47,8 @@ class TransactionsController < ApplicationController
 
     head :no_content
   end
+
+  def transaction_params
+    params.require(:transaction).permit(:product_id, :customer_id, :usd, :btc, :status)
+  end
 end

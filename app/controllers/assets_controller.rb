@@ -1,4 +1,9 @@
 class AssetsController < ApplicationController
+
+  has_attached_file :asset
+  # asset type validation
+
+
   # GET /assets
   # GET /assets.json
   def index
@@ -46,5 +51,9 @@ class AssetsController < ApplicationController
     @asset.destroy
 
     head :no_content
+  end
+
+  def asset_params
+    params.require(:asset).permit(:asset, :user_id)
   end
 end
