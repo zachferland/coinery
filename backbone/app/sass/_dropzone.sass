@@ -1,0 +1,125 @@
+.dz-preview-container
+  margin-top: 30px
+  width: 100%
+
+.dz-preview
+  position: relative
+  height: auto
+  width: 100%
+  margin-bottom: 10px
+
+  .dz-progress-percent
+    @include transition(all .5s)
+    position: absolute
+    left: 100%
+    top: 0px
+    padding: 5px 10px
+    font-weight: 300
+    font-size: 1.1rem
+    opacity: 0.2
+
+  &.dz-success, &.dz-error
+    span.dz-progress-percent
+      opacity: 0
+    span.dz-upload
+      width: 100%!important
+
+
+  .dz-details
+    height: 30px
+    background: #fff
+
+    .dz-filename
+      overflow: hidden
+      height: 100%
+      color: #fff
+      font-size: .9rem
+      font-weight: 600
+      padding: 7px 11px
+      position: absolute
+
+  .dz-meta
+    padding: 6px 14px
+
+    .dz-size, .dz-error-msg
+      font-size: 0.8rem
+
+    .dz-size
+      color: lighten($dark, 50%)
+
+    .dz-error-msg
+      display: none
+      padding-left: 8px
+      font-weight: 500
+      color: lighten(red, 25%)
+      text-overflow: ellipsis
+      max-width: 87%
+      overflow: hidden
+      white-space: nowrap
+      position: relative
+      top: 3px
+
+      &:before
+        content: ' Error: '
+        font-weight: 600
+        color: lighten(red, 15%)
+
+  .dz-error-mark, .dz-success-mark
+    display: none
+    position: absolute
+    z-index: 110
+    font-size: 1.3rem
+    padding: 4px 6px
+    right: 0px
+    top: 0px
+
+  .dz-error-mark
+    color: lighten(red, 15%)
+
+  .dz-success-mark
+    color: #8cc657
+
+  &.dz-error
+    .dz-error-mark
+      display: block
+    .dz-error-msg
+      display: inline-block
+
+  &.dz-success
+    .dz-success-mark
+      display: block
+
+  .dz-progress
+    position: absolute
+    top: 0px
+    left: 0px
+    width: 100%
+    background: $green
+    display: none
+    height: 30px
+
+  .dz-progress .dz-upload
+    display: block
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    width: 0%
+    background-color: #fff
+    z-index: 100
+    overflow: hidden
+
+    span.filename
+      color: lighten($dark, 20%)
+      display: inline-block
+      position: absolute
+      font-size: .9rem
+      padding: 7px 13px
+      font-weight: 500
+      z-index: 10
+      width: 540px
+      right: 0px
+
+  &.dz-processing .dz-progress
+    display: block
+
