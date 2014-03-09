@@ -15,11 +15,13 @@ class SessionsController < ApplicationController
 	      # is the current user. So the identity is already associated with 
 	      # this user. So let's display an error message.
 	      # redirect_to root_url, notice: "Already linked that account!"
+	      redirect_to ENV['ROOT']
 	    else
 	      # The identity is not associated with the current_user so lets 
 	      # associate the identity
 	      @identity.user = current_user
 	      @identity.save()
+	      redirect_to ENV['ROOT']
 	      # redirect_to root_url, notice: "Successfully linked that account!"
 	    end
 	  else
@@ -27,6 +29,7 @@ class SessionsController < ApplicationController
 	      # The identity we found had a user associated with it so let's 
 	      # just log them in here
 	      self.current_user = @identity.user
+	      redirect_to ENV['ROOT']
 	      # redirect_to root_url, notice: "Signed in!"
 	    else
 	      # No user associated with the identity so we need to create a new one
@@ -34,6 +37,7 @@ class SessionsController < ApplicationController
 	     	@identity.user = User.create_with_omniauth(auth['info'])
 	      	@identity.save()
 	      	self.current_user = @identity.user
+	      	redirect_to ENV['ROOT']
 
 	      # redirect_to new_user_url, notice: "Please finish registering"
 	    end

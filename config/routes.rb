@@ -5,8 +5,9 @@ Coinery::Application.routes.draw do
 
 
   # user endpoints
+  # returns user json model
   get "user" => 'users#show'
-  # match "user", to: 'user#update', via: [:put, :patch]
+  put "user" => 'user#update'
   # user/products -> products of current user
   # user/products/:id -> single product of current user
   # may not user customers
@@ -15,6 +16,7 @@ Coinery::Application.routes.draw do
 
 
   # product endpoints
+  post "product" => 'product#create'
   # products -> all products
   # products/:id -> a particular product
 
