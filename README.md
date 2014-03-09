@@ -47,9 +47,9 @@ Install necessary gems
 $ bundle install
 ```
 
-Start the rails server
+Start the thin server
 ```
-$ rails s
+$ thin start
 ```
 
 Install Brunch and Bower (specified in `package.json`)
