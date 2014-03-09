@@ -57,16 +57,27 @@ module.exports = class Router extends Backbone.Router
   # safely replace view in .main-container
   loadView: (view) ->
 
+    setVisibility = (show) ->
+      if show
+        $('.main-container').addClass 'visible'
+      else
+        $('.main-container').removeClass 'visible'
+
     replace = =>
       @view = view
       @view.render()
+      setVisibility(true)
+
+    if @view?
+      setVisibility(false)
 
     unless @view
       replace()
+      setVisibility(true)
       return
 
-    # need to clean up exisiting view
-    @view.undelegateEvents()
-    @view.$el.html ''
-    replace()
+    delay 210, =>
+      @view.undelegateEvents()
+      @view.$el.html ''
+      replace()
 

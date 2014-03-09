@@ -36,7 +36,15 @@ a, a:hover
 
 // tempfix
 .main-container
+  @include transition(all .2s)
+  @include transition-delay(0s)
   overflow: hidden
+  opacity: 0
+
+  &.visible
+    @include transition-delay(.1s)
+    opacity: 1
+
 
 .content
   padding: 40px 30px
