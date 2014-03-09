@@ -17,9 +17,11 @@ window.sexyHash = ->
 
 window.sexyHash()
 
+
 $ ->
 
   # lol
   Backbone.$ = jQuery
+  Pace.start()
 
   do App.start
