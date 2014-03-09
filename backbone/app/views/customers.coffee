@@ -17,5 +17,9 @@ module.exports = class CustomersView extends Backbone.View
   linkHandler: (e) ->
     do e.preventDefault
     dest = $(e.target).attr 'data-href'
-    Backbone.history.navigate dest
+    if dest
+      Backbone.history.navigate dest
+    else
+      window.location.href = $(e.target).attr('href')
+
 
