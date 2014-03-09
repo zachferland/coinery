@@ -47,4 +47,9 @@ class UsersController < ApplicationController
 
     head :no_content
   end
+
+  def user_params
+    params.require(:user).permit(:email, :username, :full_name, :bio)
+  end
+
 end

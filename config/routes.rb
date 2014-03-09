@@ -1,4 +1,8 @@
 Coinery::Application.routes.draw do
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', :to => 'sessions#destroy'
+
   resources :users, except: [:new, :edit]
   resources :transactions, except: [:new, :edit]
   resources :products, except: [:new, :edit]

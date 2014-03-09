@@ -21,5 +21,10 @@ module Coinery
     # turn off rails asset pipeline, override public dir
      config.assets.enabled = false
      config.paths['public'] = ['backbone/public']
+
+     config.session_store :cookie_store
+     config.api_only = false
+
+
   end
 end

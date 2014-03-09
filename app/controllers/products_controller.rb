@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  before_filter :permission
+
+
   # GET /products
   # GET /products.json
   def index
