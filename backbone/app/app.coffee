@@ -11,8 +11,13 @@ module.exports =
     user = new User
       first_name: 'David'
       products: products
-    # TODO: syncronously fetch user
+
+    user.fetch
+      async: false
+      success: (response) ->
+        console.log response
+      error: (xhr, status, error) ->
+        console.log xhr, status
 
     router = new Router { user }
-
     do Backbone.history.start
