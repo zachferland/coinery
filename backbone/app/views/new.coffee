@@ -7,6 +7,9 @@ module.exports = class NewProductView extends Backbone.View
 
   events: ->
     'click a[data-href="back"]': 'backHandler'
+    'click a[data-href="save"]': 'saveHandler'
+    'keyup input.currency': 'currencyHandler'
+    'keydown input.currency': 'currencyValidateHandler'
 
   initialize: (options) ->
     @user = @model
@@ -21,6 +24,66 @@ module.exports = class NewProductView extends Backbone.View
     @$('input').focus()
 
     do @dropzoneInit
+
+
+  saveHandler: (e) ->
+    do e.preventDefault
+
+    console.log 'saveHandler called'
+
+    $currentStep = $(e.target).closest('.fieldset')
+    console.log $currentStep
+    errors = 0
+
+    $currentStep.find('[required]').each (i, el) ->
+      console.log 'called'
+      $(el).removeClass 'error'
+      if $(el).val() is ''
+        $(el).addClass 'error'
+        console.log 'error'
+        errors++
+
+    unless errors > 0
+      $currentStep.addClass('complete')
+                 .next().removeClass 'hidden'
+
+    return false
+
+
+  currencyHandler: (e) ->
+    focus = $(e.target).parent().attr 'data-currency'
+
+    currencies =
+      'USD': $('[data-currency="USD"] input')
+      'BTC': $('[data-currency="BTC"] input')
+
+    if focus is 'USD'
+      val = currencies['USD'].val()
+
+      unless val.indexOf('$') > -1
+        currencies['USD'].val "$#{val}"
+
+    console.log currencies['BTC'].val()
+    console.log currencies['USD'].val()
+
+
+  # don't let user delete $ from USD input
+  # number inputs only
+  currencyValidateHandler: (e) ->
+
+    if e.keyCode in [46, 8]
+      if $(e.target).val().length is 1
+        return true
+      else
+        return false
+
+    char = String.fromCharCode(e.keyCode)
+    regex = /[0-9]|\./
+
+    if regex.test(char)
+      return true
+
+    false
 
   dropzoneInit: ->
 

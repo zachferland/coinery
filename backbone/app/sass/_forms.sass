@@ -37,13 +37,14 @@ input[type="text"]
     width: 160px
 
 .field-wrapper
+
   margin-right: 10px
   display: inline-block
   position: relative
 
-  &.usd:after
+  &[data-currency="USD"]:after
     content: 'USD'
-  &.btc:after
+  &[data-currency="BTC"]:after
     content: 'BTC'
 
   &:after
@@ -61,6 +62,10 @@ input[type="text"]
     top: 10px
 
 
+.field
+  @include pie-clearfix
+  display: inline-block
+  position: relative
 
 .field a.button.attached
   @include border-radius(0px 3px 3px 0px)
@@ -68,6 +73,7 @@ input[type="text"]
 
 
 span.hint
+  @include transition(all .2s)
   font-style: italic
   font-weight: 400
   font-size: .85rem
@@ -78,5 +84,42 @@ span.hint
     left: 16px
 
 .fieldset
+  @include transition(all .2s, margin .2s)
+  @include transition-delay(.2s)
   @include pie-clearfix
   margin-bottom: 50px
+  position: relative
+  top: 0px
+  opacity: 1
+
+  h4
+    @include transition(all .2s)
+
+
+  &.hidden
+    opacity: 0
+    top: -20px
+
+
+  &.complete
+
+    span.hint
+      opacity: .3
+
+    a.button
+      display: none
+
+    .field:after
+      content: '\f00c'
+      font-family: 'FontAwesome'
+      font-size: 1.5rem
+      position: absolute
+      color: $green
+      right: -40px
+      padding: 12px 0px
+      top: 0px
+
+    h4
+      text-decoration: line-through
+      opacity: .6
+

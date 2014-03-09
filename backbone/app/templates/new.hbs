@@ -3,28 +3,28 @@
 </a>
 
 <div class="fieldset">
-  <h4>1. <strong>Enter a name</strong> for your product.</h3>
+  <h4><strong>Enter a name</strong> for your product</h3>
   <div class="field">
-    <input class="wide" type="text" placeholder="What are you selling?">
-    <a class="button attached">Save</a>
+    <input required class="wide" type="text" placeholder="What are you selling?">
+    <a class="button attached" data-href="save">Save</a>
   </div>
   <span class="hint"><em>ie. My Special Ebook, David's Debut Album</em></span>
 </div>
 
-<div class="fieldset">
-  <h4>2. <strong>How much</strong> does it cost?</h3>
+<div class="fieldset hidden">
+  <h4><strong>How much</strong> does it cost?</h3>
   <div class="field">
-    <div class="field-wrapper usd">
-      <input class="currency" type="text" placeholder="$0">
+    <div class="field-wrapper" data-currency="USD">
+      <input required class="currency" type="text" placeholder="$0">
     </div>
-    <div class="field-wrapper btc">
-      <input class="currency" type="text" placeholder="$0">
+    <div class="field-wrapper" data-currency="BTC">
+      <input required class="currency" type="text" placeholder="0.00">
     </div>
-    <a class="button">Save</a>
+    <a class="button" data-href="save">Save</a>
   </div>
 </div>
-<div class="fieldset">
-  <h4>3. Upload a file for your product</h4>
+<div class="fieldset hidden">
+  <h4>Last step! Upload a file for your product</h4>
   <a data-href="dropzone" class="button">Upload Files</a>
   <div class="dz-preview-container">
   </div>
