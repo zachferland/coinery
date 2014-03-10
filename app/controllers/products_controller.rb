@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
     @product = @user.products.new(params[:product])
 
     if @product.save
-      render json: @product, status: :created, location: @product
+      render json: @product, status: :created  #, location: @product
     else
       render json: @product.errors, status: :unprocessable_entity
     end
