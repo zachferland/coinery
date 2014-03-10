@@ -16,9 +16,12 @@ Coinery::Application.routes.draw do
 
 
   # product endpoints
-  post "product" => 'product#create'
-  # products -> all products
-  # products/:id -> a particular product
+  post "products" => 'product#create'
+  get "products" => 'product#user_all'
+  put "products/:id" => 'product#update'
+  get "products/:id" => 'product#show'
+  get "products/all" => 'product#all'
+
 
 
 

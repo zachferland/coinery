@@ -1,11 +1,18 @@
 class ProductsController < ApplicationController
-  before_filter :permission, only: [:create, :destroy]
+  before_filter :permission, only: [:create, :destroy, :update]
 
 
   # GET /products
   # GET /products.json
-  def index
+  def all
     @products = Product.all
+
+    render json: @products
+  end
+
+  def user_all 
+    @user = current_user
+    @product = @user.products
 
     render json: @products
   end
@@ -35,7 +42,8 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    @product = Product.find(params[:id])
+    @user = current_user
+    @product = @user.products.find(params[:id])
 
     if @product.update(params[:product])
       head :no_content
