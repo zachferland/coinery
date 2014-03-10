@@ -1,23 +1,23 @@
 Router = require 'router'
 User = require 'models/user'
-Products = require 'collections/products'
 Product = require 'models/product'
 
 module.exports =
   start: ->
 
-    products = new Products
-
     user = new User
-      first_name: 'David'
-      products: products
+      validated_session: false
+
+    init = ->
+      router = new Router { user }
+      do Backbone.history.start
 
     user.fetch
       async: false
       success: (response) ->
-        console.log response
+        do user.setValidSession
+        do init
       error: (xhr, status, error) ->
-        console.log xhr, status
+        do init
 
-    router = new Router { user }
-    do Backbone.history.start
+

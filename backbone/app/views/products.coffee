@@ -12,8 +12,8 @@ module.exports = class ProductsView extends Backbone.View
 
   render: ->
     ctx =
-      'first_name': @user.displayName().split(" ")[0]
-      'products': @user.getProducts()
+      'first_name': 'Hey'
+      'products': ''
 
     @$el.html Template ctx
 

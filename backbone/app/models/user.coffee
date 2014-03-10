@@ -4,10 +4,8 @@ module.exports = class User extends Backbone.Model
 
   initialize: (options) ->
 
+  setValidSession: ->
+    @set 'valid_session', true
 
-  getProducts: ->
-    @get('products').toJSON()
-
-  displayName: ->
-    @get('first_name')+ " " + @get('last_name')
-
+  getValidSession: ->
+    @get 'valid_session'
