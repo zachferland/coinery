@@ -27,7 +27,7 @@ class AssetsController < ApplicationController
   def create
     @user = current_user
     @product = @user.products.find(params[:id])
-    @asset = @product.assets.new(params[:asset])
+    @asset = @product.assets.new(asset_params)
 
     if @asset.save
       render json: @asset, status: :created # ,location: @asset
