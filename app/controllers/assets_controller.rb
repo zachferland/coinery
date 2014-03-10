@@ -30,7 +30,7 @@ class AssetsController < ApplicationController
     @asset = @product.assets.new(params[:asset])
 
     if @asset.save
-      render json: @asset, status: :created, location: @asset
+      render json: @asset, status: :created # ,location: @asset
     else
       render json: @asset.errors, status: :unprocessable_entity
     end

@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   def user_all 
     @user = current_user
-    @product = @user.products
+    @products = @user.products
 
     render json: @products
   end
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
 
   def create
     @user = current_user
-    @product = @user.products.new(params[:product])
+    @product = @user.products.new(product_params)
 
     if @product.save
       render json: @product, status: :created  #, location: @product
