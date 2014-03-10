@@ -7,7 +7,6 @@ module Api
     end
   
     api :GET, '/customers', "Get all customers"
-    param_group :customer
     def user_all
       @user = current_user
       @customers = @user.customers
@@ -16,7 +15,6 @@ module Api
     end
     
     api :GET, '/products/:id/customers', "Get all product's customers"
-    param_group :customer
     def product_all
       @user = current_user
       @product = @user.products.find(params[:id])

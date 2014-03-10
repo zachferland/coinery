@@ -10,7 +10,6 @@ module Api
     end
     
     api :GET, '/products/all', "Get all products"
-    param_group :product
     def all
       @products = Product.all
   
@@ -18,7 +17,6 @@ module Api
     end
     
     api :GET, '/products', "Get all user's products"
-    param_group :product
     def user_all 
       @user = current_user
       @products = @user.products
@@ -27,7 +25,6 @@ module Api
     end
     
     api :GET, '/products/:id', "Show a individual product"
-    param_group :product
     def show
       @product = Product.find(params[:id])
   
@@ -60,8 +57,7 @@ module Api
       end
     end
     
-    api :PUT, '/products/:id', "Delete a product"
-    param_group :product
+    api :DELETE, '/products/:id', "Delete a product"
     def destroy
       @user = current_user
       @product = @user.products.find(params[:id])

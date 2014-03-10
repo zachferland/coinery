@@ -10,7 +10,6 @@ module Api
     end
     
     api :GET, '/users', "Get user info"
-    param_group :user
     def show
       @user = current_user
   

@@ -11,7 +11,6 @@ module Api
     end
     
     api :GET, '/transactions', "Get all transactions(sales)"
-    param_group :transaction
     def user_all
       @user = current_user
       @transactions = @user.transactions
@@ -20,7 +19,6 @@ module Api
     end
     
     api :GET, '/products/:id/transactions', "Get all product's transactions(sales)"
-    param_group :transaction
     def product_all
       @user = current_user
       @product = @user.products.find(params[:id])
@@ -30,7 +28,6 @@ module Api
     end
     
     api :GET, '/transactions/:id', "Show an individual transaction"
-    param_group :transaction
     def show
       @user = current_user
       @transaction = Transaction.find(params[:id])

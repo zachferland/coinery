@@ -8,7 +8,6 @@ module Api
     end
   
     api :GET, '/products/:id/assets', "Get assets of a product"
-    param_group :asset
     def product_assets
       @product = Product.find(params[:id])
       @assets = @product.assets
@@ -17,14 +16,13 @@ module Api
     end
     
     api :GET, '/asset/:id', "Show an individual asset"
-    param_group :asset
     def show
       @asset = Asset.find(params[:id])
   
       render json: @asset
     end
    
-    api :GET, '/products/:id/assets', "Create an asset"
+    api :POST, '/products/:id/assets', "Create an asset"
     param_group :asset
     def create
       @user = current_user
@@ -38,8 +36,7 @@ module Api
       end
     end
     
-    api :DELETE, '/assets/:id', "Create an asset"
-    param_group :asset
+    api :DELETE, '/assets/:id', "Delete an asset"
     def destroy
       @user = current_user
       @asset = @user.assets.find(params[:id])
