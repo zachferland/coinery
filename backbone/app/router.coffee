@@ -11,6 +11,7 @@ module.exports = class Router extends Backbone.Router
     'products/new': 'newProductHandler'
     'customers': 'customersHandler'
     'account': 'accountHandler'
+    '*a': 'productsHandler'
 
   initialize: (options) ->
     @user = options.user
