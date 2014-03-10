@@ -1,13 +1,24 @@
 module Api
   class UsersController < ApplicationController
     before_filter :permission
-  
+
+    def_param_group :user do 
+      param :email, String
+      param :username, String
+      param :full_name, String
+      # param :bio, Text
+    end
+    
+    api :GET, '/users', "Get user info"
+    param_group :user
     def show
       @user = current_user
   
       render json: @user
     end
-  
+    
+    api :PUT, '/users', "Update user"
+    param_group :user
     def update
       @user = current_user
   

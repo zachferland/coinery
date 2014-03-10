@@ -1,5 +1,7 @@
 Coinery::Application.routes.draw do
 
+  apipie
+
   # Auth ##########################################
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
@@ -35,6 +37,7 @@ Coinery::Application.routes.draw do
     get "transactions" => 'transactions#user_all'
     #returns transactions of a users product
     get "products/:id/transactions" => 'transactions#product_all'
+    # show a individual transaction
     get "transactions/:id" => 'transactions#show'
     # create a transaction
     post "transactions" => 'transactions#create'
