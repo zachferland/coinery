@@ -9,3 +9,9 @@ module.exports = class User extends Backbone.Model
 
   getValidSession: ->
     @get 'valid_session'
+
+  getTwitterHandle: ->
+    "@#{@get('username')}"
+
+  getProducts: ->
+    null

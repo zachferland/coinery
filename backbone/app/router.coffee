@@ -27,8 +27,9 @@ module.exports = class Router extends Backbone.Router
     # go to bed David jesus christ
     @on 'route', (router, route) =>
       nav.setActive router.replace('Handler', '')
+      console.log @user
 
-    # current view in .main-containerk
+    # current view in .main-container
     @view = null
 
   loginHandler: ->

@@ -12,8 +12,8 @@ module.exports = class ProductsView extends Backbone.View
 
   render: ->
     ctx =
-      'first_name': 'Hey'
-      'products': ''
+      'username': @user.getTwitterHandle()
+      'products': @user.getProducts()
 
     @$el.html Template ctx
 
