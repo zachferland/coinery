@@ -10,45 +10,54 @@ module.exports = class NewProductView extends Backbone.View
     'click a[data-href="save"]': 'saveHandler'
     'keyup input.currency': 'currencyHandler'
     'keydown input.currency': 'currencyValidateHandler'
+    'focus input': 'inputFocusHandler'
 
   initialize: (options) ->
     @user = @model
 
   render: ->
     @$el.html Template {}
-
     do @postRender
 
 
   postRender: ->
     @$('input').focus()
-
     do @dropzoneInit
 
 
   saveHandler: (e) ->
     do e.preventDefault
 
-    console.log 'saveHandler called'
-
     $currentStep = $(e.target).closest('.fieldset')
-    console.log $currentStep
+    step = $currentStep.index()
+
     errors = 0
 
     $currentStep.find('[required]').each (i, el) ->
-      console.log 'called'
       $(el).removeClass 'error'
       if $(el).val() is ''
         $(el).addClass 'error'
-        console.log 'error'
         errors++
 
     unless errors > 0
+      val = $currentStep.find('input').first().val()
+
+
+      switch step
+        when 1
+          @model.setName val
+        when 2
+          @model.setPrice val.replace('$', '')
+
+
       $currentStep.addClass('complete')
-                 .next().removeClass 'hidden'
+                 .next().removeClass('hidden')
+                 .find('input')?.first().focus()
 
-    return false
+    false
 
+  inputFocusHandler: (e) ->
+    $(e.target).closest('.fieldset').removeClass 'complete'
 
   currencyHandler: (e) ->
 
@@ -84,7 +93,6 @@ module.exports = class NewProductView extends Backbone.View
 
       unless isNaN(amount)
         inputs.usd.val "$#{amount.toString()}"
-
 
 
   dropzoneInit: ->
@@ -141,7 +149,7 @@ module.exports = class NewProductView extends Backbone.View
     dropzone.on 'uploadprogress', (file, progress, bytesSent) ->
       $('.dz-progress-percent').text Math.round(progress) + "%"
 
-
+    # believe it or not this breaks without the console.log
     dropzone.on 'addedFile', (file) ->
       console.log file
 

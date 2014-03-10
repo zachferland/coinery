@@ -13,8 +13,7 @@
     font-weight: 300
 
 input[type="text"]
-  @include transition(all .2s)
-  @include transition(color .15s)
+  @include transition(border .2s, color .15s)
   background: #fff
   border: 0px
   border-left: 2px solid lighten($dark, 55%)
@@ -91,7 +90,7 @@ span.hint
   @include transition(all .2s, margin .2s)
   @include transition-delay(.2s)
   @include pie-clearfix
-  margin-bottom: 50px
+  margin-bottom: 60px
   position: relative
   top: 0px
   opacity: 1
@@ -103,7 +102,6 @@ span.hint
   &.hidden
     opacity: 0
     top: -20px
-
 
   &.complete
 
@@ -124,6 +122,5 @@ span.hint
       top: 0px
 
     h4
-      text-decoration: line-through
-      opacity: .6
+      opacity: .8
 
