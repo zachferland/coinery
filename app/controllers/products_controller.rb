@@ -55,7 +55,8 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product = Product.find(params[:id])
+    @user = current_user
+    @product = @user.products.find(params[:id])
     @product.destroy
 
     head :no_content

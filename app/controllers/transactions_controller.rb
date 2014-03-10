@@ -4,9 +4,18 @@ class TransactionsController < ApplicationController
   # GET /transactions.json
 
   # Return all transactions of a user
-  def index
+  def user_all
     @user = current_user
-    @transaction = Transaction.all
+    @transactions = @user.transactions
+
+    render json: @transactions
+  end
+
+  #return all transactions of a product
+   def product_all
+    @user = current_user
+    @product = @user.products.find(params[:id])
+    @transactions = @product.transactions
 
     render json: @transactions
   end

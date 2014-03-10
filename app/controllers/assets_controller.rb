@@ -1,14 +1,15 @@
 class AssetsController < ApplicationController
-  # before_filter :permission, only: []
+  before_filter :permission, only: [:create, :destroy]
 
   has_attached_file :asset
-  # asset type validation
+  # asset type validation and other validation possible here
 
 
   # GET /assets
   # GET /assets.json
-  def index
-    @assets = Asset.all
+  def product_assets
+    @product = Product.find(params[:id])
+    @assets = @product.assets
 
     render json: @assets
   end
@@ -24,7 +25,9 @@ class AssetsController < ApplicationController
   # POST /assets
   # POST /assets.json
   def create
-    @asset = Asset.new(params[:asset])
+    @user = current_user
+    @product = @user.products.find(params[:id])
+    @asset = @product.assets.new(params[:asset])
 
     if @asset.save
       render json: @asset, status: :created, location: @asset
@@ -35,26 +38,27 @@ class AssetsController < ApplicationController
 
   # PATCH/PUT /assets/1
   # PATCH/PUT /assets/1.json
-  def update
-    @asset = Asset.find(params[:id])
+  # def update
+  #   @asset = Asset.find(params[:id])
 
-    if @asset.update(params[:asset])
-      head :no_content
-    else
-      render json: @asset.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @asset.update(params[:asset])
+  #     head :no_content
+  #   else
+  #     render json: @asset.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /assets/1
   # DELETE /assets/1.json
   def destroy
-    @asset = Asset.find(params[:id])
+    @user = current_user
+    @asset = @user.assets.find(params[:id])
     @asset.destroy
 
     head :no_content
   end
 
   def asset_params
-    params.require(:asset).permit(:asset, :user_id)
+    params.require(:asset).permit(:asset, :product_id)
   end
 end
