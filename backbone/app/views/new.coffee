@@ -51,39 +51,41 @@ module.exports = class NewProductView extends Backbone.View
 
 
   currencyHandler: (e) ->
-    focus = $(e.target).parent().attr 'data-currency'
 
-    currencies =
-      'USD': $('[data-currency="USD"] input')
-      'BTC': $('[data-currency="BTC"] input')
+    return if e.keyCode is 190
+
+    inputs =
+      'btc': $('[data-currency="BTC"] input')
+      'usd': $('[data-currency="USD"] input')
+
+    focus = $(e.target).parent().attr 'data-currency'
+    rate = 640
+
+    raw = $(e.target).val().replace '$', ''
+    amount = parseFloat(raw)
+
+    if focus is 'BTC'
+      usd = amount * 640
+      unless isNaN(usd)
+        inputs.usd.addClass 'changing'
+        delay 150, ->
+          inputs.usd.val "$#{usd.toString()}"
+        delay 300, ->
+          inputs.usd.removeClass 'changing'
 
     if focus is 'USD'
-      val = currencies['USD'].val()
+      btc = amount / 640
+      unless isNaN(btc)
+        inputs.btc.addClass 'changing'
+        delay 150, ->
+          inputs.btc.val btc.toFixed(5)
+        delay 300, ->
+          inputs.btc.removeClass 'changing'
 
-      unless val.indexOf('$') > -1
-        currencies['USD'].val "$#{val}"
-
-    console.log currencies['BTC'].val()
-    console.log currencies['USD'].val()
+      unless isNaN(amount)
+        inputs.usd.val "$#{amount.toString()}"
 
 
-  # don't let user delete $ from USD input
-  # number inputs only
-  currencyValidateHandler: (e) ->
-
-    if e.keyCode in [46, 8]
-      if $(e.target).val().length is 1
-        return true
-      else
-        return false
-
-    char = String.fromCharCode(e.keyCode)
-    regex = /[0-9]|\./
-
-    if regex.test(char)
-      return true
-
-    false
 
   dropzoneInit: ->
 

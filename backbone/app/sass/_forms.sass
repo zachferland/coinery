@@ -14,6 +14,7 @@
 
 input[type="text"]
   @include transition(all .2s)
+  @include transition(color .15s)
   background: #fff
   border: 0px
   border-left: 2px solid lighten($dark, 55%)
@@ -35,6 +36,9 @@ input[type="text"]
 
   &.currency
     width: 160px
+
+  &.changing
+    color: #fff
 
 .field-wrapper
 
