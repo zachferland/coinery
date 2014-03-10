@@ -20,7 +20,7 @@ Coinery::Application.routes.draw do
   # returns a single product, no auth needed
   get "products/:id" => 'products#show'
   #  returns all products, no auth needed
-  get "products/all" => 'products#all'
+  get "products-all" => 'products#all'
   # delete a user's product
   delete "products/:id" => 'products#destroy'
 

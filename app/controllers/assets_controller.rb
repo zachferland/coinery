@@ -1,9 +1,6 @@
 class AssetsController < ApplicationController
   before_filter :permission, only: [:create, :destroy]
 
-  has_attached_file :asset
-  # asset type validation and other validation possible here
-
 
   # GET /assets
   # GET /assets.json

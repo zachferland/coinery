@@ -37,10 +37,10 @@ class TransactionsController < ApplicationController
   # create transaction from callback from coinbase
   # will have to format return from coinbase properly 
   def create
-    @transaction = Transaction.new(params[:transaction])
+    @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render json: @transaction, status: :created #, location: @transaction
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end

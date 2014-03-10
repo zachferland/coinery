@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_filter :permission
+
+
   # GET /users
   # GET /users.json
   # def index
@@ -61,7 +63,7 @@ class UsersController < ApplicationController
   # end
 
   def user_params
-    params.require(:user).permit(:email, :username, :full_name, :bio)
+    params.require(:user).permit(:email, :username, :full_name, :bio, :image)
   end
 
 end
