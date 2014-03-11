@@ -37,7 +37,6 @@ Coinery::Application.routes.draw do
     get "products/:id/transactions" => 'products#product_transactions'
   
   
-
     # Transaction Endpoints ##########################################
     # returns all transactions (sales) of a user
     get "transactions" => 'transactions#user_all'

@@ -14,6 +14,9 @@ module.exports = class NewProductView extends Backbone.View
 
   initialize: (options) ->
     @user = @model
+    @model.set 'title', "Test product"
+    @model.set 'price', parseFloat('0.0')
+    do @model.save
 
   render: ->
     @$el.html Template {}

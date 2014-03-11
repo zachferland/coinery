@@ -1,6 +1,6 @@
 module.exports = class User extends Backbone.Model
 
-  url: '/user'
+  url: 'api/user'
 
   initialize: (options) ->
 

@@ -5,7 +5,7 @@ module Api
     def_param_group :product do 
       param :title, String
       param :description, String
-      param :price, Float, "USD"
+      param :price, String
       # asset
     end
     

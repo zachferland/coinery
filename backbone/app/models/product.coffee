@@ -1,6 +1,7 @@
 module.exports = class Product extends Backbone.Model
 
-  url: ''
+  url: 'api/products'
+  urlRoot: 'api/products'
 
   initialize: (options) ->
 
