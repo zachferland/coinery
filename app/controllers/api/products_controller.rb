@@ -76,7 +76,7 @@ module Api
       @user = current_user
       @product = @user.products.find(params[:id])
   
-      if @product.update(params[:product])
+      if @product.update(product_params)
         head :no_content
       else
         render json: @product.errors, status: :unprocessable_entity
@@ -92,9 +92,10 @@ module Api
       head :no_content
     end
   
-    def product_params
-      params.require(:product).permit(:title, :description, :price, :image) #user_id?
-    end
+    private
+      def product_params
+        params.require(:product).permit(:title, :description, :price, :image) 
+      end
   
   end
 end
