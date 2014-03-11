@@ -8,12 +8,12 @@ module.exports = class ProductsView extends Backbone.View
     'click a': 'linkHandler'
 
   initialize: (options) ->
-    @user = @model
+    @user = options.user
 
   render: ->
     ctx =
       'username': @user.getTwitterHandle()
-      'products': @user.getProducts()
+      'products': null
 
     @$el.html Template ctx
 
