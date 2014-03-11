@@ -16,6 +16,9 @@ gem 'aws-sdk'
 
 gem 'figaro'
 
+# API Docs
+gem 'apipie-rails'
+
 
 group :doc do
   gem 'sdoc', require: false
