@@ -6,16 +6,8 @@ module Api
       # asset file
       param :product_id, Integer
     end
-  
-    api :GET, '/products/:id/assets', "Get assets of a product"
-    def product_assets
-      @product = Product.find(params[:id])
-      @assets = @product.assets
-  
-      render json: @assets
-    end
     
-    api :GET, '/asset/:id', "Show an individual asset"
+    api :GET, '/assets/:id', "Show an individual asset"
     def show
       @asset = Asset.find(params[:id])
   

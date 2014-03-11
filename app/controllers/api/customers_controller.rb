@@ -14,15 +14,6 @@ module Api
       render json: @customers
     end
     
-    api :GET, '/products/:id/customers', "Get all product's customers"
-    def product_all
-      @user = current_user
-      @product = @user.products.find(params[:id])
-      @customers = @products.customers
-  
-      render json: @customers
-    end
-    
     api :POST, '/customers', "Create a customer"
     param_group :customer
     def create

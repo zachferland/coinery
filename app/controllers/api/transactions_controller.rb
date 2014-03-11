@@ -18,15 +18,6 @@ module Api
       render json: @transactions
     end
     
-    api :GET, '/products/:id/transactions', "Get all product's transactions(sales)"
-    def product_all
-      @user = current_user
-      @product = @user.products.find(params[:id])
-      @transactions = @product.transactions
-  
-      render json: @transactions
-    end
-    
     api :GET, '/transactions/:id', "Show an individual transaction"
     def show
       @user = current_user
