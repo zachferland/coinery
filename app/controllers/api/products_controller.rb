@@ -5,7 +5,7 @@ module Api
     def_param_group :product do 
       param :title, String
       param :description, String
-      param :price, Float, "USD"
+      param :price, String
       # asset
     end
     
@@ -14,6 +14,32 @@ module Api
       @products = Product.all
   
       render json: @products
+    end
+
+    api :GET, '/products/:id/assets', "Get assets of a product"
+    def product_assets
+      @product = Product.find(params[:id])
+      @assets = @product.assets
+  
+      render json: @assets
+    end
+
+    api :GET, '/products/:id/customers', "Get all product's customers"
+    def product_customers
+      @user = current_user
+      @product = @user.products.find(params[:id])
+      @customers = @products.customers
+  
+      render json: @customers
+    end
+
+    api :GET, '/products/:id/transactions', "Get all product's transactions(sales)"
+    def product_transactions
+      @user = current_user
+      @product = @user.products.find(params[:id])
+      @transactions = @product.transactions
+  
+      render json: @transactions
     end
     
     api :GET, '/products', "Get all user's products"
@@ -31,7 +57,7 @@ module Api
       render json: @product
     end
     
-    api :POST, '/products/:id', "Create a product"
+    api :POST, '/products', "Create a product"
     param_group :product
     def create
       @user = current_user

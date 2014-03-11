@@ -29,14 +29,17 @@ Coinery::Application.routes.draw do
     get "products/:id" => 'products#show'
     # delete a user's product
     delete "products/:id" => 'products#destroy'
+    # returns assets for a give product (no auth)
+    get "products/:id/assets" => 'products#product_assets'
+     # returns customers of a  users product
+    get "products/:id/customers" => 'products#customers'
+    #returns transactions of a users product
+    get "products/:id/transactions" => 'products#product_transactions'
   
   
-
     # Transaction Endpoints ##########################################
     # returns all transactions (sales) of a user
     get "transactions" => 'transactions#user_all'
-    #returns transactions of a users product
-    get "products/:id/transactions" => 'transactions#product_all'
     # show a individual transaction
     get "transactions/:id" => 'transactions#show'
     # create a transaction
@@ -47,8 +50,6 @@ Coinery::Application.routes.draw do
      # Customer Endpoints ##########################################
      # returns all customers of a users products
     get "customers" => 'customers#user_all'
-     # returns customers of a  users product
-    get "products/:id/customers" => 'customers#product_all'
     # create a customer
     post "customers" => 'customers#create'
   
@@ -57,12 +58,10 @@ Coinery::Application.routes.draw do
     # Asset Endpoints ##########################################
     # create an asset for a product (auth)
     post "products/:id/assets" => 'assets#create'
-    # returns assets for a give product (no auth)
-    get "products/:id/assets" => 'assets#product_assets'
     # returns a single asset 
-    get "asset/:id" => 'assets#show'
+    get "assets/:id" => 'assets#show'
     # delets asset of user
-    delete "asset/:id" => 'assets#destroy'
+    delete "assets/:id" => 'assets#destroy'
   end
 
 end
