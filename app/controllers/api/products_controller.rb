@@ -3,8 +3,8 @@ module Api
     before_filter :permission, only: [:create, :destroy, :update]
     
     def_param_group :product do 
-      param :title, String
-      param :description, String
+      param :title, String, :required => false
+      param :description, String, :required => false
       param :price, String
       # asset
     end
@@ -94,7 +94,7 @@ module Api
   
     private
       def product_params
-        params.require(:product).permit(:title, :description, :price, :image) 
+        params.permit(:title, :description, :price, :image) 
       end
   
   end

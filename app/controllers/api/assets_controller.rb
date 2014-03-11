@@ -38,7 +38,7 @@ module Api
     end
   
     def asset_params
-      params.require(:asset).permit(:asset, :product_id)
+      params.permit(:asset, :product_id)
     end
   end
 end
