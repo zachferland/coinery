@@ -149,6 +149,7 @@ module.exports = class NewProductView extends Backbone.View
 
     # init dropzone with custom template
     dropzone = new Dropzone 'a[data-href="dropzone"]',
+      paramName: 'asset'
       previewsContainer: '.dz-preview-container'
       previewTemplate: DropzoneTemplate {}
       url: url
@@ -165,6 +166,7 @@ module.exports = class NewProductView extends Backbone.View
 
   backHandler: ->
     Backbone.history.navigate "products", {trigger: true}
+
 
 
 
