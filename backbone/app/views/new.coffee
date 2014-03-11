@@ -13,10 +13,14 @@ module.exports = class NewProductView extends Backbone.View
     'focus input': 'inputFocusHandler'
 
   initialize: (options) ->
-    @user = @model
-    @model.set 'title', "Test product"
-    @model.set 'price', parseFloat('0.0')
-    do @model.save
+    @user = options.user
+
+    @model.set 'title', 'Test Product'
+    @model.set 'price', parseFloat('0')
+
+    @collection.create @model,
+      success: (response) ->
+        console.log response
 
   render: ->
     @$el.html Template {}
@@ -49,9 +53,9 @@ module.exports = class NewProductView extends Backbone.View
       switch step
         when 1
           @model.setName val
+
         when 2
           @model.setPrice val.replace('$', '')
-
 
       $currentStep.addClass('complete')
                  .next().removeClass('hidden')
