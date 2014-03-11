@@ -50,7 +50,7 @@ module.exports = class NewProductView extends Backbone.View
         when 2
           @model.setPrice val.replace('$', '')
 
-          @products.create @model,
+          @collection.create @model,
             success: (response) ->
               console.log response
 
