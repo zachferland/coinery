@@ -22,7 +22,6 @@ module.exports = class NewProductView extends Backbone.View
 
   postRender: ->
     @$('input').focus()
-    do @dropzoneInit
 
 
   saveHandler: (e) ->
@@ -51,8 +50,11 @@ module.exports = class NewProductView extends Backbone.View
           @model.setPrice val.replace('$', '')
 
           @collection.create @model,
+            async: false
             success: (response) ->
               console.log response
+
+          do @dropzoneInit
 
 
       $currentStep.addClass('complete')
@@ -143,12 +145,15 @@ module.exports = class NewProductView extends Backbone.View
     Dropzone::defaultOptions.uploadprogress = uploadprogress
     Dropzone::filesize = filesize
 
+    url = "/api/products/#{@model.get('id')}/assets"
 
     # init dropzone with custom template
     dropzone = new Dropzone 'a[data-href="dropzone"]',
+      paramName: 'asset'
       previewsContainer: '.dz-preview-container'
       previewTemplate: DropzoneTemplate {}
-      url: '#'
+      url: url
+
 
     # update percentage count
     dropzone.on 'uploadprogress', (file, progress, bytesSent) ->
@@ -161,6 +166,7 @@ module.exports = class NewProductView extends Backbone.View
 
   backHandler: ->
     Backbone.history.navigate "products", {trigger: true}
+
 
 
 
