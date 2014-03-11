@@ -1,6 +1,5 @@
 module.exports = class Product extends Backbone.Model
 
-<<<<<<< HEAD
   url: '/api/products'
 
   urlRoot: '/api/products'
