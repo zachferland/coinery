@@ -1,17 +1,16 @@
 module.exports = class User extends Backbone.Model
 
-  url: '/user'
+  url: '/api/user'
 
   initialize: (options) ->
+    @on 'change', console.log(@attributes)
 
   setValidSession: ->
-    @set 'valid_session', true
+    @set 'validated_session', true
 
   getValidSession: ->
-    @get 'valid_session'
+    @get 'validated_session'
 
   getTwitterHandle: ->
     "@#{@get('username')}"
 
-  getProducts: ->
-    null

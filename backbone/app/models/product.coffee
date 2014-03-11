@@ -1,6 +1,13 @@
 module.exports = class Product extends Backbone.Model
 
-  url: ''
+  url: '/api/products'
+
+  urlRoot: '/api/products'
+
+  defaults:
+    'title': ''
+    'description': ''
+    'price': parseFloat('')
 
   initialize: (options) ->
 
@@ -15,6 +22,12 @@ module.exports = class Product extends Backbone.Model
 
   getPrice: ->
     @get 'price'
+
+ toJSON: ->
+   json = {}
+   json['product'] = _.clone(@.attributes)
+   return json
+
 
   log: ->
     console.log @attributes
