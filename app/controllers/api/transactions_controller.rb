@@ -7,7 +7,7 @@ module Api
       param :customer_id, Integer
       param :usd, Float
       param :btc, Float
-      param :status, String
+      # param :status, String
     end
     
     api :GET, '/transactions', "Get all transactions(sales)"
