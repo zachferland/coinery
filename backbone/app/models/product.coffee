@@ -7,15 +7,19 @@ module.exports = class Product extends Backbone.Model
   defaults:
     'title': ''
     'description': ''
-    'price': parseFloat('')
+    'price': "0"
 
   initialize: (options) ->
 
-  setName: (name) ->
-    @set 'name', name
 
-  getName: ->
-    @get 'name'
+
+  # GETTERS/SETTERS
+
+  setTitle: (title) ->
+    @set 'title', title
+
+  getTitle: ->
+    @get 'title'
 
   setPrice: (price) ->
     @set 'price', price
@@ -23,13 +27,12 @@ module.exports = class Product extends Backbone.Model
   getPrice: ->
     @get 'price'
 
- toJSON: ->
-   json = {}
-   json['product'] = _.clone(@.attributes)
-   return json
+  getDescription: ->
+    @get 'description'
+
+  getDescription: (description) ->
+    @set 'description', description
 
 
-  log: ->
-    console.log @attributes
 
 

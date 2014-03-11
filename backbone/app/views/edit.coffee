@@ -1,68 +1,31 @@
-Template = require 'templates/new'
+Template = require 'templates/edit'
 DropzoneTemplate = require 'templates/dropzone'
 
-module.exports = class NewProductView extends Backbone.View
+module.exports = class EditProductView extends Backbone.View
 
   el: '.content'
 
   events: ->
-    'click a[data-href="back"]': 'backHandler'
-    'click a[data-href="save"]': 'saveHandler'
     'keyup input.currency': 'currencyHandler'
     'keydown input.currency': 'currencyValidateHandler'
-    'focus input': 'inputFocusHandler'
 
   initialize: (options) ->
     @user = options.user
 
   render: ->
-    @$el.html Template {}
+    ctx =
+      'id': @model.id
+      'title': @model.getTitle()
+      'description': @model.getDescription()
+      'price': @model.getPrice()
+
+    @$el.html Template ctx
     do @postRender
 
 
   postRender: ->
-    @$('input').focus()
-    do @dropzoneInit
+    #do @dropzoneInit
 
-
-  saveHandler: (e) ->
-    do e.preventDefault
-
-    $currentStep = $(e.target).closest('.fieldset')
-    step = $currentStep.index()
-
-    errors = 0
-
-    $currentStep.find('[required]').each (i, el) ->
-      $(el).removeClass 'error'
-      if $(el).val() is ''
-        $(el).addClass 'error'
-        errors++
-
-    unless errors > 0
-      val = $currentStep.find('input').first().val()
-
-
-      switch step
-        when 1
-          @model.setTitle val
-
-        when 2
-          @model.setPrice val.replace('$', '')
-
-          @products.create @model,
-            success: (response) ->
-              console.log response
-
-
-      $currentStep.addClass('complete')
-                 .next().removeClass('hidden')
-                 .find('input')?.first().focus()
-
-    false
-
-  inputFocusHandler: (e) ->
-    $(e.target).closest('.fieldset').removeClass 'complete'
 
   currencyHandler: (e) ->
 

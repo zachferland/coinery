@@ -4,10 +4,13 @@ CustomersView = require 'views/customers'
 NewProductView = require 'views/new'
 AccountView = require 'views/account'
 LoginView = require 'views/login'
+EditProductView = require 'views/edit'
+ProductsCollection = require 'collections/products'
 Product = require 'models/product'
 
 module.exports = class Router extends Backbone.Router
   routes: ->
+    'product/:id': 'editProductHandler'
     'products': 'productsHandler'
     'products/new': 'newProductHandler'
     'customers': 'customersHandler'
@@ -27,10 +30,10 @@ module.exports = class Router extends Backbone.Router
     # go to bed David jesus christ
     @on 'route', (router, route) =>
       nav.setActive router.replace('Handler', '')
-      console.log @user
 
     # current view in .main-container
     @view = null
+
 
   loginHandler: ->
     if !@session()
@@ -41,12 +44,26 @@ module.exports = class Router extends Backbone.Router
 
     @productsHandler()
 
+
+  editProductHandler: (id) ->
+    if @session()
+      do @requireProducts
+
+      view = new EditProductView
+        user: @user
+        model: @products.get(id)
+
+      @loadView view
+
   productsHandler: ->
     if @session()
-      view = new ProductsView
-        model: @user
+      do @requireProducts
 
-      @loadView(view)
+      view = new ProductsView
+        user: @user
+        collection: @products
+
+      @loadView view
       return
 
     do @requireLogin
@@ -55,7 +72,8 @@ module.exports = class Router extends Backbone.Router
     if @session()
       customers = new CustomersView
         model: @user
-      @loadView(customers)
+
+      @loadView customers
       return
 
     do @requireLogin
@@ -64,18 +82,22 @@ module.exports = class Router extends Backbone.Router
     if @session()
       account = new AccountView
         model: @user
-      @loadView(account)
+      @loadView account
       return
 
     do @requireLogin
 
   newProductHandler: ->
     if @session()
+      do @requireProducts
+
       product = new Product
       view = new NewProductView
+        collection: @products
         user: @user
         model: product
-      @loadView(view)
+
+      @loadView view
       return
 
     do @requireLogin
@@ -116,6 +138,12 @@ module.exports = class Router extends Backbone.Router
 
   requireLogin: ->
     Backbone.history.navigate 'login', {trigger: true}
+
+  requireProducts: ->
+    unless @products?
+      @products = new ProductsCollection
+      @products.fetch
+        async: false
 
 
 
