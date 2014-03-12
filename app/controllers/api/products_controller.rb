@@ -41,6 +41,7 @@ module Api
   
       render json: @transactions
     end
+
     
     api :GET, '/products', "Get all user's products"
     def user_all 
@@ -62,8 +63,10 @@ module Api
     def create
       @user = current_user
       @product = @user.products.new(product_params)
+      @token = coinbase_token
   
       if @product.save
+        @product.button_code = Product.create_payment_code(@product, @token)
         render json: @product, status: :created  #, location: @product
       else
         render json: @product.errors, status: :unprocessable_entity
@@ -94,7 +97,7 @@ module Api
   
     private
       def product_params
-        params.permit(:title, :description, :price, :image) 
+        params.permit(:title, :description, :price, :image, :button_code) 
       end
   
   end

@@ -1,0 +1,344 @@
+- add subscriptions for emails lists, digital products
+- send and email for each purchase
+- send daily emails, updates on sales and amount
+
+
+- have buy enter email and for product,
+
+
+
+- downloading a digitial product - download link in email or iframe - need email
+
+
+- sendgrid - yes
+- heroku - yes, maybe amazon cdn
+- s3 bucket - https://devcenter.heroku.com/articles/s3 with paperclip  + cloudfront
+- postgres - 
+- RAILS API - https://github.com/rails-api/rails-api
+json templating with jbuilder
+omni auth twitter and coinbase
+
+RESQUE - workers and que??
+
+
+- oauth - omni auth multiple auth tied to a single user
+omniauth twitter and coinbase
+
+
+api - documentation - https://github.com/Apipie/apipie-rails/
+
+
+- users - products, email, (coinbase details), etc
+- products - price, users, image, (FILE), 
+- pages -  title, unique url, seller, description, price, item to be sold (product and page the same??)
+- buyer info (only email?) (Customer Model)
+
+DATA
+number of sales
+revenue
+customer, unique id is email
+
+
+
+PRODUCT
+- price
+- image - add after pre proccess
+- description
+- user id
+
+rails g scaffold product title:string description:text price:float user_id:integer
+
+
+Asset
+- id
+- asset - add after (this is handle through paperclip)
+- product id
+- type
+- size (kb)
+
+
+rails g scaffold asset product_id:integer type:string size:float
+
+
+AUTHENTICATION
+
+
+
+USERS
+- id
+- email 
+- image (paper clip image)
+- name
+- oauth data
+- twitter
+- t bio
+- t usrname
+google analytics
+
+-----------------
+- have sales
+- have products
+- have  pages
+- have customers
+
+username must be unique
+automatically sets twitter username as username
+
+rails g scaffold user email:string username:string full_name:string bio:text
+
+
+CUSTOMERS
+- id - already
+- email
+----------------
+- have purchases
+
+rails g scaffold customer email:string
+
+
+IDENTITY
+rails g model identity uid:string provider:string user:references
+
+
+transaction
+- id - already
+- customer - id
+- user - id 
+- usd 
+- btc 
+- product - id
+-status
+-user id redundant because users has products, but htis allows quicker searches
+
+
+!!REMOVE USER ID - not needed
+
+-set default status
+
+
+rails g scaffold transaction product_id:integer user_id:integer customer_id:integer usd:float btc:float status:string
+
+
+
+NOW -------------------------------------------------------
+
+associations??
+create routes / endpoints that make sense
+
+unique keys determined later 
+
+add omniauth
+hmmmm...
+twitter omniauth login - for sessions - create session
+coinbase not for session only to recieve token to make requests, where should that token be store, persistent tokens,
+if oauth or twitter omniauth makes multiple updates, simply STORE (access_token) HOW, how can I continually refresh it
+use omnni auth for twitter, oauth2 for coinbase??
+simple security solutions is limit access, don't allow sending funds, change  key more often
+should I store the acess token as well, or can I get a token with an acess token.
+
+
+
+
+create data seed file - just user for now or something
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+
+MAIN THINGS TO SOLVE
+
+amazon s3 
+amazon cdn - delivering file downloads
+user uploading files??
+
+
+
+
+
+
+
+oauth with coinbase, allows us to create buttons with their account, 
+
+
+what happens if a sellers account is not authorized and bitcon can not be paid to them, do we have hold on to it.
+
+
+auth flow
+- full permission
+
+create product flow
+
+seller page - data
+
+buyer purchase flow 
+
+
+
+
+
+
+
+
+coinbase ruby
+oauth ruby
+global var ruby
+
+
+could send buyers weekly product emails, and product suggestions
+
+
+
+
+
+GOAL TMRRW  --------------
+
+setup all models and data, part of etc set up nicely, write the docs for 
+add all need gems and list those
+setup omni auth for multiple auth on one user. 
+
+how to properly setup databse, models, data, primary keys, indexes. 
+
+
+
+
+USERS
+has_many :products
+has_many :transactions, through :products              ?? should I keep that user column in transaction
+has_many :customers, through: transactions
+
+CUSTOMERS
+has_many :transactions
+has_many :products, through :transactions
+
+ASSETS
+belongs_to :product
+
+
+PRODUCTS
+has_many :assets
+belongs_to :user
+has_many :transactions
+has_many :customers, through :transactions
+
+TRANSACTIONS
+belongs_to :product
+belongs_to :customer
+
+
+THOUGHTS
+return pages of results in json, 
+user_id in transactoin??
+
+
+LIMIT 
+
+
+
+git commit -m "add omniauth with twitter, add multiple authorizations through model identity, added session and cookie middleware to application, returns 401 header on unauthorized requests"
+
+NOTE - unauthorized requests return 401 header
+
+
+
+TMRRW ------
+properly nest resources - make endpoints that make sense
+add acess to things that makes sense
+
+write some docs, api docs, and what we will use in the future.
+proposals
+
+add paperclip stuff. and what not
+
+
+
+
+
+
+
+
+
+BITCOIN IDEA - bitcoin servie invoices, drag and drop etc, services, easy pay, one dollar and invoice
+
+
+
+
+
+
+
+rails g migration remove_type_and_size_from_assets type:string size:float
+rails generate paperclip asset asset
+rails g migration remove_user_id_from_transactions user_id:integer
+
+rails g migration add_published_to_products published:boolean
+
+
+git status, add s3, imagemagick, paperclip, remove size and type from assets, add asset file object to assets
+
+
+
+
+TODO TODAY
+
+Immplement coinbase (seperate model probably,)
+update coinbase key in database every two hours
+then serve
+
+change params to private 
+change update to ----_params
+
+
+
+bitlicense
+audits - sends amounts with public storage cold to keys, to prove private keys 
+fintech organization
+audit/asset verification
+
+
+fun crazy project
+trading algorithm with bitcoin other currencies
+http://www.nasa.gov/press/2014/march/be-an-asteroid-hunter-in-nasas-first-asteroid-grand-challenge-contest-series/#.Ux6aiOddWDA
+etheurem file service or webhosting
+space
+alg art
+big data on some data sets
+
+http://localhost:3000/coinbase/auth/callback?code=bd291022b9614800dd55c6e6e97d63725e2e1a2afa33aad5215532531fedb222
+
+PAGINATE ??
+
+
+
+TODAY 
+
+some logic homework
+coinery work, clean up coinbase and merge into master
+iframe 
+bitcoinj with node.js
+
+
+
+read some philosophy again
+
+
+EXTRA FEATURES
+
+
+
+
+THOUGHT - my coinbase integrations is not right, I only have to create a button once?? when a product is published?
+and I have to create an order 
+a price endpoint
+need a order callback, the callback is to create a transaction 
+
+should we store price as cents!?!!!!! yes i think, change to integer?
+
+not sure if I need customer model? just email, even if there was address and stuff, they could be different each time, unless we load address on entering email 
+
+product title can't be nil, or it won't be able to fetch a button 

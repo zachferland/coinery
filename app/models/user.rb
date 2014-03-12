@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	has_many :transactions, through: :products             
 	has_many :customers, through: :transactions
 	has_many :assets, through: :products
+	has_many :coinbase_authentications # has one?
 
   	has_attached_file :image, styles: {large: "200x200"}
 	validates_attachment_content_type :image, 

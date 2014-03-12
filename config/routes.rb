@@ -1,5 +1,6 @@
 Coinery::Application.routes.draw do
 
+  get "coinbase_authentications/url"
   apipie
 
   # Auth ##########################################
@@ -44,6 +45,8 @@ Coinery::Application.routes.draw do
     get "transactions/:id" => 'transactions#show'
     # create a transaction
     post "transactions" => 'transactions#create'
+    # create a transaction
+    post "transactions/callback" => 'transactions#order_callback'
   
   
   
@@ -62,6 +65,13 @@ Coinery::Application.routes.draw do
     get "assets/:id" => 'assets#show'
     # delets asset of user
     delete "assets/:id" => 'assets#destroy'
+
+    # Customer Endpoints ##########################################
+    get 'coinbase/auth/url' => 'coinbase_authentications#url'
+    get 'coinbase/auth/callback' => 'coinbase_authentications#callback'
+    get 'coinbase/auth' => 'coinbase_authentications#create'
+
+
   end
 
 end
