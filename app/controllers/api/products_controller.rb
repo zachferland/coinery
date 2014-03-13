@@ -97,7 +97,7 @@ module Api
   
     private
       def product_params
-        params.permit(:title, :description, :price, :image, :button_code) 
+        params.permit(:title, :description, :price, :image, :button_code, :status) 
       end
   
   end

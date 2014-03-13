@@ -26,7 +26,7 @@ class ApplicationController < ActionController::API
 
     def coinbase_token
       @user = current_user # what if user dow not exist
-      @auth = @user.coinbase_authentications.first
+      @auth = @user.coinbase_authentications.last
       @user_token = @auth.access_token
       @refresh = @auth.refresh_token
       @client = coinbase_client

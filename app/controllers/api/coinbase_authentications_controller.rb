@@ -16,14 +16,17 @@ module Api
 
   			@user = current_user
       		@auth = @user.coinbase_authentications.new(access_token: token.token, refresh_token: token.refresh_token, expires_at: token.expires_at)
-      		
+
  			if @auth.save
       			# created, where shoult id redirect is, any params need to be passed
-        		redirect_to ENV['ROOT']
+        		# redirect_to ENV['ROOT']
+        		render json: token
      		else
         		redirect_to ENV['ROOT']
         	end
   		end 
+
+
 
 	end
 end

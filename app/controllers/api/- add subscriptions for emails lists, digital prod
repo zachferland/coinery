@@ -342,3 +342,31 @@ should we store price as cents!?!!!!! yes i think, change to integer?
 not sure if I need customer model? just email, even if there was address and stuff, they could be different each time, unless we load address on entering email 
 
 product title can't be nil, or it won't be able to fetch a button 
+
+send email to user if their account is not longer authenticated 
+
+
+
+
+Just realized!!!!
+Coinbase auth is not needed for every transaction
+Coinbase is only needed when a button has to be created 
+return error if it is not. 
+If expired, use access token to refresh of have user login again
+
+for transactions, I can just check if they are up to date when I add one, from our app, if not load them in from coinbase.
+when the user authenticates again. Send email for that, or show notice. 
+
+
+
+
+
+
+THINK about this affiliate service how would it work
+http://www.reddit.com/r/progresspics/
+
+BITCOIN AFFILATE SALES, products are widgets, in which can sold on peopls sites and what not, what about and add based ebay/social network 
+
+BITCOIN US taxlaw incorporation seamless
+BITCOIN TAXES
+BITCOIN AUDIT

@@ -45,6 +45,8 @@ module Api
 
 
 
+
+
     api :POST, '/transactions/callback', "Create a transaction from coinbase callback"
     def order_callback
       # not sure if actually  works yet
@@ -72,6 +74,8 @@ module Api
       #   render json: @transaction.errors, status: :unprocessable_entity
       # end
     end
+
+
 
 
 

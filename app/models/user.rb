@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
 
 	def self.create_with_omniauth(info)
 		# use info to create a user from twitter info (get image later)
-    	create(username: info['nickname'], bio: info['description'], full_name: info['name'])
+    	create(username: info['nickname'], bio: info['description'], full_name: info['name'], img: info['image'])
   	end
 end
