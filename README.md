@@ -46,6 +46,10 @@ Install necessary gems
 ```
 $ bundle install
 ```
+Install compass locally 
+```
+gem install compass
+```
 
 Install node.js (which comes with npm automatically) if not already installed
 ```
