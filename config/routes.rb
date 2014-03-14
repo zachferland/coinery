@@ -7,6 +7,10 @@ Coinery::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
 
+  # move this, add a application controller to the api and then inheret that from an 
+  # application controller outside the api module
+  get 'api/coinbase/price' => "application#usd_to_btc"
+
   # API ENDPOINTS
   namespace :api do
     # User Endpoints ##########################################

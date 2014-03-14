@@ -1,5 +1,17 @@
 class ApplicationController < ActionController::API
 	# protect_from_forgery
+
+   # move this, add a application controller to the api and then inheret that from an 
+  # application controller outside the api module
+  def usd_to_btc
+    token = coinbase_token
+    @response = token.get('/api/v1/currencies/exchange_rates')
+
+    body = @response.parsed
+    @usd_to_btc = body['usd_to_btc']
+
+    render json: @usd_to_btc
+  end 
   
 	protected
 
@@ -25,13 +37,13 @@ class ApplicationController < ActionController::API
     end
 
     def coinbase_token
-      @user = current_user # what if user dow not exist
-      @auth = @user.coinbase_authentications.last
-      @user_token = @auth.access_token
-      @refresh = @auth.refresh_token
-      @client = coinbase_client
+      user = current_user # what if user dow not exist
+      auth = user.coinbase_authentications.last
+      user_token = auth.access_token
+      refresh = auth.refresh_token
+      client = coinbase_client
 
-      @token = OAuth2::AccessToken.new(@client, @user_token, opts = {:refresh_token => @refresh})
+      @token = OAuth2::AccessToken.new(client, user_token, opts = {:refresh_token => refresh})
     end
 
 end
