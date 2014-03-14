@@ -1,0 +1,32 @@
+<div class="overlay">
+  <div class="flag">
+    <span class="status">Live</span>
+    <img src="images/flag.svg" width="81" height="81">
+  </div>
+  <div class="cover">
+    <div class="cover-container">
+      <img class="cam" src="images/camera.svg"><br>
+      <a class="button dark">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
+    </div>
+  </div>
+  <div class="product-main">
+    <div class="field-container">
+      <div class="title-container">
+        <input class="title" data-id="title" value="{{title}}">
+      </div>
+      <div class="price-container">
+        <input class="btc" data-currency="btc">
+        <input class="usd" data-currency="usd">
+      </div>
+    </div>
+    <div class="description" contenteditable>
+      {{#if description}}
+        {{description}}
+      {{else}}
+        Add a description of your product...
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+

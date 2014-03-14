@@ -1,0 +1,175 @@
+.overlay
+  background: #fff
+  margin: 30px 0px
+  min-height: 400px
+  width: 600px
+  position: relative
+  border-bottom: 2px solid rgba(0,0,0,.2)
+
+  .flag
+    position: absolute
+    top: -8px
+    right: -8px
+
+    span
+      @include transform(rotate(45deg))
+      position: absolute
+      text-transform: uppercase
+      font-weight: 600
+      letter-spacing: 1px
+      color: darken($green, 25%)
+      width: 60px
+      height: 20px
+      text-align: center
+      display: block
+      font-size: .75rem
+      right: 4px
+      top: 20px
+
+
+  .cover
+    height: 200px
+    background: $dark
+    text-align: center
+    width: 100%
+    display: table
+    overflow: hidden
+
+    .cover-container
+      display: table-cell
+      vertical-align: middle
+      width: 100%
+
+    img.cam
+      width: 50px
+      height: 50px
+      opacity: .4
+
+    a.button.dark
+      margin-top: 20px
+      background: darken($dark, 6%)
+      color: #eee
+
+      &:hover
+        background: darken($dark, 10%)
+
+.overlay .product-main
+  padding: 20px
+
+
+  .field-container
+    width: 100%
+    height: 40px
+    overflow: hidden
+    margin-bottom: 20px
+
+    &.editing-price
+      .price-container
+        width: 60%
+
+        &:after
+          display: block
+
+        input:first-child
+          width: 50%
+
+      .title-container
+        width: 37%
+
+
+    .price-container, .title-container
+      @include transition(all .3s)
+      @include border-radius(3px)
+      height: 100%
+      border: 1px solid darken($light-gray, 10%)
+      display: inline-block
+
+      &.focus
+        border: 1px solid darken($light-gray, 30%)
+
+      input
+        background: transparent
+        height: 100%
+        outline: 0px
+        border: 0px
+        padding: 7px 10px
+        color: lighten($dark, 5%)
+        font-weight: 600
+        font-size: 1.1rem
+        font-weight: 400
+
+    .title-container
+      float: left
+      width: 63%
+
+      input
+        width: 100%
+
+    .price-container
+      float: right
+      width: 34%
+      overflow: hidden
+      position: relative
+
+      &.btc-focus
+        &:before
+          background: $green
+          color: #fff
+      &.usd-focus
+        &:after
+          background: $green
+          color: #fff
+
+      &:before, &:after
+        @include transition(all .2s)
+        @include box-sizing(border-box)
+        @include border-radius(2px)
+        background: lighten($dark, 55%)
+        display: block
+        width: 45px
+        height: 30px
+        padding-top: 9px
+        position: absolute
+        font-size: .7rem
+        letter-spacing: 1px
+        text-align: center
+        font-weight: 700
+        color: rgba(0,0,0,.6)
+
+      &:before
+        content: 'BTC'
+        top: 4px
+        left: 4px
+
+      &:after
+        display: none
+        content: 'USD'
+        top: 4px
+        left: 50%
+
+    .price-container input
+      width: 50%
+      height: 100%
+      border: 0px
+      float: left
+      font-size: 1rem
+      padding-top: 8px
+      padding-left: 55px
+
+      &:first-child
+        width: 100%
+        padding-left: 59px
+
+  .description
+    padding: 10px
+    @include transition(all .2s)
+    @include border-radius(3px)
+    border: 1px solid darken($light-gray, 10%)
+    min-height: 100px
+    width: 100%
+    outline: 0px
+    color: lighten($dark, 10%)
+    font-size: 1.1rem
+
+    &.focus
+      border: 1px solid darken($light-gray, 30%)

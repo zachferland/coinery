@@ -30,7 +30,7 @@ module.exports = class Product extends Backbone.Model
   getDescription: ->
     @get 'description'
 
-  getDescription: (description) ->
+  setDescription: (description) ->
     @set 'description', description
 
 
