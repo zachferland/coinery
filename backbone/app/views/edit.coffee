@@ -1,4 +1,5 @@
 OverlayView = require 'views/overlay'
+FilesView = require 'views/files'
 Template = require 'templates/edit'
 
 module.exports = class EditProductView extends Backbone.View
@@ -19,6 +20,7 @@ module.exports = class EditProductView extends Backbone.View
     @$el.html Template ctx
 
     do @renderOverlay
+    do @renderFiles
 
 
   publishHandler: (e) ->
@@ -33,6 +35,13 @@ module.exports = class EditProductView extends Backbone.View
       user: @user
       model: @model
     overlay.render()
+
+
+  renderFiles: ->
+    files = new FilesView
+      user: @user
+      model: @model
+    files.render()
 
 
 

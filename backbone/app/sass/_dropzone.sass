@@ -3,6 +3,47 @@
   width: 540px
   margin-bottom: 25px
 
+  &.edit-view
+    width: 100%
+    margin-top: 15px
+
+    a.delete
+      position: absolute
+      right: 10px
+      color: lighten(red, 15%)
+      top: 7px
+      z-index: 10000
+      font-size: .8rem
+
+      &:hover
+        color: lighten(red, 5%)
+
+    .dz-details
+      background: #EEF1EE
+
+    .dz-preview
+      width: 100%
+
+    .dz-progress .dz-upload
+      background: #EEF1EE
+
+      span.filename
+        padding: 7px 10px
+        font-weight: 600
+        font-size: .8rem
+        color: lighten($dark, 10%)
+        width: 100%
+
+    span.dz-size
+      position: absolute
+      right: 66px
+      top: 0px
+      z-index: 999
+      font-size: .8rem
+      top: 7px
+      opacity: .4
+
+
 .dz-preview
   position: relative
   height: auto
@@ -106,7 +147,7 @@
     bottom: 0
     right: 0
     width: 0%
-    background-color: #fff
+    background: #fff
     z-index: 100
     overflow: hidden
 

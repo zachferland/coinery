@@ -1,5 +1,4 @@
 Template = require 'templates/overlay'
-DropzoneTemplate = require 'templates/dropzone-cover'
 
 module.exports = class OverlayView extends Backbone.View
 
@@ -14,7 +13,6 @@ module.exports = class OverlayView extends Backbone.View
 
   initialize: (options) ->
     @user = options.user
-    @model.getAssetsFromServer()
 
   render: ->
     ctx =
@@ -96,7 +94,8 @@ module.exports = class OverlayView extends Backbone.View
 
   dropzoneInit: ->
 
-    dropzone = new Dropzone 'a[data-href="dropzone"]',
+    dropzone = new Dropzone 'a[data-href="cover-dropzone"]',
+      previewsContainer: '.dz-cover-preview-container'
       url: '#'
 
     # update percentage count

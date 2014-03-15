@@ -146,25 +146,25 @@ module.exports = class NewProductView extends Backbone.View
     Dropzone::filesize = filesize
 
     # init dropzone with custom template
-    dropzone = new Dropzone 'a[data-href="dropzone"]',
+    @dropzone = new Dropzone 'a[data-href="dropzone"]',
       paramName: 'asset'
       previewsContainer: '.dz-preview-container'
       previewTemplate: DropzoneTemplate {}
       url: "#"
 
     url = => "/api/products/#{@model.get('id')}/assets"
-    dropzone.options.url = url()
+    @dropzone.options.url = url()
 
 
     # update percentage count
-    dropzone.on 'uploadprogress', (file, progress, bytesSent) ->
+    @dropzone.on 'uploadprogress', (file, progress, bytesSent) ->
       $('.dz-progress-percent').text Math.round(progress) + "%"
 
     # believe it or not this breaks without the console.log
-    dropzone.on 'addedFile', (file) ->
+    @dropzone.on 'addedFile', (file) ->
       console.log file
 
-    dropzone.on 'success', (file) =>
+    @dropzone.on 'success', (file) =>
       do @updateFileCTA
 
   updateFileCTA: ->
