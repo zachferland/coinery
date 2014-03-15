@@ -22,6 +22,9 @@ module Coinery
      config.assets.enabled = false
      config.paths['public'] = ['backbone/public']
 
+     # serve compiled backone app assets
+     config.serve_static_assets = true
+
      config.session_store :cookie_store
      config.api_only = false
 
