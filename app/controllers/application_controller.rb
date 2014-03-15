@@ -5,11 +5,8 @@ class ApplicationController < ActionController::API
   # application controller outside the api module
   api :GET, 'api/coinbase/price', "Get USD to Bitcoin conversion"
   def usd_to_btc
-    token = coinbase_token
-    @response = token.get('/api/v1/currencies/exchange_rates')
-
-    body = @response.parsed
-    @usd_to_btc = body['usd_to_btc']
+    response = HTTParty.get('https://coinbase.com/api/v1/currencies/exchange_rates').parsed_response
+    @usd_to_btc = response['usd_to_btc']
 
     render json: @usd_to_btc
   end 
