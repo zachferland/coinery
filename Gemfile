@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
+# ruby '2.1.0'
 gem 'rails-api'
 gem 'pg'
 gem 'jbuilder', '~> 1.2'
@@ -14,13 +15,11 @@ gem  'oauth2'
 gem 'paperclip'
 gem 'aws-sdk'
 
+# ENV variables
 gem 'figaro'
 
 # API Docs
 gem 'apipie-rails'
-
-# Coinbase
-gem 'coinbase'
 
 
 group :doc do
