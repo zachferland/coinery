@@ -47,6 +47,7 @@ module.exports = class Router extends Backbone.Router
 
   editProductHandler: (id) ->
     if @session()
+      do @requireConversionRate
       do @requireProducts
 
       view = new EditProductView
@@ -89,6 +90,7 @@ module.exports = class Router extends Backbone.Router
 
   newProductHandler: ->
     if @session()
+      do @requireConversionRate
       do @requireProducts
 
       product = new Product
@@ -145,7 +147,10 @@ module.exports = class Router extends Backbone.Router
       @products.fetch
         async: false
 
-
-
-
+  requireConversionRate: ->
+    unless window.conversion_rate?
+      $.ajax "/api/coinbase/price",
+        async: false
+        success: (response) ->
+          window.conversion_rate = response
 

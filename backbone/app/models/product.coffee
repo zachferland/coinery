@@ -43,6 +43,12 @@ module.exports = class Product extends Backbone.Model
         return "Live"
     "unkown"
 
+  setAssets: (array) ->
+    @set 'assets', array
 
-
-
+  getAssetsFromServer: ->
+    $.ajax "/api/products/#{@id}/assets",
+      method: 'GET'
+      success: (response) =>
+        @setAssets(response)
+        @trigger 'fetched_assets'

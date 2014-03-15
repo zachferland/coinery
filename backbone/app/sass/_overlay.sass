@@ -28,17 +28,16 @@
 
 
   .cover
-    height: 200px
+    min-height: 200px
+    max-height: 300px
     background: $dark
     text-align: center
     width: 100%
-    display: table
     overflow: hidden
 
     .cover-container
-      display: table-cell
-      vertical-align: middle
       width: 100%
+      padding-top: 40px
 
     img.cam
       width: 50px
@@ -65,7 +64,7 @@
 
     &.editing-price
       .price-container
-        width: 60%
+        width: 55%
 
         &:after
           display: block
@@ -74,7 +73,7 @@
           width: 50%
 
       .title-container
-        width: 37%
+        width: 42%
 
 
     .price-container, .title-container
@@ -88,6 +87,7 @@
         border: 1px solid darken($light-gray, 30%)
 
       input
+        @include transition(.2s all)
         background: transparent
         height: 100%
         outline: 0px
@@ -97,6 +97,9 @@
         font-weight: 600
         font-size: 1.1rem
         font-weight: 400
+
+        &.changing
+          color: #fff
 
     .title-container
       float: left

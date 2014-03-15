@@ -1,5 +1,5 @@
 Template = require 'templates/overlay'
-DropzoneTemplate = require 'templates/dropzone'
+DropzoneTemplate = require 'templates/dropzone-cover'
 
 module.exports = class OverlayView extends Backbone.View
 
@@ -9,11 +9,12 @@ module.exports = class OverlayView extends Backbone.View
     'focus input': 'inputFocusHandler'
     'blur input': 'resetFocus'
     'click [contenteditable]': 'contentEditableFocus'
-    'keyup input.currency': 'currencyHandler'
-    'keydown input.currency': 'currencyValidateHandler'
+    'keyup .field-wrapper input': 'currencyHandler'
+    'keydown .field-wrapper input': 'currencyValidateHandler'
 
   initialize: (options) ->
     @user = options.user
+    @model.getAssetsFromServer()
 
   render: ->
     ctx =
@@ -25,6 +26,18 @@ module.exports = class OverlayView extends Backbone.View
       'status': @model.getReadableStatus()
 
     @$el.html Template ctx
+
+    do @postRender
+
+  postRender: ->
+    do @dropzoneInit
+    do @fillPrice
+
+  fillPrice: ->
+    rate = 610
+    price = @model.getPrice()
+    $('[data-currency="BTC"] input').val "#{parseFloat(price)*rate}"
+    $('[data-currency="USD"] input').val "$#{parseFloat(price)}"
 
   resetFocus: ->
     @$('.price-container').removeClass 'usd-focus btc-focus focus'
@@ -62,6 +75,7 @@ module.exports = class OverlayView extends Backbone.View
       usd = amount * 640
       unless isNaN(usd)
         inputs.usd.addClass 'changing'
+        console.log 'changing'
         delay 150, ->
           inputs.usd.val "$#{usd.toString()}"
         delay 300, ->
@@ -82,52 +96,7 @@ module.exports = class OverlayView extends Backbone.View
 
   dropzoneInit: ->
 
-    # @override: update width of progress bar
-    uploadprogress = (file, progress, bytesSent) ->
-
-      ref = file.previewElement.querySelectorAll "[data-dz-uploadprogress]"
-      width = "#{100 - parseInt(progress)}%"
-
-      results = []
-      i = 0
-
-      while i < ref.length
-        node = ref[i]
-        results.push node.style.width = width
-        i++
-
-      results
-
-    # @override: human readable file size
-    filesize = (size) ->
-      if size >= Math.pow(1024, 4) / 10
-        size = size / (Math.pow(1024, 4) / 10)
-        string = "TB"
-      else if size >= Math.pow(1024, 3) / 10
-        size = size / (Math.pow(1024, 3) / 10)
-        string = "GB"
-      else if size >= Math.pow(1024, 2) / 10
-        size = size / (Math.pow(1024, 2) / 10)
-        string = "MB"
-      else if size >= 1024 / 10
-        size = size / (1024 / 10)
-        string = "KB"
-      else
-        size = size * 10
-        string = "b"
-
-      "<strong>#{Math.round(size)/10}</strong>#{string}"
-
-
-    # apply overrides to dropzone obj
-    Dropzone::defaultOptions.uploadprogress = uploadprogress
-    Dropzone::filesize = filesize
-
-
-    # init dropzone with custom template
     dropzone = new Dropzone 'a[data-href="dropzone"]',
-      previewsContainer: '.dz-preview-container'
-      previewTemplate: DropzoneTemplate {}
       url: '#'
 
     # update percentage count
@@ -137,7 +106,6 @@ module.exports = class OverlayView extends Backbone.View
     # believe it or not this breaks without the console.log
     dropzone.on 'addedFile', (file) ->
       console.log file
-
 
   backHandler: ->
     Backbone.history.navigate "products", {trigger: true}

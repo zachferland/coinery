@@ -8,7 +8,8 @@
   <div class="cover">
     <div class="cover-container">
       <img class="cam" src="images/camera.svg"><br>
-      <a class="button dark">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
+      <a class="button dark" data-href="dropzone">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
+      <div class="dz-preview-container"></div>
     </div>
   </div>
   <div class="product-main">
@@ -17,8 +18,12 @@
         <input class="title" data-id="title" value="{{title}}">
       </div>
       <div class="price-container">
-        <input class="btc" data-currency="btc">
-        <input class="usd" data-currency="usd">
+        <div class="field-wrapper" data-currency="BTC">
+          <input class="btc" type="text">
+        </div>
+        <div class="field-wrapper" data-currency="USD">
+          <input class="usd" type="text">
+        </div>
       </div>
     </div>
     <div class="description" contenteditable>
@@ -30,5 +35,4 @@
     </div>
   </div>
 </div>
-
 

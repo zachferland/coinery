@@ -52,10 +52,10 @@ module.exports = class NewProductView extends Backbone.View
           @model.save {},
             async: false
             success: (response) =>
-              console.log 'success'
               do @dropzoneInit
             error: (xhr, status) ->
               console.log xhr, status
+
 
       $currentStep.addClass('complete')
                  .next().removeClass('hidden')
@@ -75,13 +75,13 @@ module.exports = class NewProductView extends Backbone.View
       'usd': $('[data-currency="USD"] input')
 
     focus = $(e.target).parent().attr 'data-currency'
-    rate = 640
+    rate = window.conversion_rate
 
     raw = $(e.target).val().replace '$', ''
     amount = parseFloat(raw)
 
     if focus is 'BTC'
-      usd = amount * 640
+      usd = amount / rate
       unless isNaN(usd)
         inputs.usd.addClass 'changing'
         delay 150, ->
@@ -90,7 +90,7 @@ module.exports = class NewProductView extends Backbone.View
           inputs.usd.removeClass 'changing'
 
     if focus is 'USD'
-      btc = amount / 640
+      btc = amount * rate
       unless isNaN(btc)
         inputs.btc.addClass 'changing'
         delay 150, ->

@@ -20,6 +20,14 @@ window.sexyHash()
 
 $ ->
 
+  $.ajaxSetup
+    type: "POST"
+    data: {}
+    dataType: 'json'
+    crossDomain: true
+    xhrFields:
+      withCredentials: true
+
   # lol
   Backbone.$ = jQuery
   Pace.start()
