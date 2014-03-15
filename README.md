@@ -46,6 +46,21 @@ Install necessary gems
 ```
 $ bundle install
 ```
+Install compass locally 
+```
+gem install compass
+```
+
+Install node.js (which comes with npm automatically) if not already installed
+```
+$ brew install node
+```
+
+Add node to your $PATH in ~/.bash_profile, ~/.zshrc or wherever your terminal configs sit if not already added
+```
+export PATH=/usr/local/bin/node_modules:$PATH
+export PATH=/usr/local/bin/node:$PATH
+```
 
 Start the thin server
 ```
@@ -55,7 +70,8 @@ $ thin start
 Install Brunch and Bower (specified in `package.json`)
 ```
 $ cd backbone
-$ npm install
+$ npm install bower -g
+$ npm install brunch -g
 ```
 
 Fetch JS dependencies with Bower (one time only)
