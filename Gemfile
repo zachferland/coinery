@@ -7,6 +7,9 @@ gem 'pg'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 
+# heroku
+gem 'rails_12factor'
+
 # Auth
 gem 'omniauth-twitter'
 gem  'oauth2'
