@@ -1,6 +1,8 @@
 ## Coinery ##
 A BTC-denominated storefront for buying & selling your digital goods. Created as part of the 2014 BitHack
 
+https://www.codeship.io/projects/0a863a40-8ea9-0131-5850-32c0590fdc55/status
+
 #### App structure ####
 
 **Rails + Backbone living together in relative harmony.**
