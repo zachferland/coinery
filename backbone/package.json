@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "sass-brunch": "~1.8.0",
-    "auto-reload-brunch": "~1.7.3"
+    "auto-reload-brunch": "~1.7.3",
+    "brunch": "~1.7.13"
   }
 }
