@@ -7,8 +7,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'thin'
 
 # Auth
-gem "omniauth-coinbase"
 gem 'omniauth-twitter'
+gem  'oauth2'
 
 # File Handling
 gem 'paperclip'
@@ -18,6 +18,9 @@ gem 'figaro'
 
 # API Docs
 gem 'apipie-rails'
+
+# Coinbase
+gem 'coinbase'
 
 
 group :doc do

@@ -1,10 +1,15 @@
 Coinery::Application.routes.draw do
 
+  get "coinbase_authentications/url"
   apipie
 
   # Auth ##########################################
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
+
+  # move this, add a application controller to the api and then inheret that from an 
+  # application controller outside the api module
+  get 'api/coinbase/price' => "application#usd_to_btc"
 
   # API ENDPOINTS
   namespace :api do
@@ -35,6 +40,8 @@ Coinery::Application.routes.draw do
     get "products/:id/customers" => 'products#customers'
     #returns transactions of a users product
     get "products/:id/transactions" => 'products#product_transactions'
+    # publish a product 
+    put "/products/:id/publish" => 'products#publish'
   
   
     # Transaction Endpoints ##########################################
@@ -44,6 +51,8 @@ Coinery::Application.routes.draw do
     get "transactions/:id" => 'transactions#show'
     # create a transaction
     post "transactions" => 'transactions#create'
+    # create a transaction
+    post "transactions/callback" => 'transactions#order_callback'
   
   
   
@@ -62,6 +71,13 @@ Coinery::Application.routes.draw do
     get "assets/:id" => 'assets#show'
     # delets asset of user
     delete "assets/:id" => 'assets#destroy'
+
+    # Customer Endpoints ##########################################
+    get 'coinbase/auth/url' => 'coinbase_authentications#url'
+    get 'coinbase/auth/callback' => 'coinbase_authentications#callback'
+    get 'coinbase/auth' => 'coinbase_authentications#create'
+
+
   end
 
 end

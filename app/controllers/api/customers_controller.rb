@@ -2,7 +2,7 @@ module Api
   class CustomersController < ApplicationController
      before_filter :permission, only: [:user_all, :product_all]
 
-     def_param_group :customer do 
+    def_param_group :customer do 
       param :email, String
     end
   
