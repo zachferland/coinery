@@ -77,4 +77,14 @@ Coinery::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['SENDGRID_USER_NAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => ENV['SENDGRID_DOMAIN'],
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

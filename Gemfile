@@ -16,6 +16,9 @@ gem 'aws-sdk'
 
 gem 'figaro'
 
+# mailer
+gem 'sendgrid'
+
 # API Docs
 gem 'apipie-rails'
 
