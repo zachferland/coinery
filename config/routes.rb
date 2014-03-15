@@ -40,6 +40,8 @@ Coinery::Application.routes.draw do
     get "products/:id/customers" => 'products#customers'
     #returns transactions of a users product
     get "products/:id/transactions" => 'products#product_transactions'
+    # publish a product 
+    put "/products/:id/publish" => 'products#publish'
   
   
     # Transaction Endpoints ##########################################

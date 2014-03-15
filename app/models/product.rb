@@ -8,21 +8,22 @@ class Product < ActiveRecord::Base
 	validates_attachment_content_type :image, 
 		:content_type => { :content_type => ["image/jpg", "image/png"] }
 
-	def self.create_payment_code(product, token)
+	def create_payment_code(token)
 
-      @response = token.post('/api/v1/buttons', 
-                                :params => { button: { name: product.title, 
+      response = token.post('/api/v1/buttons', 
+                                :params => { button: { name: title, 
                                                        type: 'buy_now', 
-                                                       price_string: product.price,  
-                                                       custom:  product.id,
+                                                       price_string: price,  
+                                                       custom:  id,
                                                        price_currency_iso: "USD", 
                                                        callback_url: ENV['ROOT'] + "/api/transactions/callback" }})
 
-      @body = @response.parsed
-      button_code = @body['button']['code']
+      body = response.parsed
+      button_code = body['button']['code']
 
-      product.update(button_code: button_code)
+      update(button_code: button_code)
       # # handle a fail??
     end
+    
 
 end

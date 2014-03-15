@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
 
    # move this, add a application controller to the api and then inheret that from an 
   # application controller outside the api module
+  api :GET, 'api/coinbase/price', "Get USD to Bitcoin conversion"
   def usd_to_btc
     token = coinbase_token
     @response = token.get('/api/v1/currencies/exchange_rates')
@@ -38,12 +39,8 @@ class ApplicationController < ActionController::API
 
     def coinbase_token
       user = current_user # what if user dow not exist
-      auth = user.coinbase_authentications.last
-      user_token = auth.access_token
-      refresh = auth.refresh_token
-      client = coinbase_client
-
-      @token = OAuth2::AccessToken.new(client, user_token, opts = {:refresh_token => refresh})
+      auth = user.coinbase_auth
+      @token = OAuth2::AccessToken.new(coinbase_client, auth.access_token)
     end
 
 end
