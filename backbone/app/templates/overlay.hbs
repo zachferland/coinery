@@ -1,6 +1,8 @@
 <div class="overlay">
   <div class="flag">
-    <span class="status">Live</span>
+    {{#if status}}
+      <span class="status">{{status}}</span>
+    {{/if}}
     <img src="images/flag.svg" width="81" height="81">
   </div>
   <div class="cover">

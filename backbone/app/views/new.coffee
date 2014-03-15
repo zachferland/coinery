@@ -8,6 +8,7 @@ module.exports = class NewProductView extends Backbone.View
   events: ->
     'click a[data-href="back"]': 'backHandler'
     'click a[data-href="save"]': 'saveHandler'
+    'click a[data-href="done"]': 'doneHandler'
     'keyup input.currency': 'currencyHandler'
     'keydown input.currency': 'currencyValidateHandler'
     'focus input': 'inputFocusHandler'
@@ -41,7 +42,6 @@ module.exports = class NewProductView extends Backbone.View
     unless errors > 0
       val = $currentStep.find('input').first().val()
 
-
       switch step
         when 1
           @model.setTitle val
@@ -49,13 +49,13 @@ module.exports = class NewProductView extends Backbone.View
         when 2
           @model.setPrice val.replace('$', '')
 
-          @collection.create @model,
+          @model.save {},
             async: false
-            success: (response) ->
-              console.log response
-
-          do @dropzoneInit
-
+            success: (response) =>
+              console.log 'success'
+              do @dropzoneInit
+            error: (xhr, status) ->
+              console.log xhr, status
 
       $currentStep.addClass('complete')
                  .next().removeClass('hidden')
@@ -145,14 +145,15 @@ module.exports = class NewProductView extends Backbone.View
     Dropzone::defaultOptions.uploadprogress = uploadprogress
     Dropzone::filesize = filesize
 
-    url = "/api/products/#{@model.get('id')}/assets"
-
     # init dropzone with custom template
     dropzone = new Dropzone 'a[data-href="dropzone"]',
       paramName: 'asset'
       previewsContainer: '.dz-preview-container'
       previewTemplate: DropzoneTemplate {}
-      url: url
+      url: "#"
+
+    url = => "/api/products/#{@model.get('id')}/assets"
+    dropzone.options.url = url()
 
 
     # update percentage count
@@ -163,6 +164,23 @@ module.exports = class NewProductView extends Backbone.View
     dropzone.on 'addedFile', (file) ->
       console.log file
 
+    dropzone.on 'success', (file) =>
+      do @updateFileCTA
+
+  updateFileCTA: ->
+    @$('a[data-href="dropzone"]').removeClass('button').html 'Upload Another File'
+    @$('span.or').fadeIn()
+    @$('a[data-href="done"]').fadeIn()
+
+
+  doneHandler: (e) ->
+    do e.preventDefault
+    @collection.add(@model)
+    @model.save {'status': 1},
+      url: "/api/products/#{@model.id}"
+      success: =>
+        Backbone.history.navigate "products/edit/#{@model.id}", {trigger: true}
+        console.log @model
 
   backHandler: ->
     Backbone.history.navigate "products", {trigger: true}

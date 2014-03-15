@@ -1,5 +1,9 @@
 $twitter: #4099FF
 
+a
+  text-decoration: underline
+  font-size: .9rem
+
 a.button
   @include border-radius(3px)
   @include transition(all .1s)
@@ -14,6 +18,26 @@ a.button
 
   &:hover
     background: darken($green, 3%)
+
+
+  &.small
+    @include border-radius(2px)
+    padding: 7px 14px
+    font-size: .8rem
+
+    &.gray
+      font-weight: 600
+      color: #3D5345
+      background: #DDE4DF
+
+      &:hover
+        background: darken(#DDE4DF, 3%)
+        color: darken(#3D5345, 3%)
+
+
+  &.right
+    float: right
+    margin-left: 10px
 
   &.twitter
     background: $twitter

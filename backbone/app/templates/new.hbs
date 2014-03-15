@@ -3,7 +3,7 @@
 </a>
 
 <div class="fieldset">
-  <h4><strong>Enter a name</strong> for your product</h3>
+  <h4><strong>Enter a name for a product</strong></h4>
   <div class="field">
     <input required class="wide" type="text" placeholder="What are you selling?">
     <a class="button attached" data-href="save">Save</a>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="fieldset hidden">
-  <h4><strong>How much</strong> does it cost?</h3>
+  <h4><strong>How much does it cost?</strong></h4>
   <div class="field">
     <div class="field-wrapper" data-currency="USD">
       <input required class="currency" type="text" placeholder="$0">
@@ -25,8 +25,11 @@
 </div>
 
 <div class="fieldset hidden">
-  <h4>Last step! Upload a file for your product</h4>
+  <h4><strong>Last step! Upload a file for your product</strong></h4>
+  <p class="hint">The customer will receive these files after a successful purchase.<p>
   <div class="dz-preview-container"></div>
+  <a data-href="done" class="button" style="display: none;">I'm Done!</a>
+  <span class="or" style="display: none;"> or, </span>
   <a data-href="dropzone" class="button">Upload Files</a>
 </div>
 

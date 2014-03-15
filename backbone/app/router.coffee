@@ -10,9 +10,9 @@ Product = require 'models/product'
 
 module.exports = class Router extends Backbone.Router
   routes: ->
-    'product/:id': 'editProductHandler'
     'products': 'productsHandler'
     'products/new': 'newProductHandler'
+    'products/edit/:id': 'editProductHandler'
     'customers': 'customersHandler'
     'account': 'accountHandler'
     'login': 'loginHandler'

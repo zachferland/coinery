@@ -23,6 +23,17 @@ p
   font-size: .95rem
 
 
+header
+  width: 100%
+  border-bottom: 1px solid rgba(0,0,0,.05)
+  @include pie-clearfix
+
+h2.left
+  float: left
+  margin:
+    top: 0px
+    bottom: 10px
+
 .prompt
   width: 236px
   height: 34px
@@ -31,6 +42,150 @@ p
   position: absolute
   left: 460px
   margin-top: 78px
+
+ul.products-list
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+  > li
+    @include pie-clearfix
+    display: inline-block
+    margin: 20px 21px 10px 0px
+
+    &:nth-child(3n)
+      margin-right: 0px
+
+
+ul.products-list > li
+  width: 230px
+  &.new
+
+    a.cover
+      background: darken($light-gray, 3%)
+      &:after
+        content: 'New Product'
+
+      svg
+        margin-top: 45px
+
+
+  a.cover
+    background: #fff
+    width: 100%
+    height: 130px
+    display: block
+    text-align: center
+    position: relative
+    overflow: hidden
+    text-decoration: none
+
+    &:after
+      @include transition(all .15s)
+      content: 'Edit Product'
+      background: fade-out($green, 1)
+      font-size: 1.4rem
+      padding-top: 30px
+      position: absolute
+      font-weight: 600
+      top: 0px
+      left: 0px
+      width: 100%
+      height: 100%
+      color: transparent
+
+    &:hover:after
+      background: fade-out($green, .2)
+      padding-top: 50px
+      color: #fff
+
+  .product-cover
+    width: 100%
+    height: 100%
+    position: relative
+    text-align: center
+
+    svg
+      margin-top: 30px
+      opacity: .2
+
+    .price-container
+      position: absolute
+      display: none
+
+  .product-meta
+    position: relative
+
+    .title-container
+      width: 90%
+
+      h3
+        font-size: 1rem
+        font-weight: 600
+        color: $dark
+        margin:
+          top: 8px
+          bottom: 4px
+
+    span.status
+      font-size: .8rem
+      color: lighten($dark, 20%)
+
+    a.dropdown-toggle
+      position: absolute
+      @include border-radius(2px)
+      background: darken($light-gray, 7%)
+      color: lighten($dark, 25%)
+      text-align: center
+      padding-top: 4px
+      width: 100%
+      height: 100%
+      text-decoration: none
+
+      i.fa-chevron-down
+        font-size: .5rem
+        position: relative
+        top: -2px
+
+.product-meta
+
+  .dropdown.open
+    ul.dropdown-menu
+      display: none!important
+
+  .dropdown:hover, .dropdown.open:hover
+
+    .dropdown-menu
+      display: block!important
+
+  .dropdown
+    position: absolute
+    display: block
+    width: 40px
+    height: 26px
+    right: 0px
+
+    .dropdown-menu
+      @include box-shadow(1px 1px 2px rgba(0,0,0,.1))
+      overflow: hidden
+      padding: 0px
+      margin: 0px
+      top: 27px
+      left: 0px
+      z-index: 9999
+
+      a
+        text-decoration: none
+        padding: 6px 15px
+        font-size: .8rem
+
+        &.delete:hover
+          color: $red
+
+        i
+          font-size: .85rem
+          top: 2px
+          float: right
 
 
 
