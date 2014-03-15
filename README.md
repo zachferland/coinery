@@ -2,7 +2,8 @@
 A BTC-denominated storefront for buying & selling your digital goods. Created as part of the 2014 BitHack
 
 
-![Build Status](https://www.codeship.io/projects/0a863a40-8ea9-0131-5850-32c0590fdc55/status "Build Status")
+![Codeship Status](https://www.codeship.io/projects/0a863a40-8ea9-0131-5850-32c0590fdc55/status)
+
 
 #### App structure ####
 
