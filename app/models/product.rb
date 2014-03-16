@@ -25,5 +25,15 @@ class Product < ActiveRecord::Base
       # # handle a fail??
     end
     
+    
+  def user 
+    User.find(self.user_id)
+  end  
+
+  def btc 
+    response = HTTParty.get('https://coinbase.com/api/v1/currencies/exchange_rates').parsed_response
+    usd_to_btc = response['usd_to_btc']
+    return self.price * usd_to_btc.to_f
+  end  
 
 end

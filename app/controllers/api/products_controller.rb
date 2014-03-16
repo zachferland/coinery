@@ -8,6 +8,11 @@ module Api
     #   # param :price, String
     #   # asset
     # end
+    api :GET, '/products/:id/buy'
+    def buy
+      @product = Product.find(params[:id])
+      render json: @product.as_json(:include => [:user, :assets], :methods => :btc)
+    end
     
     api :GET, '/products/all', "Get all products"
     def all

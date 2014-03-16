@@ -11,6 +11,8 @@ gem 'thin'
 gem 'omniauth-twitter'
 gem  'oauth2'
 
+gem "httparty"
+
 # File Handling
 gem 'paperclip'
 gem 'aws-sdk'
