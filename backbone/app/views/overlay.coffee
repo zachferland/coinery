@@ -15,6 +15,7 @@ module.exports = class OverlayView extends Backbone.View
   initialize: (options) ->
     @user = options.user
     @warningVisible = false
+    console.log @model
 
   render: ->
     ctx =
@@ -127,6 +128,14 @@ module.exports = class OverlayView extends Backbone.View
     # believe it or not this breaks without the console.log
     dropzone.on 'addedFile', (file) ->
       console.log file
+
+    dropzone.on 'success', (file) =>
+      delay 500, =>
+        @model.fetch
+          url: "/api/products/#{@model.get('id')}"
+          success: (response) =>
+            @render()
+
 
   backHandler: ->
     Backbone.history.navigate "products", {trigger: true}

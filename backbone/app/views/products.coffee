@@ -25,6 +25,7 @@ module.exports = class ProductsView extends Backbone.View
       product.id = model.id
       product.title = model.getTitle()
       product.price = model.getPrice()
+      product.cover = model.getCoverURL()
       ctx['products'].push product
 
     @$el.html Template ctx

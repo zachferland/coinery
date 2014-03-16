@@ -6,15 +6,19 @@
     <img src="images/flag.svg" width="81" height="81">
   </div>
   <div class="cover">
-    <div class="cover-container">
       {{#if cover}}
-        <img class="cover-photo" src="{{cover}}">
-      {{else}}
-        <img class="cam" src="images/camera.svg"><br>
-        <a class="button dark" data-href="cover-dropzone">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
+      <img class="cover-photo" src="{{cover}}">
+      <div class="cover-container">
+        <a class="button dark corner" data-href="cover-dropzone">Change Cover Photo</a>
         <div style="display: none;" class="dz-cover-preview-container"></div>
+      </div>
+      {{else}}
+        <div class="cover-container">
+          <img class="cam" src="images/camera.svg"><br>
+          <a class="button dark" data-href="cover-dropzone">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
+          <div style="display: none;" class="dz-cover-preview-container"></div>
+        </div>
       {{/if}}
-    </div>
   </div>
   <div class="product-main">
     <div class="unsaved">
