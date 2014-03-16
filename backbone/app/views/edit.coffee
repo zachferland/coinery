@@ -13,6 +13,7 @@ module.exports = class EditProductView extends Backbone.View
 
   initialize: (options) ->
     @user = options.user
+    console.log @product
 
   render: ->
     ctx =
@@ -32,8 +33,9 @@ module.exports = class EditProductView extends Backbone.View
 
   killSubviews: ->
     for view in [@overlay, @files]
-      do view.undelegateEvents
-      view.$el.html ''
+      if view?
+        do view.undelegateEvents
+        view.$el.html ''
 
   saveHandler: (e) ->
     title = $('input[data-id="title"]').val()
@@ -47,14 +49,19 @@ module.exports = class EditProductView extends Backbone.View
 
     @model.save {},
       url: "/api/products/#{@model.id}"
+      async: false
       success: (response) =>
         do @overlay.render
 
 
   publishHandler: (e) ->
     do e.preventDefault
+
+    do @saveHandler
+
     if @user.getCoinbaseAuth()
-      @model.save "/api/products/#{@model.get('id')}/publish",
+      @model.save {},
+        url: "/api/products/#{@model.get('id')}/publish"
         success: (response) ->
           @overlay.render()
     else
@@ -77,7 +84,7 @@ module.exports = class EditProductView extends Backbone.View
 
   coinbaseAuthHandler: (e) ->
     do e.preventDefault
-    window.location.href = "#{window.cb_auth_url}&product_id=#{@model.id}"
+    window.open "#{window.cb_auth_url}&product_id=#{@model.id}"
 
 
 
