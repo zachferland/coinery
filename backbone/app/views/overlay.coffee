@@ -96,7 +96,9 @@ module.exports = class OverlayView extends Backbone.View
 
     dropzone = new Dropzone 'a[data-href="cover-dropzone"]',
       previewsContainer: '.dz-cover-preview-container'
-      url: '#'
+      url: "/api/products/#{@model.get('id')}"
+      paramName: 'image'
+      method: 'put'
 
     # update percentage count
     dropzone.on 'uploadprogress', (file, progress, bytesSent) ->
