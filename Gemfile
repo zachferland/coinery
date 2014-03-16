@@ -20,6 +20,9 @@ gem 'aws-sdk'
 # ENV variables
 gem 'figaro'
 
+# mailer
+gem 'sendgrid'
+
 # API Docs
 gem 'apipie-rails'
 
