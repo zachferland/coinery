@@ -69,7 +69,12 @@ module Api
     api :GET, '/products/:id', "Show a individual product"
     def show
       @product = Product.find(params[:id])
-  
+
+      # janky
+      if @product.image.exists? 
+       @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
+      end
+
       render json: @product
     end
     
