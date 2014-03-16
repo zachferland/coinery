@@ -104,7 +104,7 @@ module Api
     def update
       @product = current_user.products.find(params[:id])
 
-       @product.image_url = image.url(:large) unless !@product.image.exists? 
+       @product.image_url = @product.image.url(:large) unless !@product.image.exists? 
   
       if @product.update(product_params)
         head :no_content
