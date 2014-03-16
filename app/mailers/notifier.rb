@@ -8,4 +8,15 @@ class Notifier < ActionMailer::Base
       subject: "Welcome to Coinery!"
     )
   end
+
+  def send_purchase_email(product, customer)
+  	@customer = customer
+    mail(
+      to: @customer.email,
+      subject: "Download your purchase from coinery!"
+      # make this most custome after, have it come from the seller, not coinery, have the name of the product etc.
+    )
+  end
+
+
 end

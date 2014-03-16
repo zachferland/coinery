@@ -13,6 +13,19 @@ module Api
       @product = Product.find(params[:id])
       render json: @product.as_json(:include => [:user, :assets], :methods => :btc)
     end
+
+    api :POST, '/products/:id/purchase'
+    def purchase
+      # create customer
+      cusotmer_email = params[:email]
+      @customer = Customer.new(email: customer_email).save
+      # create transaction
+      @product = Product.find(params[:id])
+      @customer.transactions.new(product_id: @product.id, customer_id: @customer.id, usd: @product.price).save
+      # send email
+      Notifier.send_purchase_email(@product, @customer).deliver
+      # add download links to to assets, no need to, I already have them
+    end 
     
     api :GET, '/products/all', "Get all products"
     def all
