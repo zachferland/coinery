@@ -16,7 +16,7 @@ module.exports = class Router extends Backbone.Router
     'customers': 'customersHandler'
     'account': 'accountHandler'
     'login': 'loginHandler'
-    '*a': 'productsHandler'
+    '#*': 'productsHandler'
 
   initialize: (options) ->
     @user = options.user
@@ -30,6 +30,7 @@ module.exports = class Router extends Backbone.Router
     # go to bed David jesus christ
     @on 'route', (router, route) =>
       nav.setActive router.replace('Handler', '')
+      console.log "routing to #{route}"
 
     # current view in .main-container
     @view = null
@@ -128,6 +129,8 @@ module.exports = class Router extends Backbone.Router
       return
 
     delay 210, =>
+      if @view.killSubviews?
+        do @view.killSubviews
       @view.undelegateEvents()
       @view.$el.html ''
       replace()
@@ -150,6 +153,7 @@ module.exports = class Router extends Backbone.Router
   requireConversionRate: ->
     unless window.conversion_rate?
       $.ajax "/api/coinbase/price",
+        method: 'GET'
         async: false
         success: (response) ->
           window.conversion_rate = response

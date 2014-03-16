@@ -1,8 +1,31 @@
 $twitter: #4099FF
 
-a
+a.plain
   text-decoration: underline
   font-size: .9rem
+
+  &:before, &:after
+    text-decoration: none
+
+a.coinery-cta
+  @include transition(all .2s)
+  display: block
+  margin-bottom: 0px
+  height: 0px
+
+  img
+    @include transition(all .2s)
+    @include transform(scale(.5))
+    opacity: 0
+
+  &.visible
+    height: 205px
+    margin-bottom: 50px
+
+    img
+      @include transform(scale(1))
+      opacity: 1
+
 
 a.button
   @include border-radius(3px)

@@ -16,6 +16,5 @@ module.exports = class User extends Backbone.Model
   getTwitterHandle: ->
     "@#{@get('username')}"
 
-
   getCoinbaseAuth: ->
     @get 'coinbase_auth'

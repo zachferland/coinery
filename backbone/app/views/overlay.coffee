@@ -10,9 +10,12 @@ module.exports = class OverlayView extends Backbone.View
     'click [contenteditable]': 'contentEditableFocus'
     'keyup .field-wrapper input': 'currencyHandler'
     'keydown .field-wrapper input': 'currencyValidateHandler'
+    'keydown': 'showWarning'
 
   initialize: (options) ->
     @user = options.user
+    @warningVisible = false
+    console.log @model
 
   render: ->
     ctx =
@@ -23,19 +26,33 @@ module.exports = class OverlayView extends Backbone.View
       'user_name': @user.getName()
       'status': @model.getReadableStatus()
 
+    console.log ctx
+
     @$el.html Template ctx
 
     do @postRender
+
+  showWarning: (e) ->
+    return if @warningVisible
+    $('.unsaved').addClass 'visible'
 
   postRender: ->
     do @dropzoneInit
     do @fillPrice
 
   fillPrice: ->
-    rate = 610
+    rate = window.conversion_rate
+    if not rate
+      rate = (1/540)
+
     price = @model.getPrice()
-    $('[data-currency="BTC"] input').val "#{parseFloat(price)*rate}"
-    $('[data-currency="USD"] input').val "$#{parseFloat(price)}"
+    if price?
+      btc_float = price * rate
+      usd = parseFloat(price).toFixed(2)
+      btc = parseFloat(btc_float.toFixed(3))
+      $('[data-currency="BTC"] input').val btc
+      $('[data-currency="USD"] input').val usd
+      return
 
   resetFocus: ->
     @$('.price-container').removeClass 'usd-focus btc-focus focus'
@@ -45,6 +62,9 @@ module.exports = class OverlayView extends Backbone.View
 
   contentEditableFocus: (e) ->
     $(e.target).addClass 'focus'
+    if /Add a description/.test($(e.target).html())
+      do $(e.target).selectText
+
 
   inputFocusHandler: (e) ->
     do @resetFocus
@@ -64,27 +84,30 @@ module.exports = class OverlayView extends Backbone.View
       'usd': $('[data-currency="USD"] input')
 
     focus = $(e.target).parent().attr 'data-currency'
-    rate = 640
+
+    rate = window.conversion_rate
+    if not rate
+      rate = (1/540)
 
     raw = $(e.target).val().replace '$', ''
     amount = parseFloat(raw)
 
     if focus is 'BTC'
-      usd = amount * 640
+      usd = amount / rate
       unless isNaN(usd)
         inputs.usd.addClass 'changing'
         console.log 'changing'
         delay 150, ->
-          inputs.usd.val "$#{usd.toString()}"
+          inputs.usd.val "$#{usd.toFixed(2).toString()}"
         delay 300, ->
           inputs.usd.removeClass 'changing'
 
     if focus is 'USD'
-      btc = amount / 640
+      btc = amount * rate
       unless isNaN(btc)
         inputs.btc.addClass 'changing'
         delay 150, ->
-          inputs.btc.val btc.toFixed(5)
+          inputs.btc.val parseFloat(btc.toFixed(5))
         delay 300, ->
           inputs.btc.removeClass 'changing'
 

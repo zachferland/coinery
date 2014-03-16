@@ -76,6 +76,8 @@ module.exports = class NewProductView extends Backbone.View
 
     focus = $(e.target).parent().attr 'data-currency'
     rate = window.conversion_rate
+    if not rate
+      rate = (1/540)
 
     raw = $(e.target).val().replace '$', ''
     amount = parseFloat(raw)
@@ -85,7 +87,7 @@ module.exports = class NewProductView extends Backbone.View
       unless isNaN(usd)
         inputs.usd.addClass 'changing'
         delay 150, ->
-          inputs.usd.val "$#{usd.toString()}"
+          inputs.usd.val "$#{usd.toFixed(2).toString()}"
         delay 300, ->
           inputs.usd.removeClass 'changing'
 
@@ -94,7 +96,7 @@ module.exports = class NewProductView extends Backbone.View
       unless isNaN(btc)
         inputs.btc.addClass 'changing'
         delay 150, ->
-          inputs.btc.val btc.toFixed(5)
+          inputs.btc.val parseFloat(btc.toFixed(5))
         delay 300, ->
           inputs.btc.removeClass 'changing'
 
@@ -158,7 +160,7 @@ module.exports = class NewProductView extends Backbone.View
 
     # update percentage count
     @dropzone.on 'uploadprogress', (file, progress, bytesSent) ->
-      $('.dz-progress-percent').text Math.round(progress) + "%"
+      $('.dz-progress-percent').text Math.round(progress-1) + "%"
 
     # believe it or not this breaks without the console.log
     @dropzone.on 'addedFile', (file) ->

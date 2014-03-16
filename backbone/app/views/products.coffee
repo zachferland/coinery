@@ -14,6 +14,7 @@ module.exports = class ProductsView extends Backbone.View
     @user = options.user
 
   render: ->
+    console.log 'render'
     ctx =
       'username': @user.getTwitterHandle()
       'products': []
@@ -32,7 +33,6 @@ module.exports = class ProductsView extends Backbone.View
 
   postRender: ->
     @$('ul.products-list li').each (i, el) ->
-      console.log 'yes'
       $(el).find('.dropdown-toggle').dropdown()
 
   deleteHandler: (e) ->
@@ -44,7 +44,8 @@ module.exports = class ProductsView extends Backbone.View
       url: "/api/products/#{id}"
       success: (response) =>
         @collection.remove(model)
-        $el.fadeOut()
+        $el.fadeOut =>
+          do @render
 
   newHandler: (e) ->
     Backbone.history.navigate "products/new", {trigger: true}
