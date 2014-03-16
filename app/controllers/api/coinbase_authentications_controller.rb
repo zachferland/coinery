@@ -3,7 +3,7 @@ module Api
 
   		def url
   			@client = coinbase_client
-  			@url = @client.auth_code.authorize_url(redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback?product_id=27", scope: "merchant")
+  			@url = @client.auth_code.authorize_url(redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback")
 
   			render json: @url
   		end
@@ -13,7 +13,7 @@ module Api
         code = params[:code]
         product_id = params[:product_id]
         client = coinbase_client
-        token = client.auth_code.get_token(code, redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback?product_id=" + product_id)
+        token = client.auth_code.get_token(code, redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback" + product_id)
 
         # get coinbase user id, make reqest to user
         response = token.get('api/v1/users').parsed
@@ -26,9 +26,10 @@ module Api
             # update user model when an auth is added
              @auth.user.update(coinbase_auth: true)
             # created, where shoult id redirect is, any params need to be passed
-            redirect_to ENV['ROOT'] + "#/products/edit/" + product_id
+
+            redirect_to ENV['ROOT'] + "/close" 
         else
-             redirect_to ENV['ROOT'] + "#/product"
+             redirect_to ENV['ROOT'] + "#/products"
             # fails?
           end
       end 
