@@ -9,6 +9,7 @@ module.exports = class EditProductView extends Backbone.View
   events: ->
     'click a[data-href="save"]': 'saveHandler'
     'click a[data-href="publish"]': 'publishHandler'
+    'click a[data-href="coinbase-auth"]': 'coinbaseAuthHandler'
 
   initialize: (options) ->
     @user = options.user
@@ -16,6 +17,7 @@ module.exports = class EditProductView extends Backbone.View
   render: ->
     ctx =
       'title': @model.getTitle()
+      'has_coinbase_auth': @user.getCoinbaseAuth()
 
     @$el.html Template ctx
 
@@ -42,6 +44,10 @@ module.exports = class EditProductView extends Backbone.View
       user: @user
       model: @model
     files.render()
+
+  coinbaseAuthHandler: (e) ->
+    do e.preventDefault
+    window.location.href = window.coinbase_url
 
 
 
