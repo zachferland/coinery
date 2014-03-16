@@ -28,7 +28,9 @@ module.exports = class Product extends Backbone.Model
     @get 'description'
 
   setDescription: (description) ->
+    console.log description
     @set 'description', description
+    console.log @get('description')
 
   getReadableStatus: ->
     status = @get('status')

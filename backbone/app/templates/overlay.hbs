@@ -13,6 +13,10 @@
     </div>
   </div>
   <div class="product-main">
+    <div class="unsaved">
+      <span class="warning">Warning</span>
+      <p>Don't forget to save your changes!</p>
+    </div>
     <div class="field-container">
       <div class="title-container">
         <input class="title" data-id="title" value="{{title}}">
@@ -22,17 +26,11 @@
           <input class="btc" type="text">
         </div>
         <div class="field-wrapper" data-currency="USD">
-          <input class="usd" type="text">
+          <input data-id="price" class="usd" type="text">
         </div>
       </div>
     </div>
-    <div class="description" contenteditable>
-      {{#if description}}
-        {{description}}
-      {{else}}
-        Add a description of your product...
-      {{/if}}
-    </div>
+    <div data-id="description" class="description" contenteditable>{{#if description}}{{{description}}}{{else}}Add a description of your product...{{/if}}</div>
   </div>
 </div>
 

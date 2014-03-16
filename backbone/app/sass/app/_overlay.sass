@@ -4,7 +4,6 @@
   width: 600px
   position: relative
 
-
 .files-container
   padding: 20px
 
@@ -12,10 +11,9 @@
     a.right
       margin-top: -6px
 
-
 .overlay
   min-height: 400px
-  border-bottom: 2px solid rgba(0,0,0,.2)
+  border-bottom: 2px solid lighten($green, 15%)
 
   .flag
     position: absolute
@@ -62,8 +60,36 @@
       &:hover
         background: darken($dark, 10%)
 
+
 .overlay .product-main
   padding: 20px
+
+  .unsaved
+    @include transition(all .2s)
+    position: absolute
+    width: 120px
+    right: -120px
+    opacity: 0
+    z-index: -1
+
+    &.visible
+      right: -150px
+      opacity: 1
+
+    span.warning
+      @include border-radius(2px)
+      display: inline-block
+      padding: 4px 7px
+      color: #fff
+      background: lighten(red, 15%)
+      font-size: .65rem
+      letter-spacing: 1px
+      font-weight: 700
+      text-transform: uppercase
+
+    p
+      font-size: .8rem
+      margin-top: 10px
 
   .field-container
     width: 100%
@@ -181,7 +207,7 @@
     width: 100%
     outline: 0px
     color: lighten($dark, 10%)
-    font-size: 1.1rem
+    font-size: 1rem
 
     &.focus
       border: 1px solid darken($light-gray, 30%)

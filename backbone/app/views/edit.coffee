@@ -13,16 +13,19 @@ module.exports = class EditProductView extends Backbone.View
 
   initialize: (options) ->
     @user = options.user
-    @subviews = []
 
   render: ->
     ctx =
       'title': @model.getTitle()
+      'description': @model.getDescription()
       'has_coinbase_auth': @user.getCoinbaseAuth()
 
     @$el.html Template ctx
 
     do @renderSubviews
+
+    delay 1000, =>
+      $('.coinery-cta').addClass 'visible'
 
 
   renderSubviews: ->
@@ -31,9 +34,24 @@ module.exports = class EditProductView extends Backbone.View
 
 
   killSubviews: ->
-    for view in @subviews
+    for view in [@overlay, @files]
       do view.undelegateEvents
       view.$el.html ''
+
+  saveHandler: (e) ->
+    title = $('input[data-id="title"]').val()
+    @model.setTitle(title)
+
+    price = $('input[data-id="price"]').val().replace '$', ''
+    @model.setPrice(price)
+
+    description = $('div[data-id="description"]').html()
+    @model.setDescription(description)
+
+    @model.save {},
+      url: "/api/products/#{@model.id}"
+      success: (response) =>
+        do @overlay.render
 
 
   publishHandler: (e) ->
@@ -41,24 +59,21 @@ module.exports = class EditProductView extends Backbone.View
     console.log 'handler called'
     @model.save "/api/products/#{@model.get('id')}/publish",
       success: (response) ->
-        console.log 'hey'
+        @overlay.render()
+
 
   renderOverlay: ->
-    overlay = new OverlayView
+    @overlay = new OverlayView
       user: @user
       model: @model
-    overlay.render()
-
-    @subviews.push overlay
+    @overlay.render()
 
 
   renderFiles: ->
-    files = new FilesView
+    @files = new FilesView
       user: @user
       model: @model
-    files.render()
-
-    @subviews.push files
+    @files.render()
 
   coinbaseAuthHandler: (e) ->
     do e.preventDefault

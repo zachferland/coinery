@@ -13,10 +13,11 @@ module.exports = class FilesView extends Backbone.View
     @user = options.user
     @model.getAssetsFromServer()
 
+    @dropzone = null
+
   render: ->
     @$el.html Template {}
     do @dropzoneInit
-
 
 
   triggerDropzoneHandler: (e) ->
@@ -81,10 +82,17 @@ module.exports = class FilesView extends Backbone.View
       file.id = response['id']
       do setIDs
 
+    @dropzone = dropzone
 
   fileDeleteHandler: (e) ->
     $el = $(e.target).closest('.dz-preview')
     id = $el.attr 'data-file-id'
+
+    console.log @dropzone.files
+    if @dropzone.files.length < 2
+      alert("You're product must have at least one file!")
+      return
+
     $.ajax "/api/assets/#{id}",
       type: "DELETE"
       success: (response) =>
