@@ -7,9 +7,6 @@ gem 'pg'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 
-# Compass
-gem 'compass'
-
 # Auth
 gem 'omniauth-twitter'
 gem  'oauth2'
@@ -37,6 +34,7 @@ group :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'foreman'
 end
 
 group :development, :test do

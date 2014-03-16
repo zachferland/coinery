@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
 
    # move this, add a application controller to the api and then inheret that from an 
   # application controller outside the api module
-  api :GET, 'api/coinbase/price', "Get USD to Bitcoin conversion"
+  api :GET, 'coinbase/price', "Get USD to Bitcoin conversion"
   def usd_to_btc
     response = HTTParty.get('https://coinbase.com/api/v1/currencies/exchange_rates').parsed_response
     @usd_to_btc = response['usd_to_btc']
