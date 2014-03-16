@@ -27,10 +27,11 @@ module.exports = class Product extends Backbone.Model
   getDescription: ->
     @get 'description'
 
+  getCoverURL: ->
+    @get 'image_url'
+
   setDescription: (description) ->
-    console.log description
     @set 'description', description
-    console.log @get('description')
 
   getReadableStatus: ->
     status = @get('status')

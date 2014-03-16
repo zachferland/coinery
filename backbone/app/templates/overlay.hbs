@@ -7,9 +7,13 @@
   </div>
   <div class="cover">
     <div class="cover-container">
-      <img class="cam" src="images/camera.svg"><br>
-      <a class="button dark" data-href="cover-dropzone">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
-      <div style="display: none;" class="dz-cover-preview-container"></div>
+      {{#if cover}}
+        <img class="cover-photo" src="{{cover}}">
+      {{else}}
+        <img class="cam" src="images/camera.svg"><br>
+        <a class="button dark" data-href="cover-dropzone">Upload Cover Photo<i class="fa fa-cloud-upload"></i></a>
+        <div style="display: none;" class="dz-cover-preview-container"></div>
+      {{/if}}
     </div>
   </div>
   <div class="product-main">

@@ -15,18 +15,16 @@ module.exports = class OverlayView extends Backbone.View
   initialize: (options) ->
     @user = options.user
     @warningVisible = false
-    console.log @model
 
   render: ->
     ctx =
       'id': @model.id
       'title': @model.getTitle()
       'description': @model.getDescription()
+      'cover': @model.getCoverURL()
       'price': @model.getPrice()
       'user_name': @user.getName()
       'status': @model.getReadableStatus()
-
-    console.log ctx
 
     @$el.html Template ctx
 
@@ -64,7 +62,6 @@ module.exports = class OverlayView extends Backbone.View
     $(e.target).addClass 'focus'
     if /Add a description/.test($(e.target).html())
       do $(e.target).selectText
-
 
   inputFocusHandler: (e) ->
     do @resetFocus
