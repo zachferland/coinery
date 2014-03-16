@@ -13,6 +13,7 @@ module.exports = class EditProductView extends Backbone.View
 
   initialize: (options) ->
     @user = options.user
+    @subviews = []
 
   render: ->
     ctx =
@@ -21,8 +22,18 @@ module.exports = class EditProductView extends Backbone.View
 
     @$el.html Template ctx
 
+    do @renderSubviews
+
+
+  renderSubviews: ->
     do @renderOverlay
     do @renderFiles
+
+
+  killSubviews: ->
+    for view in @subviews
+      do view.undelegateEvents
+      view.$el.html ''
 
 
   publishHandler: (e) ->
@@ -38,12 +49,16 @@ module.exports = class EditProductView extends Backbone.View
       model: @model
     overlay.render()
 
+    @subviews.push overlay
+
 
   renderFiles: ->
     files = new FilesView
       user: @user
       model: @model
     files.render()
+
+    @subviews.push files
 
   coinbaseAuthHandler: (e) ->
     do e.preventDefault
