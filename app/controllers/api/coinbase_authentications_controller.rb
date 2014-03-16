@@ -21,6 +21,8 @@ module Api
         @auth = current_user.coinbase_authentications.new(access_token: token.token, refresh_token: token.refresh_token, expires_at: token.expires_at, coinbase_user_id: coinbase_user_id)
 
         if @auth.save
+            # update user model when an auth is added
+             @auth.user.update(coinbase_auth: true)
             # created, where shoult id redirect is, any params need to be passed
             redirect_to ENV['ROOT'] + "/#/product"
         else

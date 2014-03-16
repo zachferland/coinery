@@ -21,7 +21,13 @@ module Api
     def update
       @user = current_user
 
-      if @user.update(params[:user])
+      # this probably does not work
+      # need better logic, for when a user if signed up, they are create on login, but we can only send them email once they give us an email as well
+      if !current_user.email && !!user_params['email']
+        Notifier.send_signup_email(@identity.user).deliver
+      end
+
+      if @user.update(user_params)
         head :no_content
       else
         render json: @user.errors, status: :unprocessable_entity
