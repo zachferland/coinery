@@ -13,7 +13,7 @@ module Api
         code = params[:code]
         product_id = params[:product_id]
         client = coinbase_client
-        token = client.auth_code.get_token(code, redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback" + product_id)
+        token = client.auth_code.get_token(code, redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback")
 
         # get coinbase user id, make reqest to user
         response = token.get('api/v1/users').parsed
