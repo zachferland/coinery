@@ -1,0 +1,95 @@
+{
+id: 24,
+title: "sadf",
+description: "",
+price: 10,
+user_id: 2,
+created_at: "2014-03-15T03:29:58.175Z",
+updated_at: "2014-03-15T03:29:58.175Z",
+image_file_name: null,
+image_content_type: null,
+image_file_size: null,
+image_updated_at: null,
+button_code: null,
+status: 0,
+image_url: null,
+btc: 0.015690000000000003,
+user: {
+id: 2,
+email: null,
+username: "zachferland",
+full_name: "Zach Ferland",
+bio: "Coding something somewhere | Frmr HackStar @TechStars, @TechPeaks, @MinistrySupply | @nuhacks | 21 | on leave from @northeastern | Timecapsule.io",
+twitter_handle: null,
+created_at: "2014-03-15T03:10:48.031Z",
+updated_at: "2014-03-15T03:10:48.031Z",
+image_file_name: null,
+image_content_type: null,
+image_file_size: null,
+image_updated_at: null,
+img: "http://pbs.twimg.com/profile_images/1419786039/profileimage_normal.gif"
+},
+assets: [
+{
+id: 7,
+product_id: 24,
+created_at: "2014-03-15T03:30:03.405Z",
+updated_at: "2014-03-15T03:30:03.405Z",
+asset_file_name: "DSCN1843.JPG",
+asset_content_type: "image/jpeg",
+asset_file_size: 3662389,
+asset_updated_at: "2014-03-15T03:30:03.360Z"
+},
+{
+id: 8,
+product_id: 24,
+created_at: "2014-03-16T04:29:20.973Z",
+updated_at: "2014-03-16T04:29:20.973Z",
+asset_file_name: "DSCN1818.JPG",
+asset_content_type: "image/jpeg",
+asset_file_size: 3521777,
+asset_updated_at: "2014-03-16T04:29:20.874Z"
+},
+{
+id: 9,
+product_id: 24,
+created_at: "2014-03-16T04:29:24.821Z",
+updated_at: "2014-03-16T04:29:24.821Z",
+asset_file_name: "DSCN1847.JPG",
+asset_content_type: "image/jpeg",
+asset_file_size: 3353992,
+asset_updated_at: "2014-03-16T04:29:24.692Z"
+},
+{
+id: 10,
+product_id: 24,
+created_at: "2014-03-16T04:29:27.837Z",
+updated_at: "2014-03-16T04:29:27.837Z",
+asset_file_name: "DSCN1847.JPG",
+asset_content_type: "image/jpeg",
+asset_file_size: 3353992,
+asset_updated_at: "2014-03-16T04:29:27.783Z"
+},
+{
+id: 11,
+product_id: 24,
+created_at: "2014-03-16T04:37:57.556Z",
+updated_at: "2014-03-16T04:37:57.556Z",
+asset_file_name: "aventpark.MOV",
+asset_content_type: "video/quicktime",
+asset_file_size: 74318504,
+asset_updated_at: "2014-03-16T04:37:53.418Z"
+},
+{
+id: 12,
+product_id: 24,
+created_at: "2014-03-16T04:38:19.985Z",
+updated_at: "2014-03-16T04:38:19.985Z",
+asset_file_name: "aventpark.MOV",
+asset_content_type: "video/quicktime",
+asset_file_size: 74318504,
+asset_updated_at: "2014-03-16T04:38:15.731Z"
+}
+]
+}
+
