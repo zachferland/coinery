@@ -11,6 +11,7 @@ module Api
  
   		def callback 
         code = params[:code]
+        product_id = params[:product_id]
         client = coinbase_client
         token = client.auth_code.get_token(code, redirect_uri: ENV['ROOT'] + "api/coinbase/auth/callback")
 
@@ -25,7 +26,7 @@ module Api
             # update user model when an auth is added
              @auth.user.update(coinbase_auth: true)
             # created, where shoult id redirect is, any params need to be passed
-            redirect_to ENV['ROOT'] + "#/product"
+            redirect_to ENV['ROOT'] + "#/products/edit/" + product_id
         else
              redirect_to ENV['ROOT'] + "#/product"
             # fails?
