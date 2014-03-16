@@ -26,9 +26,10 @@ module Api
             # update user model when an auth is added
              @auth.user.update(coinbase_auth: true)
             # created, where shoult id redirect is, any params need to be passed
-            redirect_to ENV['ROOT'] + "#/products/edit/" + product_id
+
+            redirect_to ENV['ROOT'] + "/close" 
         else
-             redirect_to ENV['ROOT'] + "#/product"
+             redirect_to ENV['ROOT'] + "#/products"
             # fails?
           end
       end 
