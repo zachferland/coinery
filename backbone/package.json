@@ -8,6 +8,7 @@
     "url": "https://github.com/jcap49/coinery.git"
   },
   "scripts": {
+    "postinstall": "brunch build -P",
     "start": "brunch watch"
   },
   "dependencies": {
@@ -18,7 +19,9 @@
     "handlebars-brunch": ">= 1.0 < 1.8",
     "uglify-js-brunch": ">= 1.0 < 1.8",
     "clean-css-brunch": ">= 1.0 < 1.8",
-    "auto-reload-brunch": "~1.7.3"
+    "auto-reload-brunch": "~1.7.3",
+    "statik": ">= 1.1.0", 
+    "brunch": "1.x"
   },
   "devDependencies": {
     "sass-brunch": "~1.8.0",
