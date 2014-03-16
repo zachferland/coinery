@@ -84,7 +84,7 @@ module.exports = class EditProductView extends Backbone.View
 
   coinbaseAuthHandler: (e) ->
     do e.preventDefault
-    window.open "#{window.cb_auth_url}&product_id=#{@model.id}"
+    window.open window.cb_auth_url
 
 
 
