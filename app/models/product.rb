@@ -5,8 +5,7 @@ class Product < ActiveRecord::Base
 	has_many :customers, through: :transactions
 
 	has_attached_file :image, styles: {large: "900x900"}
-	validates_attachment :image, 
-		:content_type => { :content_type => ["image/jpg", "image/png"] }
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/png", "image/gif", "image/jpeg"] 
 
 	def create_payment_code(token)
 
@@ -25,5 +24,15 @@ class Product < ActiveRecord::Base
       # # handle a fail??
     end
     
+    
+  def user 
+    User.find(self.user_id)
+  end  
+
+  def btc 
+    response = HTTParty.get('https://coinbase.com/api/v1/currencies/exchange_rates').parsed_response
+    usd_to_btc = response['usd_to_btc']
+    return self.price * usd_to_btc.to_f
+  end  
 
 end

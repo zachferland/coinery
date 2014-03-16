@@ -42,7 +42,8 @@ Coinery::Application.routes.draw do
     get "products/:id/transactions" => 'products#product_transactions'
     # publish a product 
     put "/products/:id/publish" => 'products#publish'
-  
+    #get all needed info to display product page
+    get "products/:id/buy" => 'products#buy'  
   
     # Transaction Endpoints ##########################################
     # returns all transactions (sales) of a user

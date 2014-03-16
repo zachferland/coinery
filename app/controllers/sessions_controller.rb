@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
 	      	# now user with identity, create user, associate identity, sign user in
 	     	@identity.user = User.create_with_omniauth(auth['info'])
 	      	@identity.save()
-                Notifier.send_signup_email(@identity.user).deliver
+            # Notifier.send_signup_email(@identity.user).deliver
 	      	self.current_user = @identity.user
 	      	redirect_to ENV['ROOT']
 	    end
