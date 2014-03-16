@@ -15,6 +15,7 @@ a.coinery-cta
 
   img
     @include transition(all .2s)
+    @include transform(scale(.5))
     opacity: 0
 
   &.visible
@@ -22,6 +23,7 @@ a.coinery-cta
     margin-bottom: 50px
 
     img
+      @include transform(scale(1))
       opacity: 1
 
 

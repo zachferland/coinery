@@ -153,6 +153,7 @@ module.exports = class Router extends Backbone.Router
   requireConversionRate: ->
     unless window.conversion_rate?
       $.ajax "/api/coinbase/price",
+        method: 'GET'
         async: false
         success: (response) ->
           window.conversion_rate = response

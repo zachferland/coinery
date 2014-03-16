@@ -24,9 +24,6 @@ module.exports = class EditProductView extends Backbone.View
 
     do @renderSubviews
 
-    delay 1000, =>
-      $('.coinery-cta').addClass 'visible'
-
 
   renderSubviews: ->
     do @renderOverlay
@@ -56,10 +53,13 @@ module.exports = class EditProductView extends Backbone.View
 
   publishHandler: (e) ->
     do e.preventDefault
-    console.log 'handler called'
-    @model.save "/api/products/#{@model.get('id')}/publish",
-      success: (response) ->
-        @overlay.render()
+    if @user.getCoinbaseAuth()
+      @model.save "/api/products/#{@model.get('id')}/publish",
+        success: (response) ->
+          @overlay.render()
+    else
+      @$('.coinery-cta').show ->
+        $(this).addClass 'visible'
 
 
   renderOverlay: ->
@@ -77,7 +77,8 @@ module.exports = class EditProductView extends Backbone.View
 
   coinbaseAuthHandler: (e) ->
     do e.preventDefault
-    window.location.href = window.coinbase_url
+    window.location.href = "#{window.cb_auth_url}&product_id=#{@model.id}"
+
 
 
 
