@@ -7,6 +7,8 @@ gem 'pg'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 
+gem 'compass'
+
 # Auth
 gem 'omniauth-twitter'
 gem  'oauth2'
