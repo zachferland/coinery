@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="81px" height="81px" viewBox="0 0 81 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Slice 1</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <polygon id="Triangle-1" fill="#568700" sketch:type="MSShapeGroup" points="7.09370352 1 14 8 0 8 "></polygon>
+        <path d="M78.0750082,74.9996201 L72.5,80.5 L72.5,66.5 L78.1002695,72.1752359 C78.8733193,72.958634 78.8664507,74.218772 78.0750082,74.9996201 Z" id="Triangle-1" fill="#568700" sketch:type="MSShapeGroup"></path>
+        <path d="M29.1557572,15.1819805 C28.0486033,15.1819805 26.5155064,15.8117979 25.7311313,16.5890721 L1.62894775,40.4730591 C1.23384437,40.8645856 1.36050168,41.1819805 1.91414228,41.1819805 L101.675222,41.1819805 C102.783524,41.1819805 103.062072,40.5262767 102.307747,39.7283957 L80.4755633,16.6355654 C79.7165953,15.8327726 78.1996363,15.1819805 77.0966506,15.1819805 L29.1557572,15.1819805 Z" id="Rectangle-1" fill="#91D31E" sketch:type="MSShapeGroup" transform="translate(52.681981, 28.181981) rotate(-315.000000) translate(-52.681981, -28.181981) "></path>
+    </g>
+</svg>
