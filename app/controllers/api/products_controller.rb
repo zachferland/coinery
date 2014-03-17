@@ -17,8 +17,8 @@ module Api
     api :POST, '/products/:id/purchase'
     def purchase
       # create customer
-      cusotmer_email = params[:email]
-      @customer = Customer.new(email: customer_email).save
+      @customer = Customer.new(email: params[:email])
+      @customer.save
       # create transaction
       @product = Product.find(params[:id])
       @customer.transactions.new(product_id: @product.id, customer_id: @customer.id, usd: @product.price).save
@@ -112,8 +112,8 @@ module Api
     def update
       @product = current_user.products.find(params[:id])
 
-       current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
-       @product.create_payment_code(coinbase_token)
+       # current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
+       # @product.create_payment_code(coinbase_token)
 
       if @product.image.exists? 
        @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
