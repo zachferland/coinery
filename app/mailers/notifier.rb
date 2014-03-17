@@ -18,14 +18,15 @@ class Notifier < ActionMailer::Base
   #   )
   # end
 
-  def send_purchase_email(product)
+  def send_purchase_email(product, customer)
 
     @product = product
     @user = @product.user
     @assets = @product.assets
+    @customer = customer
    
     mail(
-      to: "Zachferland@gmail.com",
+      to: @customer.email,
       subject: "Download your purchase from coinery!"
       # make this most custome after, have it come from the seller, not coinery, have the name of the product etc.
     )

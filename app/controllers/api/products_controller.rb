@@ -72,7 +72,7 @@ module Api
     def show
       @product = Product.find(params[:id])
 
-      # janky
+      # janky (repeated)
       if @product.image.exists? 
        @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
       end
@@ -98,7 +98,6 @@ module Api
       @product = current_user.products.find(params[:id])
       current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
 
-
       @product.create_payment_code(coinbase_token)
 
       if @product.update(status: 2)
@@ -112,6 +111,9 @@ module Api
     # param_group :product
     def update
       @product = current_user.products.find(params[:id])
+
+       current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
+       @product.create_payment_code(coinbase_token)
 
       if @product.image.exists? 
        @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
