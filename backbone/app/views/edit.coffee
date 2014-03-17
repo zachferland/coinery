@@ -80,23 +80,22 @@ module.exports = class EditProductView extends Backbone.View
     @model.save {},
       url: "/api/products/#{@model.get('id')}/publish"
       success: (response) =>
-        unless @overlay?
-          do @renderOverlay
-          return
-        do @overlay.render
+        @render()
 
 
   renderOverlay: ->
-    @overlay = new OverlayView
-      user: @user
-      model: @model
+    unless @overlay?
+      @overlay = new OverlayView
+        user: @user
+        model: @model
     @overlay.render()
 
 
   renderFiles: ->
-    @files = new FilesView
-      user: @user
-      model: @model
+    unless @files?
+      @files = new FilesView
+        user: @user
+        model: @model
     @files.render()
 
   coinbaseAuthHandler: (e) ->
