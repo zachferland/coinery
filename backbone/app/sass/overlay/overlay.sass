@@ -63,12 +63,17 @@ h1, h2, h3, h4, h5, h6, p, li, a
       right: -34px
 
   .cover
-    @include box-shadow(inset 0px -8px 0px rgba(0,0,0,.1))
     width: 100%
     min-height: 200px
     background: $dark
 
+    img
+      max-width: 100%
+      height: auto
+      margin-bottom: -3px
+
   .product-info
+    @include box-shadow(0px -10px rgba(0,0,0,.4))
     padding: 20px
     position: relative
     @include pie-clearfix

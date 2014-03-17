@@ -33,6 +33,9 @@ module.exports = class Product extends Backbone.Model
   setDescription: (description) ->
     @set 'description', description
 
+  setStatus: (status) ->
+    @set 'status', status
+
   getReadableStatus: ->
     status = @get('status')
     switch status

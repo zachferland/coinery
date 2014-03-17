@@ -56,6 +56,9 @@ module.exports = class Router extends Backbone.Router
         model: @products.get(id)
 
       @loadView view
+      return
+
+    do @requireLogin
 
   productsHandler: ->
     if @session()
