@@ -77,13 +77,11 @@ ul.products-list > li
   &.new
 
     a.cover
-      background: darken($light-gray, 3%)
+      background: darken($light-gray, 5%)
       &:after
         content: 'New Product'
-
       svg
         margin-top: 45px
-
 
   a.cover
     background: #fff
@@ -199,7 +197,7 @@ ul.products-list > li
       overflow: hidden
       padding: 0px
       margin: 0px
-      top: 27px
+      top: 35px
       left: 0px
       z-index: 9999
 
@@ -207,6 +205,7 @@ ul.products-list > li
         text-decoration: none
         padding: 6px 15px
         font-size: .8rem
+        color: $dark
 
         &.delete:hover
           color: $red

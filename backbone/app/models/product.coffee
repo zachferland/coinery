@@ -36,18 +36,21 @@ module.exports = class Product extends Backbone.Model
   setStatus: (status) ->
     @set 'status', status
 
-  getReadableStatus: ->
-    status = @get('status')
-    switch status
+  getPublished: ->
+    return true if @get('status') is 2
+    false
+
+  getReadableStatus: (e) ->
+    s = ''
+    switch @get('status')
       when 0
-        return "???"
+        s = 'Not yet created'
       when 1
-        return "Draft"
+        s = 'Draft'
       when 2
-        return "Draft"
-      when 3
-        return "Live"
-    "unkown"
+        s = 'Published'
+    return s
+
 
   setAssets: (array) ->
     @set 'assets', array
