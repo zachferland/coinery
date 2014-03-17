@@ -35,4 +35,16 @@ class Product < ActiveRecord::Base
     return self.price * usd_to_btc.to_f
   end  
 
+
+  # mailer send product to customer test 
+  def sendit
+      # cusotmer_email = params[:email]
+      # @customer = Customer.new(email: customer_email).save
+      # create transaction
+      # @product = Product.find(self.id)
+      # @customer.transactions.new(product_id: @product.id, customer_id: @customer.id, usd: @product.price).save
+      # send email
+      Notifier.send_purchase_email(self).deliver
+  end
+
 end

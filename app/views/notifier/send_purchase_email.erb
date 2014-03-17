@@ -4,10 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @product.title%></h1>
-	<% for @product.asset.each do |a|  %>
-		<%= link_to "Download", a.asset.url %>
-	<% end %>
+      <h1><%= @product.title%></h1>
+
+      <% for @assets.each do |asset|  %>
+        
+      <% end %>
+ 
     <p>Enjoy! If you have questions about the product email <%= @product.user.full_name %> at <%= @product.user.email %> </p>
+
   </body>
 </html>

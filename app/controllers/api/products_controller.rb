@@ -26,6 +26,8 @@ module Api
       Notifier.send_purchase_email(@product, @customer).deliver
       # add download links to to assets, no need to, I already have them
     end 
+
+    
     
     api :GET, '/products/all', "Get all products"
     def all
@@ -94,7 +96,7 @@ module Api
     # param_group :product
     def publish
       @product = current_user.products.find(params[:id])
-      current_user.coinbase_auth.refresh unless current_user.coinbase_auth.valid?
+      current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
 
 
       @product.create_payment_code(coinbase_token)
