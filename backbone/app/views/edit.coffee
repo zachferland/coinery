@@ -9,11 +9,11 @@ module.exports = class EditProductView extends Backbone.View
   events: ->
     'click a[data-href="save"]': 'saveHandler'
     'click a[data-href="publish"]': 'publishHandler'
+    'click a[data-href="preview"]': 'previewHandler'
     'click a[data-href="coinbase-auth"]': 'coinbaseAuthHandler'
 
   initialize: (options) ->
     @user = options.user
-    console.log @product
 
   render: ->
     ctx =
@@ -29,6 +29,20 @@ module.exports = class EditProductView extends Backbone.View
   renderSubviews: ->
     do @renderOverlay
     do @renderFiles
+
+  previewHandler: (e) ->
+    $('.olrk-noquirks').hide()
+    $('.preview-iframe').show()
+    $('.preview-iframe').attr "src", "/products?id=#{@model.id}"
+
+    window.addEventListener 'message', (event) =>
+      if event.data is 'close_preview'
+        do @resetPreview
+    , false
+
+  resetPreview: (e) ->
+    $('.preview-iframe').fadeOut()
+
 
   killSubviews: ->
     for view in [@overlay, @files]

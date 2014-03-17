@@ -11,6 +11,8 @@ delay = (ms, func) ->
 
 $ ->
 
+  $('.overlay-container').addClass 'visible'
+
   p_id = getURLParameter('id')
 
   $.ajax "/api/products/#{p_id}/buy",
@@ -53,6 +55,9 @@ $ ->
 
     $(el).html string
 
+  delay 200, ->
+    $('.overlay').addClass 'visible'
+
   url_root = "https://coinbase.com/inline_payments/"
 
   advanceStep = (current) ->
@@ -89,8 +94,14 @@ $ ->
 
     $.ajax "/api/products/#{product['id']}/purchase?email=#{encodeURIComponent(email)}",
       method: 'POST'
-      success: (response) ->
-        console.log response
+      success: (response) =>
+        do advanceStep(2)
+
+
+  destination = 'http://localhost:3000'
+  $('a[data-href="close"]').click (e) ->
+    window.parent.postMessage 'close_preview', destination
+
 
 
 
