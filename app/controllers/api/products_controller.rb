@@ -99,7 +99,7 @@ module Api
 
       @product.create_payment_code(coinbase_token)
 
-      if @product.update(status: 2, button_code: button_code)
+      if @product.update(status: 2)
         head :no_content
       else
         render json: @product.errors, status: :unprocessable_entity
