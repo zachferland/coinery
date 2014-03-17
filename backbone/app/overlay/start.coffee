@@ -12,6 +12,8 @@ delay = (ms, func) ->
 $ ->
 
   $('.overlay-container').addClass 'visible'
+  window.parent.$('body').addClass 'noscroll'
+
 
   p_id = getURLParameter('id')
 
@@ -104,6 +106,7 @@ $ ->
 
   $('a[data-href="close"]').click (e) ->
     window.parent.postMessage 'close_preview', destination
+    window.parent.$('body').removeClass 'noscroll'
 
 
 
