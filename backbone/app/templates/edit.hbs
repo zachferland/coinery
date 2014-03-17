@@ -4,6 +4,17 @@
   </a>
 {{/unless}}
 
+
+<header style="width: 600px;">
+  <h2 class="left"><strong style="letter-spacing: -1px;">{{title}}</strong> </h2>
+  {{#if published}}
+    <a class="button small right" data-href="preview">Preview <i class="fa fa-external-link"></i></a>
+  {{else}}
+    <a class="button small right" data-href="publish">Publish</a>
+  {{/if}}
+  <a class="button small right gray" data-href="save">Save Draft</a>
+</header>
+
 {{#if published}}
 <div class="container">
   <header>
@@ -19,16 +30,6 @@
   </div>
 </div>
 {{/if}}
-
-<header style="width: 600px;">
-  <h2 class="left"><strong style="letter-spacing: -1px;">{{title}}</strong> </h2>
-  {{#if published}}
-    <a class="button small right" data-href="preview">Preview <i class="fa fa-external-link"></i></a>
-  {{else}}
-    <a class="button small right" data-href="publish">Publish</a>
-  {{/if}}
-  <a class="button small right gray" data-href="save">Save Draft</a>
-</header>
 
 <div class="overlay-container">
 </div>
