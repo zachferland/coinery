@@ -3,7 +3,7 @@ App = require 'app'
 window.delay = (ms, func) ->
   setTimeout func, ms
 
-window.api_root = 'http://coinery.io'
+window.api_root = 'http://www.coinery.io'
 window.cb_client_id = 'ed71f78e7a89b542777e77d93dc44a33c02bab2c855a4e9919c7db5ad50edb6a'
 
 window.debug = !(window.location.hostname.indexOf('local') is -1)
