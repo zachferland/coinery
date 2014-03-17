@@ -1,16 +1,268 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-      <h1><%= @product.title%></h1>
 
-      <% for @assets.each do |asset|  %>
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Beacon Email Template</title>
+<style type="text/css">
+
+/* Custom Font */
+@font-face{
+font-family:"Proxima N W15 Reg";
+src:url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/ccd538c8-85a6-4215-9f3f-643c415bbb19.eot?#iefix");
+src:url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/ccd538c8-85a6-4215-9f3f-643c415bbb19.eot?#iefix") format("eot"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/e8e438df-9715-40ed-b1ae-58760b01a3c0.woff") format("woff"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/baf65064-a8a8-459d-96ad-d315581d5181.ttf") format("truetype"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/76bd19c9-c46a-4c27-b80e-f8bd0ecd6057.svg#76bd19c9-c46a-4c27-b80e-f8bd0ecd6057") format("svg");
+}
+@font-face{
+font-family:"Proxima N W15 Light";
+src:url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/53f72e41-ffd4-47d4-b8bf-b1ab3cada2e5.eot?#iefix");
+src:url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/53f72e41-ffd4-47d4-b8bf-b1ab3cada2e5.eot?#iefix") format("eot"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/fb5639f2-f57b-487d-9610-3dc50820ab27.woff") format("woff"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/2eafe9b7-5a21-49c0-84ca-54c54f899019.ttf") format("truetype"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/0a2fe21c-cfdd-4f40-9dca-782e95c1fa90.svg#0a2fe21c-cfdd-4f40-9dca-782e95c1fa90") format("svg");
+}
+@font-face{
+font-family:"Proxima N W15 Smbd";
+src:url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/f0900b9e-436e-4bb2-ba92-174617a6b4bc.eot?#iefix");
+src:url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/f0900b9e-436e-4bb2-ba92-174617a6b4bc.eot?#iefix") format("eot"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/91b14d48-ff2a-4a42-87df-b04c76cfb67f.woff") format("woff"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/65e3a762-7125-4d24-9247-fc73d4786cd0.ttf") format("truetype"),url("http://www.stampready.net/themeforest/dashboard/templates/beacon/font/4b8633b5-6a28-45ea-afc0-1784363b823a.svg#4b8633b5-6a28-45ea-afc0-1784363b823a") format("svg");
+}
+      
+/* Reset */
+* { margin-top: 0px; margin-bottom: 0px; padding: 0px; border: none; line-height: normal; outline: none; list-style: none; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; }
+
+table { border-collapse: collapse !important; padding: 0px !important; border: none !important; border-bottom-width: 0px !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+table td { border-collapse: collapse; }
+body { margin: 0px; padding: 0px; background-color: #FFFFFF;}
+.ExternalClass * { line-height: 100%; }
+
+.animateButton { -webkit-animation-name: animateColor; -webkit-animation-duration:8s; -webkit-animation-iteration-count:infinite; -webkit-animation-direction:linear; -moz-animation-name: animateColor; -moz-animation-duration:8s; -moz-animation-iteration-count:infinite; -moz-animation-direction:linear; }
+
+@-webkit-keyframes animateColor{
+
+0% { background-color: #54c993; }
+17% { background-color: #83c954; }
+34% { background-color: #c5c954; }
+51% { background-color: #c95454; }
+68% { background-color: #c554c9; }
+85% { background-color: #5496c9; }
+100% { background-color: #54c993; }
+
+}
+
+/* Responsive */
+@media only screen and (max-width:620px) {
+
+  /* Tables
+  parameters: width, alignment, padding */
+
+  table[class=alignCenter] { width: 100%!important; }
+  table[class=textAlignCenter] { width: 100%!important; text-align: center!important; }
+  table[class=textAlignRight] { width: 100%!important; text-align: right!important; }
+  table[class=textAlignCenterResetHeight] { width: 100%!important; text-align: center!important; height: 20px!important;}
+
+  /* Td */  
+  td[class=resetHeight] { padding-bottom: 30px;}
+  td[class=increasePadding] { padding-top: 30px; padding-bottom: 30px;}
+  td[class=increasePadding-Both] { padding-top: 30px!important; padding-bottom: 30px!important; padding-left: 20px!important; padding-right: 20px!important; }
+  td[class=increasePadding-BothReset] { text-align: center; padding-top: 30px!important; padding-bottom: 30px!important; padding-left: 20px!important; padding-right: 20px!important; }
+  td[class=increasePaddingBottom] { padding-bottom: 30px;}
+  td[class=increasePaddingBottom-Both] { padding-bottom: 30px!important; padding-left: 20px!important; padding-right: 20px!important; }
+  td[class=paddingBoth] { padding-left: 20px!important; padding-right: 20px!important; }
+  td[class=reset] { height: 0px!important; }
+
+  img[class=reset] { display: inline!important; }
+
+}
+
+</style>
+</head>
+
+<body marginwidth="0" marginheight="0" style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;" offset="0" topmargin="0" leftmargin="0">
+
+  <!-- Header -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-image: url(images/header_bg.jpg); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; color: #FFFFFF; font-size: 18px;" data-topBackgroundImage="" name="navigation" mc:repeatable="TABLE" mc:variant="navigation">
+    <tr>
+      <td valign="top" align="center">
         
-      <% end %>
- 
-    <p>Enjoy! If you have questions about the product email <%= @product.user.full_name %> at <%= @product.user.email %> </p>
+        <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter">
+          <tr>
+            <td height="50" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td>
+            
+              <!-- Logo -->
+              <table width="225" height="40" border="0" cellspacing="0" cellpadding="0" align="left" class="textAlignCenter">
+                <tr>
+                  <td>
 
-  </body>
+                    <a href="#"><img src="images/logo.png" border="0" style="display: block;" class="reset"></a>
+
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Nav -->
+              <table width="325" height="40" border="0" cellspacing="0" cellpadding="0" align="right" style="text-align: right; font-size: 14px; font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;" class="textAlignCenter">
+                <tr>
+                  <td>
+                    
+                    <a href="#" style="text-decoration: none; color: #FFFFFF;" data-linkColor="">HOME</a> &nbsp; / &nbsp;
+                    <a href="#" style="text-decoration: none; color: #FFFFFF;" data-linkColor="">VIEW ONLINE</a>
+                    
+                  </td>
+                </tr>
+              </table>
+            
+            </td>
+          </tr>
+          <tr>
+            <td height="40" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center">
+            
+              <a href="#"><img src="images/beacon.png" border="0" style="display: block;"></a>
+              
+            </td>
+          </tr>
+          <tr>
+            <td height="80" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+        </table>
+        
+        <!-- Button -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter" style="background-image: url(images/header_cut.png); background-repeat: repeat-x; background-position: center bottom; font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;">
+          <tr>
+            <td style="text-align: center;">
+            
+              <a href="#" style="text-decoration: none; background-color: #91d31e; padding: 20px; padding-left: 30px; padding-right: 30px; border-radius: 3px; color: #FFFFFF; font-size: 22px;" class="animateButton" data-backgroundColor="">Download Your Product</a>
+            
+            </td>
+          </tr>
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+  
+  <!-- Introduction -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter" style="color: #323232;" name="introduction" mc:repeatable="TABLE" mc:variant="introduction">
+    <tr>
+      <td style="border-bottom: 1px solid #ededed;">
+
+        <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="alignCenter" style="font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;">
+          <tr>
+            <td height="70" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center" class="paddingBoth" style="font-size: 30px;">
+
+              <p style="color: #323232; padding: 15px 0 15px 0;" data-headlineColor=""><%= @product.title%></p>
+
+            </td>
+          </tr>
+          <tr>
+            <td height="60" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+  
+
+  
+  <!-- Last Words -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter" style="font-size: 32px; color: #323232;" name="lastwords" mc:repeatable="TABLE" mc:variant="lastwords">
+    <tr>
+      <td style="border-bottom: 1px solid #ededed;">
+      
+        <table style="font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;" width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter">
+          <tr>
+            <td height="60" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center" class="paddingBoth">
+              
+              <!-- <p href="#" style="font-size: 22px; color: #323232; padding: 15px 0px 0px 0px;" data-headlineColor="">A Payoff Should Be Clean As Possible</p> -->
+
+
+
+              
+
+              <% @assets.each do |a| %>
+        <tr>
+        <td>
+        <%= link_to "Download", a.asset.url %>
+        <%= a.asset_file_name %>
+        </td>
+        </tr>
+      <% end %>
+
+
+
+                   <p style="font-size: 16px; color: #6b6b6b; line-height: 28px; padding: 15px 0px 0px 0px;" data-lineHeight="">Enjoy! If you have questions about the product email <%= @product.user.full_name %> at <%= @product.user.email %> </p>
+              <!-- <p style="font-size: 16px; color: #6b6b6b; line-height: 28px; padding: 15px 0px 0px 0px;" data-lineHeight="">Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam donec id elit non mi.</p> -->
+
+                              
+              <p style="font-size: 16px; color: #6b6b6b; line-height: 28px; padding: 45px 0px 15px 0px;">
+                <a href="#" style="padding: 10px 20px 10px 20px; border-radius: 3px; background-color: #72cfa2; text-decoration: none; color: #FFFFFF; font-size: 16px;" data-button="">Download</a> 
+              </p>
+              
+            </td>
+          </tr>
+          <tr>
+            <td height="60" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+          </tr>
+        </table>
+                
+      </td>
+    </tr>
+  </table>
+  
+  <!-- Footer -->
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter" style="color: #323232;" name="footer" mc:repeatable="TABLE" mc:variant="footer">
+    <tr>
+      <td height="40" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+      
+        <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="textAlignCenter">
+          <tr>
+            <td>
+              
+              <table width="300" border="0" cellspacing="0" cellpadding="0" align="left" class="textAlignCenter" style="font-size: 14px; font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;">
+                <tr>
+                  <td>
+
+                    <img src="images/logo_footer.png" style="vertical-align: middle; margin-top: -4px; display: inline-block;"> &nbsp;&nbsp;Beacon. Available for everyone
+                  
+                  </td>
+                </tr>
+              </table>
+              
+              <table width="300" border="0" cellspacing="0" cellpadding="0" align="right" class="alignCenter" style="font-size: 12px; font-family: 'Proxima N W15 Light', Helvetica, Arial, sans-serif;">
+                <tr>
+                  <td align="right" class="increasePadding-BothReset">
+                    
+                    <a href="#" style="text-decoration: none; color: #323232;" data-linkColor="">Twitter</a> / <a href="#" style="text-decoration: none; color: #323232;" data-linkColor="">Facebook</a> / <a href="#" style="text-decoration: none; color: #323232;" data-linkColor="">Unsubscribe</a>
+                    
+                  </td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+        </table>
+                
+      </td>
+    </tr>
+    <tr>
+      <td height="40" style="line-height: 0px; font-size: 1px;">&nbsp;</td>
+    </tr>
+  </table>
+  
+</body>
 </html>
