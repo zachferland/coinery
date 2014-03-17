@@ -1,5 +1,6 @@
 $green: #91D31E
 $dark: #444540
+$light-gray: #f9f9f9
 
 @import normalize
 @import compass
@@ -264,12 +265,45 @@ footer
     color: lighten($dark, 20%)
 
 
+.iframe-container
+  text-align: center
+  padding-bottom: 50px
 
+.form-container
+  padding: 20px 120px 50px
 
+  h1
+    margin: 0px
+    padding: 0px
+    font-size: 1.5rem
 
+  input, a.submit
+    font-family: 'proxima-nova'
+    display: inline-block
+    background: darken($light-gray, 3%)
+    font-size: 1.1rem
+    padding: 13px 15px
+    border: 0px
+    border-left: 3px solid $green
+    color: $dark
+    font-weight: 400
 
+    &:focus
+      outline: 0px
 
+  input
+    margin-top: 15px
+    width: 270px
 
-
-
+  a.submit
+    @include border-radius(0px 2px 2px 0px)
+    background: $green
+    border-left: 3px solid transparent
+    color: #fff
+    font-weight: 700
+    margin-left: -4px
+    padding: 13px 20px 13px 15px
+    cursor: pointer
+    &:hover
+      background: darken($green, 5%)
 
