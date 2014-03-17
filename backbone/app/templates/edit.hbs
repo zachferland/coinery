@@ -6,9 +6,11 @@
 
 <header style="width: 600px;">
   <h2 class="left"><strong style="letter-spacing: -1px;">{{title}}</strong> </h2>
-  {{#unless published}}
+  {{#if published}}
+    <a class="button small right" data-href="preview">Preview <i class="fa fa-external-link"></i></a>
+  {{else}}
     <a class="button small right" data-href="publish">Publish</a>
-  {{/unless}}
+  {{/if}}
   <a class="button small right gray" data-href="save">Save Draft</a>
 </header>
 
@@ -18,3 +20,4 @@
 <div class="files-container">
 </div>
 
+<iframe class="preview-iframe" style="border: 0px; display: none;" src="" frameborder="0" scrolling="no" allowtransparency="true"></iframe>

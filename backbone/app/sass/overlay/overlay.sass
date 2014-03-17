@@ -6,11 +6,13 @@ $light-gray: #f9f9f9
 @import compass
 
 body
-  background: transparent
+  background: none transparent
 
 html, body
   -webkit-font-smoothing: antialiased
   height: 100%
+  background: transparent!important
+  overflow: scroll
 
 body
   min-height: 100%
@@ -24,13 +26,20 @@ h1, h2, h3, h4, h5, h6, p, li, a
   color: $dark
 
 .overlay-container
-  @include background-image(linear-gradient(-180deg, rgba(68,69,64,0.73) 0%, #2D2E29 100%))
+  @include transition(all .2s)
+  @include background-image(linear-gradient(-180deg, rgba(29,30,27,0.73) 0%, rgba(29,30,27,1) 100%))
   position: fixed
   width: 100%
   height: 100%
   text-align: center
+  opacity: 0
+
+  &.visible
+    opacity: 1
+
 
 .overlay
+  @include transition(all .2s)
   @include box-shadow(0px 0px 40px rgba(0,0,0,.25))
   display: inline-block
   max-width: 618px
@@ -41,6 +50,13 @@ h1, h2, h3, h4, h5, h6, p, li, a
   width: 100%
   margin-top: 100px
   position: relative
+  opacity: 0
+  @include transform(scale(.5))
+
+  &.visible
+    opacity: 1
+    @include transform(scale(1))
+
 
   .close
     @include transition(all .2s)
