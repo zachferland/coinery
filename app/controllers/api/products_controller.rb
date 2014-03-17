@@ -94,10 +94,12 @@ module Api
     # param_group :product
     def publish
       @product = current_user.products.find(params[:id])
-
       current_user.coinbase_auth.refresh unless current_user.coinbase_auth.valid?
 
-      if @product.update(status: 2)
+
+      @product.create_payment_code(coinbase_token)
+
+      if @product.update(status: 2, button_code: button_code)
         head :no_content
       else
         render json: @product.errors, status: :unprocessable_entity
