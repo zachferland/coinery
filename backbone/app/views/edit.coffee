@@ -86,7 +86,8 @@ module.exports = class EditProductView extends Backbone.View
 
   renderOverlay: ->
     if @overlay?
-      @overlay.render()
+      delay 100, =>
+        @overlay.render()
       return
 
     @overlay = new OverlayView
@@ -97,7 +98,8 @@ module.exports = class EditProductView extends Backbone.View
 
   renderFiles: ->
     if @files?
-      @files.render()
+      delay 100, =>
+        @files.render()
       return
 
     @files = new FilesView
