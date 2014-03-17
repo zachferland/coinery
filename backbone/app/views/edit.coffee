@@ -21,6 +21,7 @@ module.exports = class EditProductView extends Backbone.View
       'description': @model.getDescription()
       'has_coinbase_auth': @user.getCoinbaseAuth()
       'published': @model.getPublished()
+      'id': @model.id
 
     @$el.html Template ctx
 
@@ -64,7 +65,7 @@ module.exports = class EditProductView extends Backbone.View
       url: "/api/products/#{@model.id}"
       async: false
       success: (response) =>
-        do @overlay.render
+        $('.unsaved').removeClass 'visible'
 
 
   publishHandler: (e) ->
@@ -84,18 +85,24 @@ module.exports = class EditProductView extends Backbone.View
 
 
   renderOverlay: ->
-    unless @overlay?
-      @overlay = new OverlayView
-        user: @user
-        model: @model
+    if @overlay?
+      @overlay.render()
+      return
+
+    @overlay = new OverlayView
+      user: @user
+      model: @model
     @overlay.render()
 
 
   renderFiles: ->
-    unless @files?
-      @files = new FilesView
-        user: @user
-        model: @model
+    if @files?
+      @files.render()
+      return
+
+    @files = new FilesView
+      user: @user
+      model: @model
     @files.render()
 
   coinbaseAuthHandler: (e) ->

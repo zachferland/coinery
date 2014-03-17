@@ -14,8 +14,6 @@ module.exports = class OverlayView extends Backbone.View
 
   initialize: (options) ->
     @user = options.user
-    @warningVisible = false
-    console.log @model
 
   render: ->
     ctx =
@@ -32,7 +30,6 @@ module.exports = class OverlayView extends Backbone.View
     do @postRender
 
   showWarning: (e) ->
-    return if @warningVisible
     $('.unsaved').addClass 'visible'
 
   postRender: ->
