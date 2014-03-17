@@ -26,7 +26,6 @@ module Api
       Notifier.send_purchase_email(@product, @customer).deliver
       # add download links to to assets, no need to, I already have them
     end 
-
     
     
     api :GET, '/products/all', "Get all products"
