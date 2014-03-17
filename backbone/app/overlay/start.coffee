@@ -98,7 +98,10 @@ $ ->
         do advanceStep(2)
 
 
-  destination = 'http://localhost:3000'
+  destination = 'http://coinery.io'
+  if /local/.test(window.location.href)
+    destination = 'http://localhost:3000'
+
   $('a[data-href="close"]').click (e) ->
     window.parent.postMessage 'close_preview', destination
 
