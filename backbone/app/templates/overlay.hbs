@@ -1,7 +1,9 @@
 <div class="overlay">
-  <div class="flag">
-    {{#if status}}
-      <span class="status">{{status}}</span>
+  <div class="flag {{#if published}}published{{/if}}">
+    {{#if published}}
+      <span class="status">Live</span>
+    {{else}}
+      <span class="status">Draft</span>
     {{/if}}
     <img src="images/flag.svg" width="81" height="81">
   </div>

@@ -20,16 +20,15 @@ module.exports = class EditProductView extends Backbone.View
       'title': @model.getTitle()
       'description': @model.getDescription()
       'has_coinbase_auth': @user.getCoinbaseAuth()
+      'published': @model.getPublished()
 
     @$el.html Template ctx
 
     do @renderSubviews
 
-
   renderSubviews: ->
     do @renderOverlay
     do @renderFiles
-
 
   killSubviews: ->
     for view in [@overlay, @files]
@@ -58,7 +57,6 @@ module.exports = class EditProductView extends Backbone.View
     do e.preventDefault
 
     do @saveHandler
-
     unless @user.getCoinbaseAuth()
       @$('.coinery-cta').show ->
         $(this).addClass 'visible'

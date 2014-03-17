@@ -6,7 +6,9 @@
 
 <header style="width: 600px;">
   <h2 class="left"><strong style="letter-spacing: -1px;">{{title}}</strong> </h2>
-  <a class="button small right" data-href="publish">Publish</a>
+  {{#unless published}}
+    <a class="button small right" data-href="publish">Publish</a>
+  {{/unless}}
   <a class="button small right gray" data-href="save">Save Draft</a>
 </header>
 

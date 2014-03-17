@@ -25,7 +25,7 @@ module.exports = class OverlayView extends Backbone.View
       'cover': @model.getCoverURL()
       'price': @model.getPrice()
       'user_name': @user.getName()
-      'status': @model.getReadableStatus()
+      'published': @model.getPublished()
 
     @$el.html Template ctx
 
