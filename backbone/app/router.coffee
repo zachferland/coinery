@@ -3,6 +3,7 @@ ProductsView = require 'views/products'
 CustomersView = require 'views/customers'
 NewProductView = require 'views/new'
 AccountView = require 'views/account'
+AnalyticsView = require 'views/analytics'
 LoginView = require 'views/login'
 EditProductView = require 'views/edit'
 ProductsCollection = require 'collections/products'
@@ -14,6 +15,7 @@ module.exports = class Router extends Backbone.Router
     'products/new': 'newProductHandler'
     'products/edit/:id': 'editProductHandler'
     'customers': 'customersHandler'
+    'analytics': 'analyticsHandler'
     'account': 'accountHandler'
     'login': 'loginHandler'
     '#*': 'productsHandler'
@@ -79,6 +81,16 @@ module.exports = class Router extends Backbone.Router
         model: @user
 
       @loadView customers
+      return
+
+    do @requireLogin
+
+  analyticsHandler: ->
+    if @session()
+      analytics = new AnalyticsView
+        model: @user
+
+      @loadView analytics
       return
 
     do @requireLogin
