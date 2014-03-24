@@ -161,7 +161,7 @@ window.delay = function(ms, func) {
   return setTimeout(func, ms);
 };
 
-window.api_root = 'http://www.coinery.io';
+window.api_root = 'http://app.coinery.io';
 
 window.cb_client_id = 'ed71f78e7a89b542777e77d93dc44a33c02bab2c855a4e9919c7db5ad50edb6a';
 
@@ -727,7 +727,7 @@ function program5(depth0,data) {
 function program7(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n<div class=\"container\">\n  <header>\n    <h4>Embed your product</h4>\n    <p>Use the link below to link to your product from any website</p>\n  </header>\n  <p>\n    http://www.coinery.io/products?id=";
+  buffer += "\n<div class=\"container\">\n  <header>\n    <h4>Embed your product</h4>\n    <p>Use the link below to link to your product from any website</p>\n  </header>\n  <p>\n    http://app.coinery.io/products?id=";
   if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
