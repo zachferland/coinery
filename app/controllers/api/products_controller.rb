@@ -118,11 +118,15 @@ module Api
       end
        
 
-      # check here if price changed, if it do the same product creation as i did publish, 
+      # check here if price changed, if it did, create new button code for coinbase iframe
       # create new button code and update. 
-      # if @product.price != product_params
-        # must save price first before running create payment code
-        # @product.create_payment_code(coinbase_token)
+      if @product.price.to_f != product_params[:price].to_f
+      #   # must save price first before running create payment code
+        @product.create_payment_code(coinbase_token)
+      end
+
+      # test = @product.price == product_params[:price]
+      #  10.0 = 10.00 "no?"
 
         # alternate option  product.price - price
         # product.price_changed?
@@ -139,10 +143,13 @@ module Api
      # when i wrote everything before saving and then made changes after, it was not possible to break
      # CASE ONE, not entering a description first, and then entering one after breaks it
 
+     # how are permitted params handle in production vs development, appears to cause error, since that is not 
+     # visible to models in the backbone app
 
 
   
       if @product.update(product_params)
+        # render json: 
         head :no_content
       else
         render json: @product.errors, status: :unprocessable_entity
