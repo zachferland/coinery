@@ -113,10 +113,34 @@ module Api
 
        # current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
        # @product.create_payment_code(coinbase_token)
-
       if @product.image.exists? 
        @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
       end
+       
+
+      # check here if price changed, if it do the same product creation as i did publish, 
+      # create new button code and update. 
+      # if @product.price != product_params
+        # must save price first before running create payment code
+        # @product.create_payment_code(coinbase_token)
+
+        # alternate option  product.price - price
+        # product.price_changed?
+
+
+     # hmm not sure what is going on here
+     # of course it is a small problem arleady that iframe does not update when you change the price
+     # what I really am wondering is why is any updates to the product, (put to product), result in a nil
+     # button, even everything else properly stays
+     # Why does it do this production but not in localhost
+     # it is only happening when you make a change afer it has been publish
+     # any changes before it has been published go through nicely, without any problems
+     # changing description works fine - withou changing anything else
+     # when i wrote everything before saving and then made changes after, it was not possible to break
+     # CASE ONE, not entering a description first, and then entering one after breaks it
+
+
+
   
       if @product.update(product_params)
         head :no_content
@@ -135,7 +159,7 @@ module Api
   
     private
       def product_params
-        params.permit(:title, :description, :price, :image, :button_code, :status)
+        params.permit(:title, :description, :price, :image, :status)
       end
   
   end
