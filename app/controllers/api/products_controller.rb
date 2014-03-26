@@ -121,7 +121,7 @@ module Api
 
       # check here if price changed, if it did, create new button code for coinbase iframe
       # create new button code and update. 
-      if @product.price.to_f != product_params[:price].to_f
+      if (@product.price.to_f != product_params[:price].to_f) || @product.button_code == nil
       #   # must save price first before running create payment code
         # @product.create_payment_code(coinbase_token)
         change_product = true
