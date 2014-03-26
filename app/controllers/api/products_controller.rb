@@ -116,13 +116,15 @@ module Api
       if @product.image.exists? 
        @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
       end
-       
+      
+      change_product = false
 
       # check here if price changed, if it did, create new button code for coinbase iframe
       # create new button code and update. 
       if @product.price.to_f != product_params[:price].to_f
       #   # must save price first before running create payment code
-        @product.create_payment_code(coinbase_token)
+        # @product.create_payment_code(coinbase_token)
+        change_product = true
       end
 
       # test = @product.price == product_params[:price]
@@ -149,6 +151,9 @@ module Api
 
   
       if @product.update(product_params)
+        if change_product
+          @product.create_payment_code(coinbase_token)
+        end
         # render json: 
         head :no_content
       else
