@@ -100,7 +100,7 @@ $ ->
         do advanceStep(2)
 
 
-  destination = 'http://app.www.coinery.io'
+  destination = 'http://app.coinery.io'
   if /local/.test(window.location.href)
     destination = 'http://localhost:3000'
 
