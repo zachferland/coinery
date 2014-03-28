@@ -110,52 +110,25 @@ module Api
     # param_group :product
     def update
       @product = current_user.products.find(params[:id])
-
-       # current_user.coinbase_auth.refresh #unless current_user.coinbase_auth.valid?
-       # @product.create_payment_code(coinbase_token)
-      if @product.image.exists? 
-       @product.image_url = @product.image.url(:large) #unless !@product.image.exists? 
-      end
       
       change_product = false
 
-      # check here if price changed, if it did, create new button code for coinbase iframe
-      # create new button code and update. 
-      if (@product.price.to_f != product_params[:price].to_f) || (@product.button_code == nil && @product.status == 2)
-      #   # must save price first before running create payment code
-        # @product.create_payment_code(coinbase_token)
+      # # check here if price changed, if it did, create new button code for coinbase iframe
+      # # create new button code and update. 
+      if ((@product.price.to_f != product_params[:price].to_f) && @product.status == 2) || (@product.button_code == nil && @product.status == 2)
         change_product = true
       end
 
-      # test = @product.price == product_params[:price]
-      #  10.0 = 10.00 "no?"
-
-        # alternate option  product.price - price
-        # product.price_changed?
-
-
-     # hmm not sure what is going on here
-     # of course it is a small problem arleady that iframe does not update when you change the price
-     # what I really am wondering is why is any updates to the product, (put to product), result in a nil
-     # button, even everything else properly stays
-     # Why does it do this production but not in localhost
-     # it is only happening when you make a change afer it has been publish
-     # any changes before it has been published go through nicely, without any problems
-     # changing description works fine - withou changing anything else
-     # when i wrote everything before saving and then made changes after, it was not possible to break
-     # CASE ONE, not entering a description first, and then entering one after breaks it
-
-     # how are permitted params handle in production vs development, appears to cause error, since that is not 
-     # visible to models in the backbone app
-
-
-  
       if @product.update(product_params)
+        if @product.image.exists? 
+          @product.image_url = @product.image.url(:large)
+          @product.save
+        end
         if change_product
           @product.create_payment_code(coinbase_token)
         end
-        # render json: 
-        head :no_content
+        render json: product_params[:image]
+        # head :no_content
       else
         render json: @product.errors, status: :unprocessable_entity
       end
