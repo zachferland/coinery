@@ -25,15 +25,20 @@ class Product < ActiveRecord::Base
     end
     
     
-  def user 
-    User.find(self.user_id)
-  end  
+  # def user 
+  #   User.find(self.user_id)
+  # end  
 
   def btc 
     response = HTTParty.get('https://coinbase.com/api/v1/currencies/exchange_rates').parsed_response
     usd_to_btc = response['usd_to_btc']
     return self.price * usd_to_btc.to_f
   end  
+
+  def user
+    @user = User.find(self.user_id)
+    return @user.as_json(:except => [:coinbase_auth])
+  end
 
 
   # mailer send product to customer test 

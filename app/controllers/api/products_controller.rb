@@ -11,7 +11,8 @@ module Api
     api :GET, '/products/:id/buy'
     def buy
       @product = Product.find(params[:id])
-      render json: @product.as_json(:include => [:user, :assets], :methods => :btc)
+      render json: @product.as_json(:include => :assets, :methods => [:user, :btc])
+
     end
 
     api :POST, '/products/:id/purchase'
